@@ -1,4 +1,4 @@
-module spoj
+module spark-oj-server
 
 go 1.24.1
 
@@ -24,7 +24,7 @@ require (
 	github.com/mattn/go-colorable v0.1.14 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mattn/go-runewidth v0.0.16 // indirect
-	github.com/olekukonko/tablewriter v0.0.5 // indirect https://github.com/gogf/gf/issues/4278
+	github.com/olekukonko/tablewriter v0.0.5 // indirect; indirect https://github.com/gogf/gf/issues/4278
 	github.com/rivo/uniseg v0.4.7 // indirect
 	go.opentelemetry.io/auto/sdk v1.1.0 // indirect
 	go.opentelemetry.io/otel v1.36.0 // indirect

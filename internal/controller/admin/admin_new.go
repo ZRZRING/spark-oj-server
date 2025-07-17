@@ -5,7 +5,7 @@
 package admin
 
 import (
-	"spoj/api/admin"
+	"spark-oj-server/api/admin"
 )
 
 type ControllerV1 struct{}

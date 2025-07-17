@@ -7,7 +7,7 @@ package problem
 import (
 	"context"
 
-	"spoj/api/problem/v1"
+	"spark-oj-server/api/problem/v1"
 )
 
 type IProblemV1 interface {

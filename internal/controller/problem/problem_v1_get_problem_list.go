@@ -2,11 +2,11 @@ package problem
 
 import (
 	"context"
-	"spoj/internal/consts"
-	"spoj/internal/dao"
-	"spoj/internal/model/entity"
+	"spark-oj-server/internal/consts"
+	"spark-oj-server/internal/dao"
+	"spark-oj-server/internal/model/entity"
 
-	"spoj/api/problem/v1"
+	"spark-oj-server/api/problem/v1"
 )
 
 func (c *ControllerV1) GetProblemList(ctx context.Context, req *v1.GetProblemListReq) (res *v1.GetProblemListRes, err error) {

@@ -6,7 +6,7 @@ import (
 	"github.com/gogf/gf/v2/errors/gcode"
 	"github.com/gogf/gf/v2/errors/gerror"
 
-	"spoj/api/contest/v1"
+	"spark-oj-server/api/contest/v1"
 )
 
 func (c *ControllerV1) GetContestList(ctx context.Context, req *v1.GetContestListReq) (res *v1.GetContestListRes, err error) {

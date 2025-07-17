@@ -2,10 +2,10 @@ package router
 
 import (
 	"context"
-	"spoj/internal/controller/admin"
-	"spoj/internal/controller/problem"
-	"spoj/internal/controller/user"
-	"spoj/internal/middleware"
+	"spark-oj-server/internal/controller/admin"
+	"spark-oj-server/internal/controller/problem"
+	"spark-oj-server/internal/controller/user"
+	"spark-oj-server/internal/middleware"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"

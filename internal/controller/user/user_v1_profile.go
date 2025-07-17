@@ -4,9 +4,9 @@ import (
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
-	"spoj/api/user/v1"
-	"spoj/internal/dao"
-	"spoj/internal/model/entity"
+	"spark-oj-server/api/user/v1"
+	"spark-oj-server/internal/dao"
+	"spark-oj-server/internal/model/entity"
 )
 
 func (c *ControllerV1) Profile(ctx context.Context, req *v1.ProfileReq) (res *v1.ProfileRes, err error) {

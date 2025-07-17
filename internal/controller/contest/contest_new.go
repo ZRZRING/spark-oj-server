@@ -5,7 +5,7 @@
 package contest
 
 import (
-	"spoj/api/contest"
+	"spark-oj-server/api/contest"
 )
 
 type ControllerV1 struct{}

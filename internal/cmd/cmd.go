@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"spoj/internal/router"
+	"spark-oj-server/internal/router"
 
 	"github.com/gogf/gf/v2/os/gcmd"
 )

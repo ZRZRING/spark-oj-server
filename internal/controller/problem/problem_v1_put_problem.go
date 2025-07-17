@@ -3,10 +3,10 @@ package problem
 import (
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
-	"spoj/api/problem/v1"
-	"spoj/internal/consts"
-	"spoj/internal/dao"
-	"spoj/internal/model/do"
+	"spark-oj-server/api/problem/v1"
+	"spark-oj-server/internal/consts"
+	"spark-oj-server/internal/dao"
+	"spark-oj-server/internal/model/do"
 )
 
 func (c *ControllerV1) PutProblem(ctx context.Context, req *v1.PutProblemReq) (res *v1.PutProblemRes, err error) {

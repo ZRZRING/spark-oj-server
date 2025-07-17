@@ -5,7 +5,7 @@
 package dao
 
 import (
-	"spoj/internal/dao/internal"
+	"spark-oj-server/internal/dao/internal"
 )
 
 // userRoleDao is the data access object for the table user_role.

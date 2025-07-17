@@ -7,7 +7,7 @@ package contest
 import (
 	"context"
 
-	"spoj/api/contest/v1"
+	"spark-oj-server/api/contest/v1"
 )
 
 type IContestV1 interface {

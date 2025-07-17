@@ -6,7 +6,7 @@ import (
 	"github.com/gogf/gf/v2/errors/gcode"
 	"github.com/gogf/gf/v2/errors/gerror"
 
-	"spoj/api/contest/v1"
+	"spark-oj-server/api/contest/v1"
 )
 
 func (c *ControllerV1) PostContest(ctx context.Context, req *v1.PostContestReq) (res *v1.PostContestRes, err error) {

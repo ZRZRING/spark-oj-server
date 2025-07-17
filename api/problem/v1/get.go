@@ -7,11 +7,10 @@ type GetProblemReq struct {
 }
 
 type GetProblemRes struct {
-	Title       string `json:"title" dc:""`
-	JudgeType   int    `json:"judge_type" dc:""`
-	Time        int    `json:"time" dc:""`
-	Memory      int    `json:"memory" dc:""`
-	ContentType int    `json:"content_type" dc:""`
-	Content     string `json:"content" dc:""`
-	CreateBy    string `json:"create_by" dc:""`
+	Title     string `json:"title" dc:""`
+	JudgeType int    `json:"judge_type" dc:""`
+	Time      int    `json:"time" dc:""`
+	Memory    int    `json:"memory" dc:""`
+	Content   string `json:"content" dc:""`
+	CreateBy  string `json:"create_by" dc:""`
 }

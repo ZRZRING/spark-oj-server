@@ -3,9 +3,9 @@ package admin
 import (
 	"context"
 	"github.com/gogf/gf/v2/util/gconv"
-	"spoj/internal/middleware"
+	"spark-oj-server/internal/middleware"
 
-	"spoj/api/admin/v1"
+	"spark-oj-server/api/admin/v1"
 )
 
 func (c *ControllerV1) Protected(ctx context.Context, req *v1.ProtectedReq) (res *v1.ProtectedRes, err error) {

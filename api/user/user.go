@@ -7,7 +7,7 @@ package user
 import (
 	"context"
 
-	"spoj/api/user/v1"
+	"spark-oj-server/api/user/v1"
 )
 
 type IUserV1 interface {

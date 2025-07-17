@@ -4,9 +4,9 @@ import (
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
-	"spoj/api/problem/v1"
-	"spoj/internal/dao"
-	"spoj/internal/model/entity"
+	"spark-oj-server/api/problem/v1"
+	"spark-oj-server/internal/dao"
+	"spark-oj-server/internal/model/entity"
 )
 
 func (c *ControllerV1) GetProblem(ctx context.Context, req *v1.GetProblemReq) (res *v1.GetProblemRes, err error) {

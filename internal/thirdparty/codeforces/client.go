@@ -4,7 +4,7 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/gclient"
 	"github.com/gogf/gf/v2/util/gconv"
-	"spoj/internal/consts"
+	"spark-oj-server/internal/consts"
 )
 
 func GetUserInfo(ctx g.Ctx, cfId string) *UserInfo {

@@ -7,7 +7,7 @@ package admin
 import (
 	"context"
 
-	"spoj/api/admin/v1"
+	"spark-oj-server/api/admin/v1"
 )
 
 type IAdminV1 interface {

@@ -40,11 +40,9 @@ create table if not exists problem
 (
     pid          varchar(255) not null primary key,
     title        varchar(255) not null default 'Unknown Problem',
-    judge_type         integer      not null default 0,
+    judge_type   integer      not null default 0,
     time         integer      not null default 1000,
     memory       integer      not null default 1024,
-    content_type integer      not null default 0,
-    content      text,
     create_by    varchar(255) not null default 'Unknown User',
     rating       integer,
     config       jsonb,

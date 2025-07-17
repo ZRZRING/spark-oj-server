@@ -4,9 +4,9 @@ import (
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
-	"spoj/api/contest/v1"
-	"spoj/internal/dao"
-	"spoj/internal/model/entity"
+	"spark-oj-server/api/contest/v1"
+	"spark-oj-server/internal/dao"
+	"spark-oj-server/internal/model/entity"
 )
 
 func (c *ControllerV1) GetContest(ctx context.Context, req *v1.GetContestReq) (res *v1.GetContestRes, err error) {

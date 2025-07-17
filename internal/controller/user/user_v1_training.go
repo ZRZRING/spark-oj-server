@@ -4,10 +4,10 @@ import (
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
-	"spoj/api/user/v1"
-	"spoj/internal/dao"
-	"spoj/internal/model/entity"
-	"spoj/internal/thirdparty/codeforces"
+	"spark-oj-server/api/user/v1"
+	"spark-oj-server/internal/dao"
+	"spark-oj-server/internal/model/entity"
+	"spark-oj-server/internal/thirdparty/codeforces"
 )
 
 func (c *ControllerV1) Training(ctx context.Context, req *v1.TrainingReq) (res *v1.TrainingRes, err error) {

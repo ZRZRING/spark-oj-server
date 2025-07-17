@@ -3,11 +3,11 @@ package user
 import (
 	"context"
 	"github.com/gogf/gf/v2/crypto/gmd5"
-	"spoj/api/user/v1"
-	"spoj/internal/consts"
-	"spoj/internal/dao"
-	"spoj/internal/middleware"
-	"spoj/internal/model/entity"
+	"spark-oj-server/api/user/v1"
+	"spark-oj-server/internal/consts"
+	"spark-oj-server/internal/dao"
+	"spark-oj-server/internal/middleware"
+	"spark-oj-server/internal/model/entity"
 
 	"github.com/gogf/gf/v2/frame/g"
 )

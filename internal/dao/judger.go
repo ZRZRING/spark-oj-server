@@ -5,7 +5,7 @@
 package dao
 
 import (
-	"spoj/internal/dao/internal"
+	"spark-oj-server/internal/dao/internal"
 )
 
 // judgerDao is the data access object for the table judger.

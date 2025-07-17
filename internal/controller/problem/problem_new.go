@@ -5,7 +5,7 @@
 package problem
 
 import (
-	"spoj/api/problem"
+	"spark-oj-server/api/problem"
 )
 
 type ControllerV1 struct{}

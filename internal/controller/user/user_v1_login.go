@@ -3,6 +3,8 @@ package user
 import (
 	"context"
 	"github.com/gogf/gf/v2/crypto/gmd5"
+	"github.com/gogf/gf/v2/errors/gcode"
+	"github.com/gogf/gf/v2/errors/gerror"
 	"spark-oj-server/api/user/v1"
 	"spark-oj-server/internal/consts"
 	"spark-oj-server/internal/dao"

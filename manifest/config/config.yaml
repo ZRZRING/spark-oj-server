@@ -6,10 +6,29 @@ server:
 
 # https://goframe.org/docs/core/glog-config
 logger:
+  path: "output/log"
+  file: "{Y-m-d}.log"
   level : "all"
   stdout: true
+  header: true
+
+redis:
+  address: "127.0.0.1:6379"
+  password: ""
 
 # https://goframe.org/docs/core/gdb-config-file
 database:
+  logger:
+    path: "output/sql"
+    level: "all"
+    stdout: true
   default:
-    link: "pgsql:spark-oj:123456@tcp(zrzring.top:54321)/spark-oj"
+    link: "pgsql:postgres:123456@tcp(127.0.0.1:5432)/spoj"
+    timezone: "Asia/Shanghai"
+    debug: true
+
+thirdparty:
+  codeforces:
+    user:
+      baseUrl: "https://codeforces.com/api/user.info"
+      timeout: 15

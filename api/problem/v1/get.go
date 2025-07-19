@@ -11,6 +11,5 @@ type GetProblemRes struct {
 	JudgeType int    `json:"judge_type" dc:""`
 	Time      int    `json:"time" dc:""`
 	Memory    int    `json:"memory" dc:""`
-	Content   string `json:"content" dc:""`
 	CreateBy  string `json:"create_by" dc:""`
 }

@@ -5,5 +5,4 @@ gfcli:
   gen:
     dao:
       link: "pgsql:spark-oj:123456@tcp(zrzring.top:54321)/spark-oj"
-      tables: "user_base, user_role, contest, problem, submission, judger"
       jsonCase: "Snake"

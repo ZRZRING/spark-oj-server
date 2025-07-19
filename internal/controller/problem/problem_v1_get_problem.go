@@ -14,18 +14,15 @@ func (c *ControllerV1) GetProblem(ctx context.Context, req *v1.GetProblemReq) (r
 	md := dao.Problem.Ctx(ctx)
 	problem := &entity.Problem{}
 	pid := gconv.String(r.Get("pid").Val())
-
 	err = md.Where("pid", pid).Scan(&problem)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
-
 	err = gconv.Scan(problem, &res)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
-
 	return res, nil
 }

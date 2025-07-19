@@ -13,17 +13,7 @@ import (
 
 func (c *ControllerV1) Register(ctx context.Context, req *v1.RegisterReq) (res *v1.RegisterRes, err error) {
 	g.Log().Info(ctx, req)
-
-	// 校验参数
-	err = g.Validator().Data(req).Run(ctx)
-	if err != nil {
-		g.Log().Error(ctx, err)
-		return
-	}
-
 	md := dao.UserBase.Ctx(ctx)
-
-	// 检查用户是否存在
 	cnt, err := md.Where("username", req.Username).Count()
 	if err != nil {
 		return
@@ -33,23 +23,24 @@ func (c *ControllerV1) Register(ctx context.Context, req *v1.RegisterReq) (res *
 		return nil, err
 	}
 	g.Log().Info(ctx, cnt)
-
-	// 往数据库添加用户
-	md5Password, err := gmd5.Encrypt(req.Password)
+	req.Password, err = gmd5.Encrypt(req.Password)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
-	msg, err := md.Insert(do.UserBase{
-		Username: req.Username,
-		Password: md5Password,
-		Nickname: req.Username,
-	})
+	data := &do.UserBase{}
+	err = gconv.Struct(req, data)
+	if err != nil {
+		return nil, err
+	}
+	if data.Nickname == nil {
+		data.Nickname = data.Username
+	}
+	msg, err := md.Insert(data)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
 	g.Log().Info(ctx, msg)
-
 	return
 }

@@ -14,18 +14,15 @@ func (c *ControllerV1) GetContest(ctx context.Context, req *v1.GetContestReq) (r
 	md := dao.Contest.Ctx(ctx)
 	contest := &entity.Contest{}
 	cid := gconv.String(r.Get("cid").Val())
-
 	err = md.Where("cid", cid).Scan(&contest)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
-
 	err = gconv.Scan(contest, &res)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
-
 	return res, nil
 }

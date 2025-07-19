@@ -15,10 +15,8 @@ type Problem struct {
 	Pid         interface{} //
 	Title       interface{} //
 	JudgeType   interface{} //
-	Time        interface{} //
-	Memory      interface{} //
-	ContentType interface{} //
-	Content     interface{} //
+	TimeLimit   interface{} //
+	MemoryLimit interface{} //
 	CreateBy    interface{} //
 	Rating      interface{} //
 	Config      interface{} //

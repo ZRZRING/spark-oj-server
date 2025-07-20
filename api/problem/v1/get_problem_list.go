@@ -9,6 +9,7 @@ type GetProblemListReq struct {
 }
 
 type GetProblemListRes struct {
+	Total    int        `json:"total" dc:"题目总数"`
 	Problems []*Problem `json:"problems" dc:"题目列表"`
 }
 

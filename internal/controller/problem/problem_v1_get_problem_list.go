@@ -36,5 +36,6 @@ func (c *ControllerV1) GetProblemList(ctx context.Context, req *v1.GetProblemLis
 			Title: p.Title,
 		}
 	}
+	res.Total = tot
 	return
 }

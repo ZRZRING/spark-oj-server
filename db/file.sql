@@ -1,10 +1,10 @@
 create table file
 (
-    path      varchar(255)            not null
-        primary key,
-    type      varchar(255)            not null,
-    create_at timestamp default now() not null,
-    update_at timestamp default now() not null,
+    uuid      uuid      default gen_random_uuid() not null primary key,
+    path      varchar(255)                        not null,
+    type      varchar(255)                        not null,
+    create_at timestamp default now()             not null,
+    update_at timestamp default now()             not null,
     delete_at timestamp
 );
 

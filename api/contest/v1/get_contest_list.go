@@ -9,10 +9,10 @@ type GetContestListReq struct {
 }
 
 type GetContestListRes struct {
-	Contests []*Contest `json:"contests" dc:"题目列表"`
+	Contests []*Contest `json:"contests" dc:"比赛列表"`
 }
 
 type Contest struct {
-	Pid   string `json:"pid"`
+	Cid   string `json:"cid"`
 	Title string `json:"title"`
 }

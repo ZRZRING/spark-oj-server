@@ -1,7 +1,8 @@
+create sequence submission_id_seq start with 1000000;
+
 create table submission
 (
-    sid       integer                 not null
-        primary key,
+    sid       integer                 not null primary key,
     pid       varchar(255)            not null,
     uid       varchar(255)            not null,
     cid       varchar(255),

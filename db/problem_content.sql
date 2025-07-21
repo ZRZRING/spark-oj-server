@@ -1,8 +1,8 @@
 create table problem_content
 (
-    id  varchar(255) not null,
-    cid varchar(255) not null,
-    pid varchar(255) not null
+    uuid uuid default gen_random_uuid() not null primary key,
+    cid  varchar(255)                   not null,
+    pid  varchar(255)                   not null
 );
 
 alter table problem_content

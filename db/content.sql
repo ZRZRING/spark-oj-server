@@ -1,11 +1,10 @@
 create table content
 (
-    cid       varchar(255)            not null
-        primary key,
-    type      integer                 not null,
+    uuid      uuid      default gen_random_uuid() not null primary key,
+    type      integer                             not null,
     payload   jsonb,
-    create_at timestamp default now() not null,
-    update_at timestamp default now() not null,
+    create_at timestamp default now()             not null,
+    update_at timestamp default now()             not null,
     delete_at timestamp
 );
 

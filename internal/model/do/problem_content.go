@@ -11,7 +11,7 @@ import (
 // ProblemContent is the golang structure of table problem_content for DAO operations like Where/Data.
 type ProblemContent struct {
 	g.Meta `orm:"table:problem_content, do:true"`
-	Id     interface{} //
+	Uuid   interface{} //
 	Cid    interface{} //
 	Pid    interface{} //
 }

@@ -19,7 +19,6 @@ type Problem struct {
 	MemoryLimit interface{} //
 	CreateBy    interface{} //
 	Rating      interface{} //
-	Config      interface{} //
 	CreateAt    *gtime.Time //
 	UpdateAt    *gtime.Time //
 	DeleteAt    *gtime.Time //

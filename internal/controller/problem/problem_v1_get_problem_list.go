@@ -2,7 +2,9 @@ package problem
 
 import (
 	"context"
-	"spark-oj-server/internal/consts"
+	"github.com/gogf/gf/v2/errors/gcode"
+	"github.com/gogf/gf/v2/errors/gerror"
+	"github.com/gogf/gf/v2/util/gconv"
 	"spark-oj-server/internal/dao"
 	"spark-oj-server/internal/model/entity"
 
@@ -12,29 +14,18 @@ import (
 func (c *ControllerV1) GetProblemList(ctx context.Context, req *v1.GetProblemListReq) (res *v1.GetProblemListRes, err error) {
 	res = &v1.GetProblemListRes{}
 	md := dao.Problem.Ctx(ctx)
-	tot, err := md.Count()
-	if err != nil {
-		return nil, err
-	}
-	num := (req.Page - 1) * req.Size
-	if tot <= num {
-		return nil, consts.ErrInvalidPageSize
-	}
 	var problems []*entity.Problem
 	err = md.
-		Fields("pid", "type", "title").
 		OrderAsc("pid").
-		Limit(req.Size).Offset((req.Page - 1) * req.Size).
+		Page(req.Page, req.Size).
 		Scan(&problems)
-	if err != nil {
-		return nil, err
+	if err == nil {
+		return nil, gerror.NewCodef(gcode.CodeDbOperationError, "get_problem_list %v", err)
 	}
-	res.Problems = make([]*v1.Problem, len(problems))
-	for i, p := range problems {
-		res.Problems[i] = &v1.Problem{
-			Pid:   p.Pid,
-			Title: p.Title,
-		}
+	err = gconv.Scan(problems, &res)
+	tot, err := md.Count()
+	if err != nil {
+		return nil, gerror.NewCodef(gcode.CodeDbOperationError, "%v", err)
 	}
 	res.Total = tot
 	return

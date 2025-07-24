@@ -9,12 +9,11 @@ import (
 	"github.com/gogf/gf/v2/os/gtime"
 )
 
-// Content is the golang structure of table content for DAO operations like Where/Data.
-type Content struct {
-	g.Meta   `orm:"table:content, do:true"`
-	Uuid     interface{} //
-	Type     interface{} //
-	Payload  interface{} //
+// Tag is the golang structure of table tag for DAO operations like Where/Data.
+type Tag struct {
+	g.Meta   `orm:"table:tag, do:true"`
+	Tag      interface{} //
+	Approved interface{} //
 	CreateAt *gtime.Time //
 	UpdateAt *gtime.Time //
 	DeleteAt *gtime.Time //

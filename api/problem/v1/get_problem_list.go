@@ -14,6 +14,6 @@ type GetProblemListRes struct {
 }
 
 type Problem struct {
-	Pid   int    `json:"pid"`
+	Pid   string `json:"pid"`
 	Title string `json:"title"`
 }

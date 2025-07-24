@@ -28,7 +28,6 @@ type ProblemColumns struct {
 	MemoryLimit string //
 	CreateBy    string //
 	Rating      string //
-	Config      string //
 	CreateAt    string //
 	UpdateAt    string //
 	DeleteAt    string //
@@ -43,7 +42,6 @@ var problemColumns = ProblemColumns{
 	MemoryLimit: "memory_limit",
 	CreateBy:    "create_by",
 	Rating:      "rating",
-	Config:      "config",
 	CreateAt:    "create_at",
 	UpdateAt:    "update_at",
 	DeleteAt:    "delete_at",

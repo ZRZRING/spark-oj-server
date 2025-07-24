@@ -21,16 +21,16 @@ type ProblemContentDao struct {
 
 // ProblemContentColumns defines and stores column names for the table problem_content.
 type ProblemContentColumns struct {
-	Id  string //
-	Cid string //
-	Pid string //
+	Uuid string //
+	Cid  string //
+	Pid  string //
 }
 
 // problemContentColumns holds the columns for the table problem_content.
 var problemContentColumns = ProblemContentColumns{
-	Id:  "id",
-	Cid: "cid",
-	Pid: "pid",
+	Uuid: "uuid",
+	Cid:  "cid",
+	Pid:  "pid",
 }
 
 // NewProblemContentDao creates and returns a new DAO object for table data access.

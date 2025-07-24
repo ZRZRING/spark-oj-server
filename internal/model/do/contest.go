@@ -15,7 +15,6 @@ type Contest struct {
 	Cid         interface{} //
 	Title       interface{} //
 	Password    interface{} //
-	Problems    interface{} //
 	Description interface{} //
 	StartTime   *gtime.Time //
 	EndTime     *gtime.Time //

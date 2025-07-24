@@ -13,7 +13,6 @@ type Contest struct {
 	Cid         string      `json:"cid"         orm:"cid"         ` //
 	Title       string      `json:"title"       orm:"title"       ` //
 	Password    string      `json:"password"    orm:"password"    ` //
-	Problems    string      `json:"problems"    orm:"problems"    ` //
 	Description string      `json:"description" orm:"description" ` //
 	StartTime   *gtime.Time `json:"start_time"  orm:"start_time"  ` //
 	EndTime     *gtime.Time `json:"end_time"    orm:"end_time"    ` //

@@ -12,7 +12,7 @@ import (
 // UserRole is the golang structure of table user_role for DAO operations like Where/Data.
 type UserRole struct {
 	g.Meta     `orm:"table:user_role, do:true"`
-	Name       interface{} //
+	Rid        interface{} //
 	Permission interface{} //
 	CreateAt   *gtime.Time //
 	UpdateAt   *gtime.Time //

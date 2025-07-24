@@ -21,7 +21,7 @@ type ContentDao struct {
 
 // ContentColumns defines and stores column names for the table content.
 type ContentColumns struct {
-	Cid      string //
+	Uuid     string //
 	Type     string //
 	Payload  string //
 	CreateAt string //
@@ -31,7 +31,7 @@ type ContentColumns struct {
 
 // contentColumns holds the columns for the table content.
 var contentColumns = ContentColumns{
-	Cid:      "cid",
+	Uuid:     "uuid",
 	Type:     "type",
 	Payload:  "payload",
 	CreateAt: "create_at",

@@ -12,6 +12,7 @@ import (
 // File is the golang structure of table file for DAO operations like Where/Data.
 type File struct {
 	g.Meta   `orm:"table:file, do:true"`
+	Uuid     interface{} //
 	Path     interface{} //
 	Type     interface{} //
 	CreateAt *gtime.Time //

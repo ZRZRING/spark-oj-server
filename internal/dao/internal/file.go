@@ -21,6 +21,7 @@ type FileDao struct {
 
 // FileColumns defines and stores column names for the table file.
 type FileColumns struct {
+	Uuid     string //
 	Path     string //
 	Type     string //
 	CreateAt string //
@@ -30,6 +31,7 @@ type FileColumns struct {
 
 // fileColumns holds the columns for the table file.
 var fileColumns = FileColumns{
+	Uuid:     "uuid",
 	Path:     "path",
 	Type:     "type",
 	CreateAt: "create_at",

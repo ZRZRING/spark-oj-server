@@ -17,7 +17,6 @@ type Problem struct {
 	MemoryLimit int         `json:"memory_limit" orm:"memory_limit" ` //
 	CreateBy    string      `json:"create_by"    orm:"create_by"    ` //
 	Rating      int         `json:"rating"       orm:"rating"       ` //
-	Config      string      `json:"config"       orm:"config"       ` //
 	CreateAt    *gtime.Time `json:"create_at"    orm:"create_at"    ` //
 	UpdateAt    *gtime.Time `json:"update_at"    orm:"update_at"    ` //
 	DeleteAt    *gtime.Time `json:"delete_at"    orm:"delete_at"    ` //

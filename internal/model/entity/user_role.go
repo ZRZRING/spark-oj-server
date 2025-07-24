@@ -10,7 +10,7 @@ import (
 
 // UserRole is the golang structure for table user_role.
 type UserRole struct {
-	Name       string      `json:"name"       orm:"name"       ` //
+	Rid        string      `json:"rid"        orm:"rid"        ` //
 	Permission string      `json:"permission" orm:"permission" ` //
 	CreateAt   *gtime.Time `json:"create_at"  orm:"create_at"  ` //
 	UpdateAt   *gtime.Time `json:"update_at"  orm:"update_at"  ` //

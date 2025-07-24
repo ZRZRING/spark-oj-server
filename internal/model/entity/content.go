@@ -10,7 +10,7 @@ import (
 
 // Content is the golang structure for table content.
 type Content struct {
-	Cid      string      `json:"cid"       orm:"cid"       ` //
+	Uuid     string      `json:"uuid"      orm:"uuid"      ` //
 	Type     int         `json:"type"      orm:"type"      ` //
 	Payload  string      `json:"payload"   orm:"payload"   ` //
 	CreateAt *gtime.Time `json:"create_at" orm:"create_at" ` //

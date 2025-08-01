@@ -11,15 +11,22 @@ import (
 )
 
 func (c *ControllerV1) PostProblem(ctx context.Context, req *v1.PostProblemReq) (res *v1.PostProblemRes, err error) {
-	g.Log().Info(ctx, req)
+	res = &v1.PostProblemRes{}
 	md := dao.Problem.Ctx(ctx)
+
+	//
 	data := &do.Problem{}
 	err = gconv.Struct(req, &data)
-	msg, err := md.Insert(data)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
-	g.Log().Info(ctx, msg)
-	return
+
+	_, err = md.Insert(data)
+	if err != nil {
+		g.Log().Error(ctx, err)
+		return nil, err
+	}
+
+	return res, nil
 }

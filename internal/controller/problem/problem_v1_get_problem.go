@@ -10,19 +10,27 @@ import (
 )
 
 func (c *ControllerV1) GetProblem(ctx context.Context, req *v1.GetProblemReq) (res *v1.GetProblemRes, err error) {
-	r := g.RequestFromCtx(ctx)
+	res = &v1.GetProblemRes{}
 	md := dao.Problem.Ctx(ctx)
-	problem := &entity.Problem{}
+
+	// 绑定 URL 信息
+	r := g.RequestFromCtx(ctx)
 	pid := gconv.String(r.Get("pid").Val())
-	err = md.Where("pid", pid).Scan(&problem)
+
+	// 从数据库获取数据
+	problem := &entity.Problem{}
+	err = md.Where("pid", pid).Scan(problem)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
-	err = gconv.Scan(problem, &res)
+
+	// 处理返回信息
+	err = gconv.Scan(problem, res)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
+
 	return res, nil
 }

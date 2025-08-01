@@ -53,6 +53,8 @@ func (c *ControllerV1) Login(ctx context.Context, req *v1.LoginReq) (res *v1.Log
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
+
+	// 处理返回信息
 	res.Token = token
 
 	return res, nil

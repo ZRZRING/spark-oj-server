@@ -10,18 +10,20 @@ import (
 )
 
 func (c *ControllerV1) PutProblem(ctx context.Context, req *v1.PutProblemReq) (res *v1.PutProblemRes, err error) {
+	res = &v1.PutProblemRes{}
 	md := dao.Problem.Ctx(ctx)
+
 	r := g.RequestFromCtx(ctx)
 	pid := gconv.String(r.Get("pid").Val())
+
 	data := &do.Problem{}
-	err = gconv.Struct(req, &data)
+	err = gconv.Struct(req, data)
 	if err != nil {
 		return nil, err
 	}
+
 	data.Pid = pid
-	msg, err := md.
-		OnConflict("pid").
-		Save(data)
+	msg, err := md.OnConflict("pid").Save(data)
 	if err != nil {
 		return nil, err
 	}

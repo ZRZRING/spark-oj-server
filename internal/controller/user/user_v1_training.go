@@ -16,18 +16,18 @@ func (c *ControllerV1) Training(ctx context.Context, req *v1.TrainingReq) (res *
 
 	// 获取 URL 路径参数
 	r := g.RequestFromCtx(ctx)
-	user := &entity.UserBase{}
 	username := gconv.String(r.Get("username").Val())
 
 	// 从数据库获取用户训练数据
-	err = md.Where("username", username).Scan(&user)
+	user := &entity.UserBase{}
+	err = md.Where("username", username).Scan(user)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
 
-	// 绑定信息
-	err = gconv.Scan(user, &res)
+	// 处理返回信息
+	err = gconv.Scan(user, res)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err

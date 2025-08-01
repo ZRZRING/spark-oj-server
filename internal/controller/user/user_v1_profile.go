@@ -25,7 +25,7 @@ func (c *ControllerV1) Profile(ctx context.Context, req *v1.ProfileReq) (res *v1
 		return nil, err
 	}
 
-	// 绑定返回信息
+	// 处理返回信息
 	err = gconv.Struct(user, res)
 	if err != nil {
 		g.Log().Error(ctx, err)

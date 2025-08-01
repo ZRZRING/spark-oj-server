@@ -14,19 +14,21 @@ import (
 func (c *ControllerV1) GetProblemList(ctx context.Context, req *v1.GetProblemListReq) (res *v1.GetProblemListRes, err error) {
 	res = &v1.GetProblemListRes{}
 	md := dao.Problem.Ctx(ctx)
-	var problems []*entity.Problem
-	err = md.
-		OrderAsc("pid").
-		Page(req.Page, req.Size).
-		Scan(&problems)
+
+	// 获取分页信息
+	tot := 0
+	problems := make([]*entity.Problem, 0)
+	err = md.OrderAsc("pid").Page(req.Page, req.Size).ScanAndCount(&problems, &tot, false)
 	if err == nil {
 		return nil, gerror.NewCodef(gcode.CodeDbOperationError, "get_problem_list %v", err)
 	}
+
+	// 处理返回信息
 	err = gconv.Scan(problems, &res)
-	tot, err := md.Count()
 	if err != nil {
 		return nil, gerror.NewCodef(gcode.CodeDbOperationError, "%v", err)
 	}
 	res.Total = tot
-	return
+
+	return res, nil
 }

@@ -11,17 +11,18 @@ import (
 
 // Submission is the golang structure of table submission for DAO operations like Where/Data.
 type Submission struct {
-	g.Meta   `orm:"table:submission, do:true"`
-	Sid      interface{} //
-	Pid      interface{} //
-	Uid      interface{} //
-	Cid      interface{} //
-	Result   interface{} //
-	Language interface{} //
-	Memory   interface{} //
-	Time     interface{} //
-	Code     interface{} //
-	CreateAt *gtime.Time //
-	UpdateAt *gtime.Time //
-	DeleteAt *gtime.Time //
+	g.Meta     `orm:"table:submission, do:true"`
+	Sid        interface{} //
+	Title      interface{} //
+	Pid        interface{} //
+	Username   interface{} //
+	Cid        interface{} //
+	Result     interface{} //
+	Language   interface{} //
+	MemoryCost interface{} //
+	TimeCost   interface{} //
+	Code       interface{} //
+	CreateAt   *gtime.Time //
+	UpdateAt   *gtime.Time //
+	DeleteAt   *gtime.Time //
 }

@@ -25,7 +25,6 @@ func (c *ControllerV1) Login(ctx context.Context, req *v1.LoginReq) (res *v1.Log
 		return nil, err
 	}
 
-	// 获取用户信息
 	user := &entity.UserBase{}
 	err = md.Where("username", req.Username).Scan(user)
 	if err != nil {
@@ -33,7 +32,7 @@ func (c *ControllerV1) Login(ctx context.Context, req *v1.LoginReq) (res *v1.Log
 		return nil, err
 	}
 
-	// 密码解析
+	// 获取 md5 加密后的信息
 	md5Password, err := gmd5.Encrypt(req.Password)
 	if err != nil {
 		g.Log().Error(ctx, err)
@@ -54,7 +53,6 @@ func (c *ControllerV1) Login(ctx context.Context, req *v1.LoginReq) (res *v1.Log
 		return nil, err
 	}
 
-	// 处理返回信息
 	res.Token = token
 
 	return res, nil

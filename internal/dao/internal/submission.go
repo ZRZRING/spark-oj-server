@@ -21,34 +21,36 @@ type SubmissionDao struct {
 
 // SubmissionColumns defines and stores column names for the table submission.
 type SubmissionColumns struct {
-	Sid      string //
-	Pid      string //
-	Uid      string //
-	Cid      string //
-	Result   string //
-	Language string //
-	Memory   string //
-	Time     string //
-	Code     string //
-	CreateAt string //
-	UpdateAt string //
-	DeleteAt string //
+	Sid        string //
+	Title      string //
+	Pid        string //
+	Username   string //
+	Cid        string //
+	Result     string //
+	Language   string //
+	MemoryCost string //
+	TimeCost   string //
+	Code       string //
+	CreateAt   string //
+	UpdateAt   string //
+	DeleteAt   string //
 }
 
 // submissionColumns holds the columns for the table submission.
 var submissionColumns = SubmissionColumns{
-	Sid:      "sid",
-	Pid:      "pid",
-	Uid:      "uid",
-	Cid:      "cid",
-	Result:   "result",
-	Language: "language",
-	Memory:   "memory",
-	Time:     "time",
-	Code:     "code",
-	CreateAt: "create_at",
-	UpdateAt: "update_at",
-	DeleteAt: "delete_at",
+	Sid:        "sid",
+	Title:      "title",
+	Pid:        "pid",
+	Username:   "username",
+	Cid:        "cid",
+	Result:     "result",
+	Language:   "language",
+	MemoryCost: "memory_cost",
+	TimeCost:   "time_cost",
+	Code:       "code",
+	CreateAt:   "create_at",
+	UpdateAt:   "update_at",
+	DeleteAt:   "delete_at",
 }
 
 // NewSubmissionDao creates and returns a new DAO object for table data access.

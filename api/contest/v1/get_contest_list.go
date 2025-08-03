@@ -12,13 +12,12 @@ type GetContestListReq struct {
 }
 
 type GetContestListRes struct {
-	Contests []*Contest `json:"contests" dc:"比赛列表"`
-}
-
-type Contest struct {
-	Cid       string     `json:"cid"`
-	Title     string     `json:"title"`
-	Practice  bool       `json:"practice" dc:"true 表示改比赛不限制参与时间，为训练题单"`
-	StartTime gtime.Time `json:"start_time"`
-	EndTime   gtime.Time `json:"end_time"`
+	Total    int `json:"total"`
+	Contests []*struct {
+		Cid       string     `json:"cid"`
+		Title     string     `json:"title"`
+		Practice  bool       `json:"practice" dc:"true 表示改比赛不限制参与时间，为训练题单"`
+		StartTime gtime.Time `json:"start_time"`
+		EndTime   gtime.Time `json:"end_time"`
+	} `json:"contests" dc:"比赛列表"`
 }

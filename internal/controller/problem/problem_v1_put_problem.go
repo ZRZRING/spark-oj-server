@@ -19,14 +19,17 @@ func (c *ControllerV1) PutProblem(ctx context.Context, req *v1.PutProblemReq) (r
 	data := &do.Problem{}
 	err = gconv.Struct(req, data)
 	if err != nil {
+		g.Log().Error(ctx, err)
 		return nil, err
 	}
 
 	data.Pid = pid
 	msg, err := md.OnConflict("pid").Save(data)
 	if err != nil {
+		g.Log().Error(ctx, err)
 		return nil, err
 	}
 	g.Log().Info(ctx, msg)
-	return
+
+	return res, nil
 }

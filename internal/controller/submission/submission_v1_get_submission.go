@@ -1,23 +1,24 @@
-package problem
+package submission
 
 import (
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
-	"spark-oj-server/api/problem/v1"
 	"spark-oj-server/internal/dao"
 	"spark-oj-server/internal/model/entity"
+
+	"spark-oj-server/api/submission/v1"
 )
 
-func (c *ControllerV1) GetProblem(ctx context.Context, req *v1.GetProblemReq) (res *v1.GetProblemRes, err error) {
-	res = &v1.GetProblemRes{}
-	md := dao.Problem.Ctx(ctx)
+func (c *ControllerV1) GetSubmission(ctx context.Context, req *v1.GetSubmissionReq) (res *v1.GetSubmissionRes, err error) {
+	res = &v1.GetSubmissionRes{}
+	md := dao.Submission.Ctx(ctx)
 
 	r := g.RequestFromCtx(ctx)
-	pid := gconv.String(r.Get("pid").Val())
+	sid := gconv.String(r.Get("sid").Val())
 
-	data := &entity.Problem{}
-	err = md.Where("pid", pid).Scan(data)
+	data := &entity.Submission{}
+	err = md.Where("sid", sid).Scan(data)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err

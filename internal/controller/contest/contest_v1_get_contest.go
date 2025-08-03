@@ -10,19 +10,24 @@ import (
 )
 
 func (c *ControllerV1) GetContest(ctx context.Context, req *v1.GetContestReq) (res *v1.GetContestRes, err error) {
-	r := g.RequestFromCtx(ctx)
+	res = &v1.GetContestRes{}
 	md := dao.Contest.Ctx(ctx)
-	contest := &entity.Contest{}
+
+	r := g.RequestFromCtx(ctx)
 	cid := gconv.String(r.Get("cid").Val())
-	err = md.Where("cid", cid).Scan(&contest)
+
+	contest := &entity.Contest{}
+	err = md.Where("cid", cid).Scan(contest)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
+
 	err = gconv.Scan(contest, &res)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
+
 	return res, nil
 }

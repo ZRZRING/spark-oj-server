@@ -36,10 +36,10 @@ func (c *ControllerV1) Register(ctx context.Context, req *v1.RegisterReq) (res *
 		return nil, err
 	}
 
-	// 数据绑定
 	data := &do.UserBase{}
 	err = gconv.Scan(req, data)
 	if err != nil {
+		g.Log().Error(ctx, err)
 		return nil, err
 	}
 
@@ -48,13 +48,12 @@ func (c *ControllerV1) Register(ctx context.Context, req *v1.RegisterReq) (res *
 		data.Nickname = data.Username
 	}
 
-	// 数据入库
 	msg, err := md.Insert(data)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
-	g.Log().Debug(ctx, msg)
+	g.Log().Info(ctx, msg)
 
 	return res, nil
 }

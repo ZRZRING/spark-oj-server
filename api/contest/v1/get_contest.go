@@ -3,8 +3,7 @@ package v1
 import "github.com/gogf/gf/v2/frame/g"
 
 type GetContestReq struct {
-	g.Meta   `path:"/contest/{cid}" method:"GET" tags:"contest" summary:"获取比赛信息"`
-	Password string `json:"password" dc:""`
+	g.Meta `path:"/contest/{cid}" method:"GET" tags:"contest" summary:"获取比赛信息"`
 }
 
 type GetContestRes struct {

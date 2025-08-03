@@ -9,11 +9,9 @@ type GetProblemListReq struct {
 }
 
 type GetProblemListRes struct {
-	Total    int        `json:"total" dc:"题目总数"`
-	Problems []*Problem `json:"problems" dc:"题目列表"`
-}
-
-type Problem struct {
-	Pid   string `json:"pid"`
-	Title string `json:"title"`
+	Total    int `json:"total" dc:"题目总数"`
+	Problems []*struct {
+		Pid   string `json:"pid"`
+		Title string `json:"title"`
+	} `json:"problems" dc:"题目列表"`
 }

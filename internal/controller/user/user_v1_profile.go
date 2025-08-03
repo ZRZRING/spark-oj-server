@@ -13,11 +13,9 @@ func (c *ControllerV1) Profile(ctx context.Context, req *v1.ProfileReq) (res *v1
 	res = &v1.ProfileRes{}
 	md := dao.UserBase.Ctx(ctx)
 
-	// 获取请求参数
 	r := g.RequestFromCtx(ctx)
 	username := gconv.String(r.Get("username").Val())
 
-	// 获取用户信息
 	user := &entity.UserBase{}
 	err = md.Where("username", username).Scan(user)
 	if err != nil {
@@ -25,7 +23,6 @@ func (c *ControllerV1) Profile(ctx context.Context, req *v1.ProfileReq) (res *v1
 		return nil, err
 	}
 
-	// 处理返回信息
 	err = gconv.Struct(user, res)
 	if err != nil {
 		g.Log().Error(ctx, err)

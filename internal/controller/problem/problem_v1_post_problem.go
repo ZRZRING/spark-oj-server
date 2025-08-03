@@ -14,15 +14,15 @@ func (c *ControllerV1) PostProblem(ctx context.Context, req *v1.PostProblemReq) 
 	res = &v1.PostProblemRes{}
 	md := dao.Problem.Ctx(ctx)
 
-	//
 	data := &do.Problem{}
-	err = gconv.Struct(req, &data)
+	err = gconv.Struct(req, data)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
 
-	_, err = md.Insert(data)
+	msg, err := md.Insert(data)
+	g.Log().Info(ctx, msg)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err

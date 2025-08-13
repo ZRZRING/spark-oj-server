@@ -27,8 +27,11 @@ database:
     timezone: "Asia/Shanghai"
     debug: true
 
-thirdparty:
+thirdParty:
   codeforces:
     user:
       baseUrl: "https://codeforces.com/api/user.info"
       timeout: 15
+  judge:
+    baseUrl: "http://localhost:5050"
+    timeout: 15

@@ -2,9 +2,7 @@ package router
 
 import (
 	"context"
-	"spark-oj-server/internal/controller/admin"
-	"spark-oj-server/internal/controller/problem"
-	"spark-oj-server/internal/controller/user"
+	v1 "spark-oj-server/internal/controller/v1"
 	"spark-oj-server/internal/middleware"
 
 	"github.com/gogf/gf/v2/frame/g"
@@ -19,8 +17,8 @@ func Bind(ctx context.Context, parser *gcmd.Parser) (err error) {
 		group.Middleware(middleware.CORS)
 		group.Middleware(ghttp.MiddlewareHandlerResponse)
 		group.Bind(
-			user.NewV1(),
-			problem.NewV1(),
+			v1.NewUser(),
+			v1.NewProblem(),
 		)
 	})
 
@@ -30,7 +28,7 @@ func Bind(ctx context.Context, parser *gcmd.Parser) (err error) {
 		group.Middleware(middleware.JWTAuth)
 		group.Middleware(ghttp.MiddlewareHandlerResponse)
 		group.Bind(
-			admin.NewV1(),
+			v1.NewAdmin(),
 		)
 	})
 

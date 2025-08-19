@@ -10,8 +10,8 @@ import (
 	"spark-oj-server/api/v1/problem"
 )
 
-func (c *ControllerProblem) GetProblemList(ctx context.Context, req *problem.GetProblemListReq) (res *problem.GetProblemListRes, err error) {
-	res = &problem.GetProblemListRes{}
+func (c *ControllerProblem) GetList(ctx context.Context, req *problem.GetListReq) (res *problem.GetListRes, err error) {
+	res = &problem.GetListRes{}
 	md := dao.Problem.Ctx(ctx)
 
 	// 获取分页信息

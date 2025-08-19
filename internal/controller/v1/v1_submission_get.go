@@ -8,18 +8,18 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 
-	"spark-oj-server/api/v1/problem"
+	"spark-oj-server/api/v1/submission"
 )
 
-func (c *ControllerProblem) GetProblem(ctx context.Context, req *problem.GetProblemReq) (res *problem.GetProblemRes, err error) {
-	res = &problem.GetProblemRes{}
-	md := dao.Problem.Ctx(ctx)
+func (c *ControllerSubmission) Get(ctx context.Context, req *submission.GetReq) (res *submission.GetRes, err error) {
+	res = &submission.GetRes{}
+	md := dao.Submission.Ctx(ctx)
 
 	r := g.RequestFromCtx(ctx)
-	pid := gconv.String(r.Get("pid").Val())
+	sid := gconv.String(r.Get("sid").Val())
 
-	data := &entity.Problem{}
-	err = md.Where("pid", pid).Scan(data)
+	data := &entity.Submission{}
+	err = md.Where("sid", sid).Scan(data)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err

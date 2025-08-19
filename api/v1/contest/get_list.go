@@ -5,13 +5,13 @@ import (
 	"github.com/gogf/gf/v2/os/gtime"
 )
 
-type GetContestListReq struct {
-	g.Meta `path:"/contests" method:"get" summary:"获取比赛列表" tags:"contest"`
-	Page   int `json:"page" v:"required#页码不能为空" dc:""`
-	Size   int `json:"size" v:"required#每页数量不能为空" dc:""`
+type GetListReq struct {
+	g.Meta `path:"/contests" method:"GET" summary:"获取比赛列表" tags:"contest"`
+	Page   int `p:"page" v:"required#页码不能为空" dc:""`
+	Size   int `p:"size" v:"required#每页数量不能为空" dc:""`
 }
 
-type GetContestListRes struct {
+type GetListRes struct {
 	Total    int `json:"total"`
 	Contests []*struct {
 		Cid       string     `json:"cid"`

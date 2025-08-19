@@ -4,13 +4,13 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 )
 
-type GetSubmissionListReq struct {
+type GetListReq struct {
 	g.Meta `path:"/submissions" method:"GET" tags:"submission" summary:"分页获取提交列表"`
-	Page   int `json:"page" dc:""`
-	Size   int `json:"size" dc:""`
+	Page   int `p:"page" dc:""`
+	Size   int `p:"size" dc:""`
 }
 
-type GetSubmissionListRes struct {
+type GetListRes struct {
 	Total      int `json:"total" dc:""`
 	Submission []*struct {
 		Sid        string `json:"sid"`

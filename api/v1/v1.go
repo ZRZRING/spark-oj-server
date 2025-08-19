@@ -9,9 +9,10 @@ import (
 
 	"spark-oj-server/api/v1/admin"
 	"spark-oj-server/api/v1/contest"
-	"spark-oj-server/api/v1/file"
+	"spark-oj-server/api/v1/core"
 	"spark-oj-server/api/v1/problem"
 	"spark-oj-server/api/v1/submission"
+	"spark-oj-server/api/v1/upload"
 	"spark-oj-server/api/v1/user"
 )
 
@@ -20,26 +21,31 @@ type IV1Admin interface {
 }
 
 type IV1Contest interface {
-	GetContest(ctx context.Context, req *contest.GetContestReq) (res *contest.GetContestRes, err error)
-	GetContestList(ctx context.Context, req *contest.GetContestListReq) (res *contest.GetContestListRes, err error)
-	PostContest(ctx context.Context, req *contest.PostContestReq) (res *contest.PostContestRes, err error)
-	PutContest(ctx context.Context, req *contest.PutContestReq) (res *contest.PutContestRes, err error)
+	Create(ctx context.Context, req *contest.CreateReq) (res *contest.CreateRes, err error)
+	Get(ctx context.Context, req *contest.GetReq) (res *contest.GetRes, err error)
+	GetList(ctx context.Context, req *contest.GetListReq) (res *contest.GetListRes, err error)
+	Update(ctx context.Context, req *contest.UpdateReq) (res *contest.UpdateRes, err error)
 }
 
-type IV1File interface {
-	Submit(ctx context.Context, req *file.SubmitReq) (res *file.SubmitRes, err error)
+type IV1Core interface {
+	Judge(ctx context.Context, req *core.JudgeReq) (res *core.JudgeRes, err error)
+	Run(ctx context.Context, req *core.RunReq) (res *core.RunRes, err error)
 }
 
 type IV1Problem interface {
-	GetProblem(ctx context.Context, req *problem.GetProblemReq) (res *problem.GetProblemRes, err error)
-	GetProblemList(ctx context.Context, req *problem.GetProblemListReq) (res *problem.GetProblemListRes, err error)
-	PostProblem(ctx context.Context, req *problem.PostProblemReq) (res *problem.PostProblemRes, err error)
-	PutProblem(ctx context.Context, req *problem.PutProblemReq) (res *problem.PutProblemRes, err error)
+	Create(ctx context.Context, req *problem.CreateReq) (res *problem.CreateRes, err error)
+	Get(ctx context.Context, req *problem.GetReq) (res *problem.GetRes, err error)
+	GetList(ctx context.Context, req *problem.GetListReq) (res *problem.GetListRes, err error)
+	Update(ctx context.Context, req *problem.UpdateReq) (res *problem.UpdateRes, err error)
 }
 
 type IV1Submission interface {
-	GetSubmission(ctx context.Context, req *submission.GetSubmissionReq) (res *submission.GetSubmissionRes, err error)
-	GetSubmissionList(ctx context.Context, req *submission.GetSubmissionListReq) (res *submission.GetSubmissionListRes, err error)
+	Get(ctx context.Context, req *submission.GetReq) (res *submission.GetRes, err error)
+	GetList(ctx context.Context, req *submission.GetListReq) (res *submission.GetListRes, err error)
+}
+
+type IV1Upload interface {
+	TestCase(ctx context.Context, req *upload.TestCaseReq) (res *upload.TestCaseRes, err error)
 }
 
 type IV1User interface {

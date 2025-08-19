@@ -11,8 +11,8 @@ import (
 	"spark-oj-server/api/v1/contest"
 )
 
-func (c *ControllerContest) PutContest(ctx context.Context, req *contest.PutContestReq) (res *contest.PutContestRes, err error) {
-	res = &contest.PutContestRes{}
+func (c *ControllerContest) Update(ctx context.Context, req *contest.UpdateReq) (res *contest.UpdateRes, err error) {
+	res = &contest.UpdateRes{}
 	md := dao.Contest.Ctx(ctx)
 
 	r := g.RequestFromCtx(ctx)

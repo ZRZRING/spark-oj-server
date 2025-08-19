@@ -4,11 +4,11 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 )
 
-type GetSubmissionReq struct {
+type GetReq struct {
 	g.Meta `path:"/submission/{sid}" method:"GET" tags:"contest" summary:"获取提交信息"`
 }
 
-type GetSubmissionRes struct {
+type GetRes struct {
 	ProblemId  string `json:"problem_id" dc:""`
 	Username   string `json:"username" dc:""`
 	ContestId  string `json:"contest_id" dc:""`

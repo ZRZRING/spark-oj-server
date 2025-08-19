@@ -11,8 +11,8 @@ import (
 	"spark-oj-server/api/v1/problem"
 )
 
-func (c *ControllerProblem) PutProblem(ctx context.Context, req *problem.PutProblemReq) (res *problem.PutProblemRes, err error) {
-	res = &problem.PutProblemRes{}
+func (c *ControllerProblem) Update(ctx context.Context, req *problem.UpdateReq) (res *problem.UpdateRes, err error) {
+	res = &problem.UpdateRes{}
 	md := dao.Problem.Ctx(ctx)
 
 	r := g.RequestFromCtx(ctx)

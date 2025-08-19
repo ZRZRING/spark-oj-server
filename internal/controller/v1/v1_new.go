@@ -14,12 +14,6 @@ func NewUser() v1.IV1User {
 	return &ControllerUser{}
 }
 
-type ControllerFile struct{}
-
-func NewFile() v1.IV1File {
-	return &ControllerFile{}
-}
-
 type ControllerAdmin struct{}
 
 func NewAdmin() v1.IV1Admin {
@@ -42,4 +36,16 @@ type ControllerSubmission struct{}
 
 func NewSubmission() v1.IV1Submission {
 	return &ControllerSubmission{}
+}
+
+type ControllerCore struct{}
+
+func NewCore() v1.IV1Core {
+	return &ControllerCore{}
+}
+
+type ControllerUpload struct{}
+
+func NewUpload() v1.IV1Upload {
+	return &ControllerUpload{}
 }

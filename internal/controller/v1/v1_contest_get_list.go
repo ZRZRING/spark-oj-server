@@ -10,8 +10,8 @@ import (
 	"spark-oj-server/api/v1/contest"
 )
 
-func (c *ControllerContest) GetContestList(ctx context.Context, req *contest.GetContestListReq) (res *contest.GetContestListRes, err error) {
-	res = &contest.GetContestListRes{}
+func (c *ControllerContest) GetList(ctx context.Context, req *contest.GetListReq) (res *contest.GetListRes, err error) {
+	res = &contest.GetListRes{}
 	md := dao.Problem.Ctx(ctx)
 
 	contests := make([]*entity.Contest, 0)

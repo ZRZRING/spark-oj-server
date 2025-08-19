@@ -9,6 +9,6 @@ import (
 	"spark-oj-server/api/v1/submission"
 )
 
-func (c *ControllerSubmission) GetSubmissionList(ctx context.Context, req *submission.GetSubmissionListReq) (res *submission.GetSubmissionListRes, err error) {
+func (c *ControllerSubmission) GetList(ctx context.Context, req *submission.GetListReq) (res *submission.GetListRes, err error) {
 	return nil, gerror.NewCode(gcode.CodeNotImplemented)
 }

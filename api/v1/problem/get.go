@@ -2,11 +2,11 @@ package problem
 
 import "github.com/gogf/gf/v2/frame/g"
 
-type GetProblemReq struct {
+type GetReq struct {
 	g.Meta `path:"/problem/{pid}" method:"GET" tags:"problem" summary:"获取题目信息"`
 }
 
-type GetProblemRes struct {
+type GetRes struct {
 	Title       string `json:"title" dc:""`
 	JudgeType   int    `json:"judge_type" dc:""`
 	TimeLimit   int    `json:"time_limit" dc:""`

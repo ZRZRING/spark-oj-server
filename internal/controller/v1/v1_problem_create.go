@@ -8,14 +8,14 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 
-	"spark-oj-server/api/v1/contest"
+	"spark-oj-server/api/v1/problem"
 )
 
-func (c *ControllerContest) PostContest(ctx context.Context, req *contest.PostContestReq) (res *contest.PostContestRes, err error) {
-	res = &contest.PostContestRes{}
-	md := dao.Contest.Ctx(ctx)
+func (c *ControllerProblem) Create(ctx context.Context, req *problem.CreateReq) (res *problem.CreateRes, err error) {
+	res = &problem.CreateRes{}
+	md := dao.Problem.Ctx(ctx)
 
-	data := &do.Contest{}
+	data := &do.Problem{}
 	err = gconv.Struct(req, data)
 	if err != nil {
 		g.Log().Error(ctx, err)

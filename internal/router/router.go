@@ -26,6 +26,7 @@ func Bind(ctx context.Context, parser *gcmd.Parser) (err error) {
 	s.Group("/admin", func(group *ghttp.RouterGroup) {
 		group.Middleware(middleware.CORS)
 		group.Middleware(middleware.JWTAuth)
+		group.Middleware(middleware.PermissionAuth)
 		group.Middleware(ghttp.MiddlewareHandlerResponse)
 		group.Bind(
 			v1.NewAdmin(),

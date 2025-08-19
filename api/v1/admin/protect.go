@@ -5,7 +5,7 @@ import (
 )
 
 type ProtectedReq struct {
-	g.Meta `path:"/protected" method:"get" tags:"admin" summary:"测试 JWT 中间件"`
+	g.Meta `path:"/protected" method:"GET" tags:"admin" summary:"测试 JWT 中间件"`
 }
 
 type ProtectedRes struct {

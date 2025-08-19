@@ -18,14 +18,14 @@ func (c *ControllerUser) Profile(ctx context.Context, req *user.ProfileReq) (res
 	r := g.RequestFromCtx(ctx)
 	username := gconv.String(r.Get("username").Val())
 
-	user := &entity.UserBase{}
-	err = md.Where("username", username).Scan(user)
+	e := &entity.UserBase{}
+	err = md.Where("username", username).Scan(e)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
 
-	err = gconv.Struct(user, res)
+	err = gconv.Struct(e, res)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err

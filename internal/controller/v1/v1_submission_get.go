@@ -18,14 +18,14 @@ func (c *ControllerSubmission) Get(ctx context.Context, req *submission.GetReq) 
 	r := g.RequestFromCtx(ctx)
 	sid := gconv.String(r.Get("sid").Val())
 
-	data := &entity.Submission{}
-	err = md.Where("sid", sid).Scan(data)
+	e := &entity.Submission{}
+	err = md.Where("sid", sid).Scan(e)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
 
-	err = gconv.Scan(data, res)
+	err = gconv.Scan(e, res)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err

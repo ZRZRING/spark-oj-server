@@ -37,19 +37,19 @@ func (c *ControllerUser) Register(ctx context.Context, req *user.RegisterReq) (r
 		return nil, err
 	}
 
-	data := &do.UserBase{}
-	err = gconv.Scan(req, data)
+	d := &do.UserBase{}
+	err = gconv.Scan(req, d)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
 
 	// nickname 默认与 username 相同
-	if data.Nickname == nil {
-		data.Nickname = data.Username
+	if d.Nickname == nil {
+		d.Nickname = d.Username
 	}
 
-	msg, err := md.Insert(data)
+	msg, err := md.Insert(d)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err

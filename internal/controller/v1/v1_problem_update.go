@@ -18,15 +18,15 @@ func (c *ControllerProblem) Update(ctx context.Context, req *problem.UpdateReq) 
 	r := g.RequestFromCtx(ctx)
 	pid := gconv.String(r.Get("pid").Val())
 
-	data := &do.Problem{}
-	err = gconv.Struct(req, data)
+	d := &do.Problem{}
+	err = gconv.Struct(req, d)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
 
-	data.Pid = pid
-	msg, err := md.OnConflict("pid").Save(data)
+	d.Pid = pid
+	msg, err := md.OnConflict("pid").Save(d)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err

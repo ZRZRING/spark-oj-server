@@ -15,14 +15,14 @@ func (c *ControllerContest) Create(ctx context.Context, req *contest.CreateReq) 
 	res = &contest.CreateRes{}
 	md := dao.Contest.Ctx(ctx)
 
-	data := &do.Contest{}
-	err = gconv.Struct(req, data)
+	d := &do.Contest{}
+	err = gconv.Struct(req, d)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
 
-	msg, err := md.Insert(data)
+	msg, err := md.Insert(d)
 	g.Log().Info(ctx, msg)
 	if err != nil {
 		g.Log().Error(ctx, err)

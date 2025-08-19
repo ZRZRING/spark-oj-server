@@ -15,14 +15,14 @@ func (c *ControllerProblem) Create(ctx context.Context, req *problem.CreateReq) 
 	res = &problem.CreateRes{}
 	md := dao.Problem.Ctx(ctx)
 
-	data := &do.Problem{}
-	err = gconv.Struct(req, data)
+	d := &do.Problem{}
+	err = gconv.Struct(req, d)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
 
-	msg, err := md.Insert(data)
+	msg, err := md.Insert(d)
 	g.Log().Info(ctx, msg)
 	if err != nil {
 		g.Log().Error(ctx, err)

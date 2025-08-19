@@ -3,7 +3,7 @@ package v1
 import (
 	"context"
 	"spark-oj-server/internal/dao"
-	"spark-oj-server/internal/model/do"
+	"spark-oj-server/internal/model/entity"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
@@ -11,27 +11,25 @@ import (
 	"spark-oj-server/api/v1/contest"
 )
 
-func (c *ControllerContest) Update(ctx context.Context, req *contest.UpdateReq) (res *contest.UpdateRes, err error) {
-	res = &contest.UpdateRes{}
+func (c *ControllerContest) Get(ctx context.Context, req *contest.GetReq) (res *contest.GetRes, err error) {
+	res = &contest.GetRes{}
 	md := dao.Contest.Ctx(ctx)
 
 	r := g.RequestFromCtx(ctx)
 	cid := gconv.String(r.Get("cid").Val())
 
-	d := &do.Contest{}
-	err = gconv.Struct(req, d)
+	e := &entity.Contest{}
+	err = md.Where("cid", cid).Scan(e)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
 
-	d.Cid = cid
-	msg, err := md.OnConflict("cid").Save(d)
+	err = gconv.Scan(e, &res)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
-	g.Log().Info(ctx, msg)
 
 	return res, nil
 }

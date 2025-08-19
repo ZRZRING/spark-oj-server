@@ -21,23 +21,23 @@ func (c *ControllerUser) Training(ctx context.Context, req *user.TrainingReq) (r
 	username := gconv.String(r.Get("username").Val())
 
 	// 从数据库获取用户训练数据
-	user := &entity.UserBase{}
-	err = md.Where("username", username).Scan(user)
+	e := &entity.UserBase{}
+	err = md.Where("username", username).Scan(e)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
 
 	// 处理返回信息
-	err = gconv.Scan(user, res)
+	err = gconv.Scan(e, res)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
 
 	// 获取第三方训练信息
-	if user.CfId != "" {
-		data := service.GetUserInfo(ctx, user.CfId)
+	if e.CfId != "" {
+		data := service.GetUserInfo(ctx, e.CfId)
 		res.CFRating = data.Rating
 	}
 

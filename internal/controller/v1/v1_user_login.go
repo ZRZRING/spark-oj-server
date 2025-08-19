@@ -26,8 +26,8 @@ func (c *ControllerUser) Login(ctx context.Context, req *user.LoginReq) (res *us
 		return nil, err
 	}
 
-	user := &entity.UserBase{}
-	err = md.Where("username", req.Username).Scan(user)
+	e := &entity.UserBase{}
+	err = md.Where("username", req.Username).Scan(e)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
@@ -41,14 +41,14 @@ func (c *ControllerUser) Login(ctx context.Context, req *user.LoginReq) (res *us
 	}
 
 	// 判断密码
-	if user.Password != md5Password {
+	if e.Password != md5Password {
 		err = gerror.NewCode(gcode.CodeInvalidRequest, "密码错误")
-		g.Log().Error(ctx, err, user)
+		g.Log().Error(ctx, err, e)
 		return nil, err
 	}
 
 	// 生成 token
-	token, err := middleware.GenToken(req.Username, user.Role)
+	token, err := middleware.GenToken(req.Username, e.Role)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err

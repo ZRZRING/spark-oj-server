@@ -14,14 +14,14 @@ func (c *ControllerContest) GetList(ctx context.Context, req *contest.GetListReq
 	res = &contest.GetListRes{}
 	md := dao.Problem.Ctx(ctx)
 
-	contests := make([]*entity.Contest, 0)
+	e := make([]*entity.Contest, 0)
 	tot := new(int)
-	err = md.OrderAsc("start_time").Page(req.Page, req.Size).ScanAndCount(contests, tot, false)
+	err = md.OrderAsc("start_time").Page(req.Page, req.Size).ScanAndCount(e, tot, false)
 	if err != nil {
 		return nil, err
 	}
 
-	err = gconv.Scan(contests, res)
+	err = gconv.Scan(e, res)
 	if err != nil {
 		return nil, err
 	}

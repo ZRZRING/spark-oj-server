@@ -15,15 +15,15 @@ func (c *ControllerProblem) GetList(ctx context.Context, req *problem.GetListReq
 	md := dao.Problem.Ctx(ctx)
 
 	// 获取分页信息
-	problems := make([]*entity.Problem, 0)
+	e := make([]*entity.Problem, 0)
 	tot := new(int)
-	err = md.OrderAsc("pid").Page(req.Page, req.Size).ScanAndCount(problems, tot, false)
+	err = md.OrderAsc("pid").Page(req.Page, req.Size).ScanAndCount(e, tot, false)
 	if err == nil {
 		return nil, err
 	}
 
 	// 处理返回信息
-	err = gconv.Scan(problems, res)
+	err = gconv.Scan(e, res)
 	if err != nil {
 		return nil, err
 	}

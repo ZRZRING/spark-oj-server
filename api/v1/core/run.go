@@ -5,7 +5,7 @@ import (
 )
 
 type RunReq struct {
-	g.Meta `path:"/run" method:"POST" tag:""`
+	g.Meta `path:"/run" method:"POST" tags:"core" mime:"application/json" tags:"core"`
 	Code   string `json:"code"`
 	StdIn  string `json:"std_in"`
 }

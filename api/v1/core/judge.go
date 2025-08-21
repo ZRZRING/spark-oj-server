@@ -5,12 +5,12 @@ import (
 )
 
 type JudgeReq struct {
-	g.Meta   `path:"/submission" method:"POST" tag:"submission" summary:"提交题目"`
-	Pid      string `p:"pid" v:"required"`
-	Code     string `p:"code" v:"required"`
-	Username string `p:"username" v:"required"`
-	Language string `p:"language" default:"cpp"`
-	Cid      string `p:"cid"`
+	g.Meta   `path:"/judge" method:"POST" tag:"core" mime:"application/json" summary:"提交题目"`
+	Code     string `json:"code" v:"required"`
+	Username string `json:"username" v:"required"`
+	Pid      string `json:"pid" v:"required"`
+	Language string `json:"language" default:"cpp"`
+	Cid      string `json:"cid"`
 }
 
 type JudgeRes struct {

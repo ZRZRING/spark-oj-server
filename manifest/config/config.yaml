@@ -27,6 +27,9 @@ database:
     timezone: "Asia/Shanghai"
     debug: true
 
+upload:
+  path: "manifest/upload"
+
 thirdParty:
   codeforces:
     user:

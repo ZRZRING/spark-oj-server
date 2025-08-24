@@ -14,9 +14,9 @@ type GetListRes struct {
 	Total      int `json:"total" dc:""`
 	Submission []*struct {
 		Sid        string `json:"sid"`
-		Pid        string `json:"pid"`
+		Pid        int    `json:"pid"`
 		Username   string `json:"username"`
-		Cid        string `json:"cid"`
+		Cid        int    `json:"cid"`
 		Result     string `json:"result"`
 		Language   string `json:"language"`
 		MemoryCost int    `json:"memory_cost"`

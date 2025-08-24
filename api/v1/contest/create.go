@@ -7,7 +7,7 @@ import (
 
 type CreateReq struct {
 	g.Meta       `path:"/contest" method:"POST" tags:"contest" mime:"application/json" summary:"添加比赛"`
-	Cid          string     `json:"cid" v:"required#比赛ID不能为空" dc:""`
+	Cid          int        `json:"cid" v:"required#比赛ID不能为空" dc:""`
 	Title        string     `json:"title" v:"required#比赛名称不能为空" dc:""`
 	Password     string     `json:"password" dc:""`
 	Problems     g.Map      `json:"problems" dc:""`

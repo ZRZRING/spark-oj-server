@@ -10,7 +10,7 @@ import (
 
 // Problem is the golang structure for table problem.
 type Problem struct {
-	Pid         string      `json:"pid"          orm:"pid"          ` //
+	Pid         int         `json:"pid"          orm:"pid"          ` //
 	Title       string      `json:"title"        orm:"title"        ` //
 	JudgeType   int         `json:"judge_type"   orm:"judge_type"   ` //
 	TimeLimit   int         `json:"time_limit"   orm:"time_limit"   ` //

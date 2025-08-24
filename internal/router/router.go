@@ -19,6 +19,10 @@ func Bind(ctx context.Context, parser *gcmd.Parser) (err error) {
 		group.Bind(
 			v1.NewUser(),
 			v1.NewProblem(),
+			v1.NewContest(),
+			v1.NewCore(),
+			v1.NewSubmission(),
+			v1.NewUpload(),
 		)
 	})
 

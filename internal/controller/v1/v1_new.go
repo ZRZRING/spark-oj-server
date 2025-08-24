@@ -43,9 +43,3 @@ type ControllerCore struct{}
 func NewCore() v1.IV1Core {
 	return &ControllerCore{}
 }
-
-type ControllerUpload struct{}
-
-func NewUpload() v1.IV1Upload {
-	return &ControllerUpload{}
-}

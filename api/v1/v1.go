@@ -12,7 +12,6 @@ import (
 	"spark-oj-server/api/v1/core"
 	"spark-oj-server/api/v1/problem"
 	"spark-oj-server/api/v1/submission"
-	"spark-oj-server/api/v1/upload"
 	"spark-oj-server/api/v1/user"
 )
 
@@ -30,6 +29,8 @@ type IV1Contest interface {
 type IV1Core interface {
 	Judge(ctx context.Context, req *core.JudgeReq) (res *core.JudgeRes, err error)
 	Run(ctx context.Context, req *core.RunReq) (res *core.RunRes, err error)
+	RunFile(ctx context.Context, req *core.RunFileReq) (res *core.RunFileRes, err error)
+	UploadTestCase(ctx context.Context, req *core.UploadTestCaseReq) (res *core.UploadTestCaseRes, err error)
 }
 
 type IV1Problem interface {
@@ -42,10 +43,6 @@ type IV1Problem interface {
 type IV1Submission interface {
 	Get(ctx context.Context, req *submission.GetReq) (res *submission.GetRes, err error)
 	GetList(ctx context.Context, req *submission.GetListReq) (res *submission.GetListRes, err error)
-}
-
-type IV1Upload interface {
-	TestCase(ctx context.Context, req *upload.TestCaseReq) (res *upload.TestCaseRes, err error)
 }
 
 type IV1User interface {

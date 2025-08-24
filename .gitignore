@@ -1,19 +1,12 @@
-.buildpath
-.hgignore.swp
-.project
-.orig
-.swp
+# 配置文件夹
 .idea/
-.settings/
 .vscode/
-bin/
 **/.DS_Store
-gf
-main
-main.exe
-main.exe~
+
+# 二进制文件
+**/*.exe
+
+# 临时输出文件
 output/
-manifest/output/
+upload/
 temp/
-temp.yaml
-bin

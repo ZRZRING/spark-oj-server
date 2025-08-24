@@ -10,7 +10,7 @@ import (
 
 // Contest is the golang structure for table contest.
 type Contest struct {
-	Cid         string      `json:"cid"         orm:"cid"         ` //
+	Cid         int         `json:"cid"         orm:"cid"         ` //
 	Title       string      `json:"title"       orm:"title"       ` //
 	Password    string      `json:"password"    orm:"password"    ` //
 	Description string      `json:"description" orm:"description" ` //

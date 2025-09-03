@@ -14,20 +14,18 @@ func (c *ControllerProblem) GetList(ctx context.Context, req *problem.GetListReq
 	res = &problem.GetListRes{}
 	md := dao.Problem.Ctx(ctx)
 
-	// 获取分页信息
 	e := make([]*entity.Problem, 0)
-	tot := new(int)
-	err = md.OrderAsc("pid").Page(req.Page, req.Size).ScanAndCount(e, tot, false)
+	tot := 0
+	err = md.OrderAsc("pid").Page(req.Page, req.Size).ScanAndCount(&e, &tot, false)
 	if err == nil {
 		return nil, err
 	}
 
-	// 处理返回信息
-	err = gconv.Scan(e, res)
+	err = gconv.Scan(e, &res.Problems)
 	if err != nil {
 		return nil, err
 	}
-	res.Total = *tot
+	res.Total = tot
 
 	return res, nil
 }

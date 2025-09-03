@@ -12,20 +12,20 @@ import (
 
 func (c *ControllerContest) GetList(ctx context.Context, req *contest.GetListReq) (res *contest.GetListRes, err error) {
 	res = &contest.GetListRes{}
-	md := dao.Problem.Ctx(ctx)
+	md := dao.Contest.Ctx(ctx)
 
 	e := make([]*entity.Contest, 0)
-	tot := new(int)
-	err = md.OrderAsc("start_time").Page(req.Page, req.Size).ScanAndCount(e, tot, false)
+	tot := 0
+	err = md.OrderAsc("start_time").Page(req.Page, req.Size).ScanAndCount(&e, &tot, false)
 	if err != nil {
 		return nil, err
 	}
 
-	err = gconv.Scan(e, res)
+	err = gconv.Scan(e, &res.Contests)
 	if err != nil {
 		return nil, err
 	}
-	res.Total = *tot
+	res.Total = tot
 
 	return res, nil
 }

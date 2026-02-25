@@ -23,13 +23,13 @@ type IV1Contest interface {
 	Create(ctx context.Context, req *contest.CreateReq) (res *contest.CreateRes, err error)
 	Get(ctx context.Context, req *contest.GetReq) (res *contest.GetRes, err error)
 	GetList(ctx context.Context, req *contest.GetListReq) (res *contest.GetListRes, err error)
+	Ranking(ctx context.Context, req *contest.RankingReq) (res *contest.RankingRes, err error)
 	Update(ctx context.Context, req *contest.UpdateReq) (res *contest.UpdateRes, err error)
 }
 
 type IV1Core interface {
 	Judge(ctx context.Context, req *core.JudgeReq) (res *core.JudgeRes, err error)
 	Run(ctx context.Context, req *core.RunReq) (res *core.RunRes, err error)
-	RunFile(ctx context.Context, req *core.RunFileReq) (res *core.RunFileRes, err error)
 	UploadTestCase(ctx context.Context, req *core.UploadTestCaseReq) (res *core.UploadTestCaseRes, err error)
 }
 

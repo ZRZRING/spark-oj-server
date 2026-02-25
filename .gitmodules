@@ -1,0 +1,4 @@
+[submodule "app/go-judge"]
+	path = app/go-judge
+	url = https://github.com/ZRZRING/go-judge.git
+	branch = zrzring

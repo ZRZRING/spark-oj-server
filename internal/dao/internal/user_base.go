@@ -40,6 +40,7 @@ type UserBaseColumns struct {
 	CreateAt   string //
 	UpdateAt   string //
 	DeleteAt   string //
+	Ext        string //
 }
 
 // userBaseColumns holds the columns for the table user_base.
@@ -63,6 +64,7 @@ var userBaseColumns = UserBaseColumns{
 	CreateAt:   "create_at",
 	UpdateAt:   "update_at",
 	DeleteAt:   "delete_at",
+	Ext:        "ext",
 }
 
 // NewUserBaseDao creates and returns a new DAO object for table data access.

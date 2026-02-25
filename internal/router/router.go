@@ -22,7 +22,6 @@ func Bind(ctx context.Context, parser *gcmd.Parser) (err error) {
 			v1.NewContest(),
 			v1.NewCore(),
 			v1.NewSubmission(),
-			v1.NewUpload(),
 		)
 	})
 

@@ -6,9 +6,11 @@ import (
 )
 
 type UploadTestCaseReq struct {
-	g.Meta    `path:"/upload" method:"POST" tags:"upload" mime:"multipart/form-data" summary:"提交文件"`
-	TestCases *ghttp.UploadFiles `p:"test_cases" v:"required"`
-	Pid       int                `p:"pid" v:"required"`
+	g.Meta    `path:"/upload/testcases" method:"POST" tags:"upload" summary:"提交文件"`
+	TestCases ghttp.UploadFiles `p:"test_cases" type:"file" v:"required"`
+	Pid       int               `p:"pid" v:"required"`
 }
 
-type UploadTestCaseRes struct{}
+type UploadTestCaseRes struct {
+	Path string `json:"path"`
+}

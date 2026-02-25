@@ -6,7 +6,7 @@ server:
 
 # https://goframe.org/docs/core/glog-config
 logger:
-  path: "manifest/output/log"
+  path: "output"
   file: "{Y-m-d}.log"
   level : "all"
   stdout: true
@@ -19,16 +19,17 @@ redis:
 # https://goframe.org/docs/core/gdb-config-file
 database:
   logger:
-    path: "manifest/output/sql"
+    path: "output"
+    file: "{Y-m-d}.db.log"
     level: "all"
-    stdout: true
+#    stdout: true
   default:
     link: "pgsql:spark-oj:123456@tcp(zrzring.top:54321)/spark-oj"
     timezone: "Asia/Shanghai"
     debug: true
 
 upload:
-  path: "manifest/upload"
+  path: "upload"
 
 thirdParty:
   codeforces:

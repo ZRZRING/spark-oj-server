@@ -31,4 +31,5 @@ type UserBase struct {
 	CreateAt   *gtime.Time //
 	UpdateAt   *gtime.Time //
 	DeleteAt   *gtime.Time //
+	Ext        interface{} //
 }

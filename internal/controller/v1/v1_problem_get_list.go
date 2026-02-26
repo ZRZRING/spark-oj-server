@@ -17,7 +17,7 @@ func (c *ControllerProblem) GetList(ctx context.Context, req *problem.GetListReq
 	e := make([]*entity.Problem, 0)
 	tot := 0
 	err = md.OrderAsc("pid").Page(req.Page, req.Size).ScanAndCount(&e, &tot, false)
-	if err == nil {
+	if err != nil {
 		return nil, err
 	}
 

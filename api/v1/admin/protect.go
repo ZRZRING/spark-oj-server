@@ -10,5 +10,5 @@ type ProtectedReq struct {
 
 type ProtectedRes struct {
 	Username string `json:"username" dc:""`
-	UserRole string `json:"user_role" dc:""`
+	UserRole string `json:"user_role" dc:"用户角色,admin或user"`
 }

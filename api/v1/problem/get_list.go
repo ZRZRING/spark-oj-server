@@ -12,7 +12,7 @@ type GetListRes struct {
 	Total    int `json:"total" dc:"题目总数"`
 	Problems []*struct {
 		Pid       string `json:"pid"`
-		Title     int    `json:"title"`
+		Title     string `json:"title"`
 		JudgeType int    `json:"judge_type"`
 		Rating    int    `json:"rating"`
 	} `json:"problems" dc:"题目列表"`

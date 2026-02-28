@@ -33,6 +33,7 @@ type ContestColumns struct {
 	UpdateAt    string //
 	DeleteAt    string //
 	Practice    string //
+	Problems    string //
 }
 
 // contestColumns holds the columns for the table contest.
@@ -49,6 +50,7 @@ var contestColumns = ContestColumns{
 	UpdateAt:    "update_at",
 	DeleteAt:    "delete_at",
 	Practice:    "practice",
+	Problems:    "problems",
 }
 
 // NewContestDao creates and returns a new DAO object for table data access.

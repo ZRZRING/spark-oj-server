@@ -43,3 +43,9 @@ type ControllerCore struct{}
 func NewCore() v1.IV1Core {
 	return &ControllerCore{}
 }
+
+type ControllerContent struct{}
+
+func NewContent() v1.IV1Content {
+	return &ControllerContent{}
+}

@@ -31,6 +31,7 @@ type ProblemColumns struct {
 	CreateAt    string //
 	UpdateAt    string //
 	DeleteAt    string //
+	Contents    string //
 }
 
 // problemColumns holds the columns for the table problem.
@@ -45,6 +46,7 @@ var problemColumns = ProblemColumns{
 	CreateAt:    "create_at",
 	UpdateAt:    "update_at",
 	DeleteAt:    "delete_at",
+	Contents:    "contents",
 }
 
 // NewProblemDao creates and returns a new DAO object for table data access.

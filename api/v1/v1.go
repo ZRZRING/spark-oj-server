@@ -8,6 +8,7 @@ import (
 	"context"
 
 	"spark-oj-server/api/v1/admin"
+	"spark-oj-server/api/v1/content"
 	"spark-oj-server/api/v1/contest"
 	"spark-oj-server/api/v1/core"
 	"spark-oj-server/api/v1/problem"
@@ -17,6 +18,13 @@ import (
 
 type IV1Admin interface {
 	Protected(ctx context.Context, req *admin.ProtectedReq) (res *admin.ProtectedRes, err error)
+}
+
+type IV1Content interface {
+	Create(ctx context.Context, req *content.CreateReq) (res *content.CreateRes, err error)
+	Get(ctx context.Context, req *content.GetReq) (res *content.GetRes, err error)
+	GetList(ctx context.Context, req *content.GetListReq) (res *content.GetListRes, err error)
+	Update(ctx context.Context, req *content.UpdateReq) (res *content.UpdateRes, err error)
 }
 
 type IV1Contest interface {

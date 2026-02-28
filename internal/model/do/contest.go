@@ -24,4 +24,5 @@ type Contest struct {
 	UpdateAt    *gtime.Time //
 	DeleteAt    *gtime.Time //
 	Practice    interface{} //
+	Problems    interface{} //
 }

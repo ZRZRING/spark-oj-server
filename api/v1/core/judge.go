@@ -5,7 +5,7 @@ import (
 )
 
 type JudgeReq struct {
-	g.Meta   `path:"/judge" method:"POST" tag:"core" mime:"application/json" summary:"提交题目"`
+	g.Meta   `path:"/judge" method:"POST" tag:"core" summary:"提交题目"`
 	Code     string `json:"code" v:"required"`
 	Username string `json:"username" v:"required"`
 	Pid      int    `json:"pid" v:"required"`

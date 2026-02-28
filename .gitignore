@@ -1,6 +1,7 @@
 # 配置文件夹
 .idea/
 .vscode/
+.claude/
 **/.DS_Store
 
 # 二进制文件

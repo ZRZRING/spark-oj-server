@@ -16,7 +16,7 @@ type GetListRes struct {
 	Contests []*struct {
 		Cid       string     `json:"cid"`
 		Title     string     `json:"title"`
-		Practice  bool       `json:"practice" dc:"true 表示改比赛不限制参与时间，为训练题单"`
+		Practice  bool       `json:"practice" dc:"true 表示比赛不限制参与时间，为训练题单"`
 		StartTime gtime.Time `json:"start_time"`
 		EndTime   gtime.Time `json:"end_time"`
 	} `json:"contests" dc:"比赛列表"`

@@ -1,4 +1,4 @@
-# Spark-OJ 项目梳理文档
+# Spark OJ
 
 ## 1. 项目概述
 

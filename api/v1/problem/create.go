@@ -9,6 +9,7 @@ type CreateReq struct {
 	TimeLimit   int    `p:"time_limit" v:"required#时间限制不能为空" dc:""`
 	MemoryLimit int    `p:"memory_limit" v:"required#内存限制不能为空" dc:""`
 	CreateBy    string `p:"create_by" v:"required#创建者不能为空" dc:""`
+	Content     string `p:"content" dc:""`
 }
 
 type CreateRes struct{}

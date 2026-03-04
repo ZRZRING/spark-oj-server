@@ -12,4 +12,5 @@ type GetRes struct {
 	TimeLimit   int    `json:"time_limit" dc:""`
 	MemoryLimit int    `json:"memory_limit" dc:""`
 	CreateBy    string `json:"create_by" dc:""`
+	Content     string `json:"content" dc:""`
 }

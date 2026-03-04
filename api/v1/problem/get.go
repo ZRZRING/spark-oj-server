@@ -11,6 +11,7 @@ type GetRes struct {
 	JudgeType   int    `json:"judge_type" dc:""`
 	TimeLimit   int    `json:"time_limit" dc:""`
 	MemoryLimit int    `json:"memory_limit" dc:""`
+	Rating      int    `json:"rating" dc:""`
 	CreateBy    string `json:"create_by" dc:""`
 	Content     string `json:"content" dc:""`
 }

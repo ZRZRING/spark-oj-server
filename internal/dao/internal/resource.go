@@ -11,78 +11,66 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 )
 
-// ProblemDao is the data access object for the table problem.
-type ProblemDao struct {
+// ResourceDao is the data access object for the table resource.
+type ResourceDao struct {
 	table    string             // table is the underlying table name of the DAO.
 	group    string             // group is the database configuration group name of the current DAO.
-	columns  ProblemColumns     // columns contains all the column names of Table for convenient usage.
+	columns  ResourceColumns    // columns contains all the column names of Table for convenient usage.
 	handlers []gdb.ModelHandler // handlers for customized model modification.
 }
 
-// ProblemColumns defines and stores column names for the table problem.
-type ProblemColumns struct {
-	Pid         string //
-	Title       string //
-	JudgeType   string //
-	TimeLimit   string //
-	MemoryLimit string //
-	CreateBy    string //
-	Rating      string //
-	CreateAt    string //
-	UpdateAt    string //
-	DeleteAt    string //
-	Content     string //
-	Analysis    string //
+// ResourceColumns defines and stores column names for the table resource.
+type ResourceColumns struct {
+	Uuid     string //
+	Path     string //
+	Type     string //
+	CreateAt string //
+	UpdateAt string //
+	DeleteAt string //
 }
 
-// problemColumns holds the columns for the table problem.
-var problemColumns = ProblemColumns{
-	Pid:         "pid",
-	Title:       "title",
-	JudgeType:   "judge_type",
-	TimeLimit:   "time_limit",
-	MemoryLimit: "memory_limit",
-	CreateBy:    "create_by",
-	Rating:      "rating",
-	CreateAt:    "create_at",
-	UpdateAt:    "update_at",
-	DeleteAt:    "delete_at",
-	Content:     "content",
-	Analysis:    "analysis",
+// resourceColumns holds the columns for the table resource.
+var resourceColumns = ResourceColumns{
+	Uuid:     "uuid",
+	Path:     "path",
+	Type:     "type",
+	CreateAt: "create_at",
+	UpdateAt: "update_at",
+	DeleteAt: "delete_at",
 }
 
-// NewProblemDao creates and returns a new DAO object for table data access.
-func NewProblemDao(handlers ...gdb.ModelHandler) *ProblemDao {
-	return &ProblemDao{
+// NewResourceDao creates and returns a new DAO object for table data access.
+func NewResourceDao(handlers ...gdb.ModelHandler) *ResourceDao {
+	return &ResourceDao{
 		group:    "default",
-		table:    "problem",
-		columns:  problemColumns,
+		table:    "resource",
+		columns:  resourceColumns,
 		handlers: handlers,
 	}
 }
 
 // DB retrieves and returns the underlying raw database management object of the current DAO.
-func (dao *ProblemDao) DB() gdb.DB {
+func (dao *ResourceDao) DB() gdb.DB {
 	return g.DB(dao.group)
 }
 
 // Table returns the table name of the current DAO.
-func (dao *ProblemDao) Table() string {
+func (dao *ResourceDao) Table() string {
 	return dao.table
 }
 
 // Columns returns all column names of the current DAO.
-func (dao *ProblemDao) Columns() ProblemColumns {
+func (dao *ResourceDao) Columns() ResourceColumns {
 	return dao.columns
 }
 
 // Group returns the database configuration group name of the current DAO.
-func (dao *ProblemDao) Group() string {
+func (dao *ResourceDao) Group() string {
 	return dao.group
 }
 
 // Ctx creates and returns a Model for the current DAO. It automatically sets the context for the current operation.
-func (dao *ProblemDao) Ctx(ctx context.Context) *gdb.Model {
+func (dao *ResourceDao) Ctx(ctx context.Context) *gdb.Model {
 	model := dao.DB().Model(dao.table)
 	for _, handler := range dao.handlers {
 		model = handler(model)
@@ -96,6 +84,6 @@ func (dao *ProblemDao) Ctx(ctx context.Context) *gdb.Model {
 //
 // Note: Do not commit or roll back the transaction in function f,
 // as it is automatically handled by this function.
-func (dao *ProblemDao) Transaction(ctx context.Context, f func(ctx context.Context, tx gdb.TX) error) (err error) {
+func (dao *ResourceDao) Transaction(ctx context.Context, f func(ctx context.Context, tx gdb.TX) error) (err error) {
 	return dao.Ctx(ctx).Transaction(ctx, f)
 }

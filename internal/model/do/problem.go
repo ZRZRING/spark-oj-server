@@ -22,5 +22,6 @@ type Problem struct {
 	CreateAt    *gtime.Time //
 	UpdateAt    *gtime.Time //
 	DeleteAt    *gtime.Time //
-	Contents    interface{} //
+	Content     interface{} //
+	Analysis    interface{} //
 }

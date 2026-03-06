@@ -15,10 +15,6 @@ import (
 	"github.com/gogf/gf/v2/util/gconv"
 )
 
-var (
-	defaultTestCasePath = g.Cfg().MustGet(gctx.New(), "upload.path").String()
-)
-
 func (c *ControllerCore) UploadTestCase(ctx context.Context, req *core.UploadTestCaseReq) (res *core.UploadTestCaseRes, err error) {
 	res = &core.UploadTestCaseRes{}
 
@@ -35,7 +31,8 @@ func (c *ControllerCore) UploadTestCase(ctx context.Context, req *core.UploadTes
 		return nil, err
 	}
 
-	problemDir := filepath.Join(defaultTestCasePath, gconv.String(req.Pid))
+	uploadPath := g.Cfg().MustGet(gctx.New(), "upload.path").String()
+	problemDir := filepath.Join(uploadPath, gconv.String(req.Pid))
 	if err = gfile.Mkdir(problemDir); err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err

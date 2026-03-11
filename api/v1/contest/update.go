@@ -6,10 +6,10 @@ import (
 )
 
 type UpdateReq struct {
-	g.Meta       `path:"/contest/{cid}" method:"PUT" tags:"contest" mime:"application/json" summary:"添加比赛"`
+	g.Meta       `path:"/contest/{cid}" method:"PUT" tags:"contest" mime:"application/json" summary:"更新比赛"`
 	Title        string     `json:"title" v:"required#比赛名称不能为空" dc:""`
 	Password     string     `json:"password" dc:""`
-	Problems     g.Map      `json:"problems" dc:""`
+	Problems     []int      `json:"problems" dc:"比赛题目，支持数组或对象格式"`
 	Description  string     `json:"description" dc:""`
 	TimeRequired bool       `json:"time_required" dc:""`
 	StartTime    gtime.Time `json:"start_time" v:"required-if:timeRequired#开始时间不能为空" dc:""`

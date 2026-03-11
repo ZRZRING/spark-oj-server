@@ -11,8 +11,8 @@ import (
 	"spark-oj-server/api/v1/problem"
 )
 
-func (c *ControllerProblem) Get(ctx context.Context, req *problem.GetReq) (res *problem.GetRes, err error) {
-	res = &problem.GetRes{}
+func (c *ControllerProblem) GetInfo(ctx context.Context, req *problem.GetInfoReq) (res *problem.GetInfoRes, err error) {
+	res = &problem.GetInfoRes{}
 	md := dao.Problem.Ctx(ctx)
 
 	d := &entity.Problem{}

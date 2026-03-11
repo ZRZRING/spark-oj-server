@@ -8,24 +8,24 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 
-	"spark-oj-server/api/v1/submission"
+	"spark-oj-server/api/v1/contest"
 )
 
-func (c *ControllerSubmission) Get(ctx context.Context, req *submission.GetReq) (res *submission.GetRes, err error) {
-	res = &submission.GetRes{}
-	md := dao.Submission.Ctx(ctx)
+func (c *ControllerContest) GetInfo(ctx context.Context, req *contest.GetInfoReq) (res *contest.GetInfoRes, err error) {
+	res = &contest.GetInfoRes{}
+	md := dao.Contest.Ctx(ctx)
 
 	r := g.RequestFromCtx(ctx)
-	sid := gconv.String(r.Get("sid").Val())
+	cid := gconv.String(r.Get("cid").Val())
 
-	e := &entity.Submission{}
-	err = md.Where("sid", sid).Scan(e)
+	e := &entity.Contest{}
+	err = md.Where("cid", cid).Scan(e)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
 
-	err = gconv.Scan(e, res)
+	err = gconv.Scan(e, &res)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err

@@ -22,7 +22,7 @@ type IV1Admin interface {
 type IV1Contest interface {
 	Create(ctx context.Context, req *contest.CreateReq) (res *contest.CreateRes, err error)
 	GetInfo(ctx context.Context, req *contest.GetInfoReq) (res *contest.GetInfoRes, err error)
-	GetList(ctx context.Context, req *contest.GetListReq) (res *contest.GetListRes, err error)
+	GetPage(ctx context.Context, req *contest.GetPageReq) (res *contest.GetPageRes, err error)
 	GetProblems(ctx context.Context, req *contest.GetProblemsReq) (res *contest.GetProblemsRes, err error)
 	Ranking(ctx context.Context, req *contest.RankingReq) (res *contest.RankingRes, err error)
 	Update(ctx context.Context, req *contest.UpdateReq) (res *contest.UpdateRes, err error)
@@ -37,13 +37,13 @@ type IV1Core interface {
 type IV1Problem interface {
 	Create(ctx context.Context, req *problem.CreateReq) (res *problem.CreateRes, err error)
 	GetInfo(ctx context.Context, req *problem.GetInfoReq) (res *problem.GetInfoRes, err error)
-	GetList(ctx context.Context, req *problem.GetListReq) (res *problem.GetListRes, err error)
+	GetPage(ctx context.Context, req *problem.GetPageReq) (res *problem.GetPageRes, err error)
 	Update(ctx context.Context, req *problem.UpdateReq) (res *problem.UpdateRes, err error)
 }
 
 type IV1Submission interface {
 	GetInfo(ctx context.Context, req *submission.GetInfoReq) (res *submission.GetInfoRes, err error)
-	GetList(ctx context.Context, req *submission.GetListReq) (res *submission.GetListRes, err error)
+	GetPage(ctx context.Context, req *submission.GetPageReq) (res *submission.GetPageRes, err error)
 }
 
 type IV1User interface {

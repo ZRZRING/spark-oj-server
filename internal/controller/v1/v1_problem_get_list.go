@@ -10,8 +10,8 @@ import (
 	"spark-oj-server/api/v1/problem"
 )
 
-func (c *ControllerProblem) GetList(ctx context.Context, req *problem.GetListReq) (res *problem.GetListRes, err error) {
-	res = &problem.GetListRes{}
+func (c *ControllerProblem) GetPage(ctx context.Context, req *problem.GetPageReq) (res *problem.GetPageRes, err error) {
+	res = &problem.GetPageRes{}
 	md := dao.Problem.Ctx(ctx)
 
 	e := make([]*entity.Problem, 0)

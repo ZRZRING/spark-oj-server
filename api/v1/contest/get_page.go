@@ -7,8 +7,8 @@ import (
 
 type GetPageReq struct {
 	g.Meta `path:"/contests" method:"GET" summary:"获取比赛列表" tags:"contest"`
-	Page   int `p:"page" v:"required#页码不能为空" dc:""`
-	Size   int `p:"size" v:"required#每页数量不能为空" dc:""`
+	Page   int `p:"page" v:"required#页码不能为空"`
+	Size   int `p:"size" v:"required#每页数量不能为空"`
 }
 
 type GetPageRes struct {

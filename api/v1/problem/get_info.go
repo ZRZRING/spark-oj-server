@@ -8,12 +8,12 @@ type GetInfoReq struct {
 }
 
 type GetInfoRes struct {
-	Pid         string `json:"pid" dc:""`
-	Title       string `json:"title" dc:""`
-	JudgeType   int    `json:"judge_type" dc:""`
-	TimeLimit   int    `json:"time_limit" dc:""`
-	MemoryLimit int    `json:"memory_limit" dc:""`
-	Rating      int    `json:"rating" dc:""`
-	CreateBy    string `json:"create_by" dc:""`
-	Content     string `json:"content" dc:""`
+	Pid         string `json:"pid"`
+	Title       string `json:"title"`
+	JudgeType   int    `json:"judge_type"`
+	TimeLimit   int    `json:"time_limit"`
+	MemoryLimit int    `json:"memory_limit"`
+	Rating      int    `json:"rating"`
+	CreateBy    string `json:"create_by"`
+	Content     string `json:"content"`
 }

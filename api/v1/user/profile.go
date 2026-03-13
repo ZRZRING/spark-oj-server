@@ -9,12 +9,12 @@ type ProfileReq struct {
 }
 
 type ProfileRes struct {
-	Nickname   string `json:"nickname" dc:""`
-	Company    string `json:"company" dc:""`
-	Department string `json:"department" dc:""`
-	Major      string `json:"major" dc:""`
-	Class      string `json:"class" dc:""`
-	Email      string `json:"email" dc:""`
-	Tel        string `json:"tel" dc:""`
-	Avatar     string `json:"avatar" dc:""`
+	Nickname   string `json:"nickname"`
+	Company    string `json:"company"`
+	Department string `json:"department"`
+	Major      string `json:"major"`
+	Class      string `json:"class"`
+	Email      string `json:"email"`
+	Tel        string `json:"tel"`
+	Avatar     string `json:"avatar"`
 }

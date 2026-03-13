@@ -11,11 +11,11 @@ type GetInfoReq struct {
 }
 
 type GetInfoRes struct {
-	Cid         string     `json:"cid" dc:""`
-	Title       string     `json:"title" dc:""`
-	Description string     `json:"description" dc:""`
-	StartTime   gtime.Time `json:"start_time" dc:""`
-	EndTime     gtime.Time `json:"end_time" dc:""`
-	LockTime    gtime.Time `json:"lock_time" dc:""`
-	CreateBy    string     `json:"create_by" dc:""`
+	Cid         string     `json:"cid"`
+	Title       string     `json:"title"`
+	Description string     `json:"description"`
+	StartTime   gtime.Time `json:"start_time"`
+	EndTime     gtime.Time `json:"end_time"`
+	LockTime    gtime.Time `json:"lock_time"`
+	CreateBy    string     `json:"create_by"`
 }

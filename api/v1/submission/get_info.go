@@ -9,13 +9,13 @@ type GetInfoReq struct {
 }
 
 type GetInfoRes struct {
-	ProblemId  string `json:"problem_id" dc:""`
-	Username   string `json:"username" dc:""`
-	ContestId  string `json:"contest_id" dc:""`
-	Result     string `json:"result" dc:""`
-	Language   string `json:"language" dc:""`
-	MemoryCost int    `json:"memory_cost" dc:""`
-	TimeCost   int    `json:"time_cost" dc:""`
-	Code       string `json:"code" dc:""`
-	CreateAt   string `json:"create_at" dc:""`
+	ProblemId  string `json:"problem_id"`
+	Username   string `json:"username"`
+	ContestId  string `json:"contest_id"`
+	Result     string `json:"result"`
+	Language   string `json:"language"`
+	MemoryCost int    `json:"memory_cost"`
+	TimeCost   int    `json:"time_cost"`
+	Code       string `json:"code"`
+	CreateAt   string `json:"create_at"`
 }

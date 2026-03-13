@@ -6,12 +6,12 @@ import (
 
 type GetPageReq struct {
 	g.Meta `path:"/submissions" method:"GET" tags:"submission" summary:"分页获取提交列表"`
-	Page   int `p:"page" dc:""`
-	Size   int `p:"size" dc:""`
+	Page   int `p:"page"`
+	Size   int `p:"size"`
 }
 
 type GetPageRes struct {
-	Total      int `json:"total" dc:""`
+	Total      int `json:"total"`
 	Submission []*struct {
 		Sid        string `json:"sid"`
 		Pid        int    `json:"pid"`
@@ -22,5 +22,5 @@ type GetPageRes struct {
 		MemoryCost int    `json:"memory_cost"`
 		TimeCost   int    `json:"time_cost"`
 		CreateTime int    `json:"create_time"`
-	} `json:"submission" dc:""`
+	} `json:"submission"`
 }

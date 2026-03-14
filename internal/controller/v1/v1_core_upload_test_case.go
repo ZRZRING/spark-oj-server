@@ -31,7 +31,7 @@ func (c *ControllerCore) UploadTestCase(ctx context.Context, req *core.UploadTes
 		return nil, err
 	}
 
-	uploadPath := g.Cfg().MustGet(gctx.New(), "upload.path").String()
+	uploadPath := g.Cfg().MustGet(gctx.New(), "upload.path.testcases").String()
 	problemDir := filepath.Join(uploadPath, gconv.String(req.Pid))
 	if err = gfile.Mkdir(problemDir); err != nil {
 		g.Log().Error(ctx, err)

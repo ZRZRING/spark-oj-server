@@ -8,12 +8,12 @@ type JudgeReq struct {
 	g.Meta   `path:"/judge" method:"POST" tags:"core" summary:"提交题目"`
 	Code     string `json:"code" v:"required"`
 	Username string `json:"username" v:"required"`
-	Pid      int    `json:"pid" v:"required"`
+	Pid      string `json:"pid" v:"required"`
 	Language string `json:"language" default:"cpp"`
-	Cid      int    `json:"cid"`
+	Cid      string `json:"cid"`
 }
 
 type JudgeRes struct {
-	Sid    int    `json:"sid"`
+	Sid    string `json:"sid"`
 	Result string `json:"result"`
 }

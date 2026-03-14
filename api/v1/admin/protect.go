@@ -5,7 +5,7 @@ import (
 )
 
 type ProtectedReq struct {
-	g.Meta `path:"/protected" method:"GET" tags:"admin" summary:"根据 JWT 令牌，获取当前登录的用户名和角色信息"`
+	g.Meta `path:"/protected" method:"GET" tags:"admin" summary:"JWT 认证"`
 }
 
 type ProtectedRes struct {

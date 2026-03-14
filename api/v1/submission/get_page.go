@@ -14,9 +14,9 @@ type GetPageRes struct {
 	Total      int `json:"total"`
 	Submission []*struct {
 		Sid        string `json:"sid"`
-		Pid        int    `json:"pid"`
+		Pid        string `json:"pid"`
+		Cid        string `json:"cid"`
 		Username   string `json:"username"`
-		Cid        int    `json:"cid"`
 		Result     string `json:"result"`
 		Language   string `json:"language"`
 		MemoryCost int    `json:"memory_cost"`

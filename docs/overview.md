@@ -98,7 +98,7 @@ spark-oj/
 #### 2.1.5 核心功能模块 (Core)
 - **代码评测**: `/judge` POST
 - **代码运行**: `/run` POST
-- **上传测试用例**: `/upload/test-case` POST
+- **上传测试用例**: `/upload/testcases` POST
 
 ### 2.2 中间件
 
@@ -281,13 +281,11 @@ pnpm dev
 
 根据代码分析，以下功能尚未完全实现:
 
-1. **Judge接口** (`v1_core_judge.go`): 返回 `CodeNotImplemented`
-2. **Ranking功能**: 竞赛排名逻辑
-3. **Codeforces集成**: 第三方平台数据同步
-4. **部分管理功能**: 标签管理等
+1. **Ranking功能**: 竞赛排名逻辑
+2. **Codeforces集成**: 第三方平台数据同步
+3. **部分管理功能**: 标签管理等
 
 ---
-
 ## 9. 开发建议
 
 ### 9.1 代码风格
@@ -315,3 +313,4 @@ pnpm dev
 - go-judge 项目: https://github.com/criyle/go-judge
 - Vue 3 文档: https://vuejs.org
 - Element Plus 文档: https://element-plus.org
+

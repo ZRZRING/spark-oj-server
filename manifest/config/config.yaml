@@ -29,7 +29,8 @@ database:
     debug: true
 
 upload:
-  path: "upload"
+  path:
+    testcases: "upload/testcases"
 
 thirdParty:
   codeforces:

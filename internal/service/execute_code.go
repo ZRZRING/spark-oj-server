@@ -3,6 +3,7 @@ package service
 import (
 	"encoding/json"
 	"fmt"
+	"spark-oj-server/pkg/utils"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/gclient"
@@ -141,7 +142,8 @@ func sendGoJudgeRequest(ctx g.Ctx, request *GoJudgeRequest) (res *GoJudgeResult,
 	g.Log().Debug(ctx, "Judge request:", string(requestData))
 
 	// 发送POST请求到go-judge
-	r, err := g.Client().Post(ctx, JudgeAPI+"/run", requestData)
+	judgeApiBaseUrl := utils.GetConfigString("judge.apiBaseUrl")
+	r, err := g.Client().Post(ctx, judgeApiBaseUrl+"/run", requestData)
 	if err != nil {
 		return nil, fmt.Errorf("send request failed: %v", err)
 	}

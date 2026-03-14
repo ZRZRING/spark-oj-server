@@ -2,20 +2,17 @@ package v1
 
 import (
 	"context"
-	"path/filepath"
-	"sort"
-	"strings"
-
 	"spark-oj-server/api/v1/core"
 	"spark-oj-server/internal/dao"
 	"spark-oj-server/internal/model/do"
 	"spark-oj-server/internal/model/entity"
 	"spark-oj-server/internal/service"
+	"spark-oj-server/pkg/enums"
+	"spark-oj-server/pkg/utils"
 
 	"github.com/gogf/gf/v2/errors/gcode"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/os/gctx"
 	"github.com/gogf/gf/v2/os/gfile"
 	"github.com/gogf/gf/v2/util/gconv"
 )
@@ -45,13 +42,13 @@ func (c *ControllerCore) Judge(ctx context.Context, req *core.JudgeReq) (res *co
 	}
 
 	pid := gconv.Int(req.Pid)
-	testCases, err := collectTestCases(pid)
+	testCases, err := service.CollectTestCases(pid)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
 
-	result := "Accepted"
+	result := enums.JudgeStatusAccepted
 	var maxTime, maxMemory int64
 
 	for _, testCase := range testCases {
@@ -75,12 +72,12 @@ func (c *ControllerCore) Judge(ctx context.Context, req *core.JudgeReq) (res *co
 			maxMemory = exeRes.Memory
 		}
 
-		if exeRes.Status != "Accepted" {
+		if exeRes.Status != enums.JudgeStatusAccepted {
 			result = exeRes.Status
 			break
 		}
 
-		if !isOutputEqual(exeRes.Output, expected) {
+		if !utils.IsOutputEqual(exeRes.Output, expected) {
 			result = "Wrong Answer"
 			break
 		}
@@ -105,45 +102,4 @@ func (c *ControllerCore) Judge(ctx context.Context, req *core.JudgeReq) (res *co
 	res.Sid = gconv.String(sid)
 	res.Result = result
 	return res, nil
-}
-
-type judgeTestCase struct {
-	InputPath  string
-	OutputPath string
-}
-
-func collectTestCases(pid int) ([]judgeTestCase, error) {
-	uploadPath := g.Cfg().MustGet(gctx.New(), "upload.path.testcases").String()
-	problemDir := filepath.Join(uploadPath, gconv.String(pid))
-	if !gfile.Exists(problemDir) {
-		return nil, gerror.NewCode(gcode.CodeInvalidRequest, "测试用例不存在")
-	}
-
-	inputFiles, err := gfile.ScanDirFile(problemDir, "*.in", false)
-	if err != nil {
-		return nil, err
-	}
-	if len(inputFiles) == 0 {
-		return nil, gerror.NewCode(gcode.CodeInvalidRequest, "未找到输入测试用例")
-	}
-	sort.Strings(inputFiles)
-
-	testCases := make([]judgeTestCase, 0, len(inputFiles))
-	for _, inputFile := range inputFiles {
-		outputFile := strings.TrimSuffix(inputFile, ".in") + ".out"
-		if !gfile.Exists(outputFile) {
-			return nil, gerror.NewCode(gcode.CodeInvalidRequest, "测试用例缺少输出文件")
-		}
-
-		testCases = append(testCases, judgeTestCase{
-			InputPath:  inputFile,
-			OutputPath: outputFile,
-		})
-	}
-
-	return testCases, nil
-}
-
-func isOutputEqual(actual, expected string) bool {
-	return strings.TrimSpace(actual) == strings.TrimSpace(expected)
 }

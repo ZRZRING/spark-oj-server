@@ -1,0 +1,10 @@
+### 测试 C++ A+B 题目评测 (用户：zrzring, PID: 1000)
+POST http://localhost:8000/judge
+Content-Type: application/json
+
+{
+  "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int a, b;\n    while (cin >> a >> b) {\n        cout << a + b << endl;\n    }\n    return 0;\n}",
+  "username": "zrzring",
+  "pid": "1000",
+  "language": "cpp"
+}

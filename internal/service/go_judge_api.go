@@ -1,5 +1,9 @@
 package service
 
+import (
+	"spark-oj-server/pkg/enums"
+)
+
 // 默认资源限制
 var (
 	DefaultCPULimit    = int64(10000000000) // 10秒
@@ -10,19 +14,19 @@ var (
 
 // 单份代码运行请求
 type ExecuteCodeRequest struct {
-	Code     string `json:"code"`     // 源代码
-	Input    string `json:"input"`    // 输入数据
-	Language string `json:"language"` // 编程语言 (cpp, c, java, python等)
+	Code     string         `json:"code"`     // 源代码
+	Input    string         `json:"input"`    // 输入数据
+	Language enums.Language `json:"language"` // 编程语言 (cpp, c, java, python等)
 }
 
 // 单份代码运行响应
 type ExecuteCodeResponse struct {
-	Status     string `json:"status"`     // 判题状态
-	Output     string `json:"output"`     // 程序输出
-	Error      string `json:"error"`      // 错误信息
-	Time       int64  `json:"time"`       // 运行时间(纳秒)
-	Memory     int64  `json:"memory"`     // 内存使用(字节)
-	ExitStatus int64  `json:"exitStatus"` // 退出状态码
+	Status     enums.JudgeResultStatus `json:"status"`     // 判题状态
+	Output     string                  `json:"output"`     // 程序输出
+	Error      string                  `json:"error"`      // 错误信息
+	Time       int64                   `json:"time"`       // 运行时间(纳秒)
+	Memory     int64                   `json:"memory"`     // 内存使用(字节)
+	ExitStatus int64                   `json:"exitStatus"` // 退出状态码
 }
 
 // go-judge API 请求结构
@@ -70,14 +74,14 @@ type Collector struct {
 // go-judge 响应结构
 
 type GoJudgeResult struct {
-	Status     string            `json:"status"`
-	Error      string            `json:"error,omitempty"`
-	ExitStatus int64             `json:"exitStatus"`
-	Time       int64             `json:"time"`
-	Memory     int64             `json:"memory"`
-	RunTime    int64             `json:"runTime"`
-	Files      map[string]string `json:"files,omitempty"`
-	FileIds    map[string]string `json:"fileIds,omitempty"`
+	Status     enums.JudgeResultStatus `json:"status"`
+	Error      string                  `json:"error,omitempty"`
+	ExitStatus int64                   `json:"exitStatus"`
+	Time       int64                   `json:"time"`
+	Memory     int64                   `json:"memory"`
+	RunTime    int64                   `json:"runTime"`
+	Files      map[string]string       `json:"files,omitempty"`
+	FileIds    map[string]string       `json:"fileIds,omitempty"`
 }
 
 // 编程语言配置
@@ -89,7 +93,7 @@ type LanguageConfig struct {
 }
 
 // 支持的编程语言配置
-var LanguageConfigs = map[string]LanguageConfig{
+var LanguageConfigs = map[enums.Language]LanguageConfig{
 	"cpp": {
 		CompileCmd:     []string{"/usr/bin/g++", "main.cpp", "-o", "main"},
 		RunCmd:         []string{"main"},

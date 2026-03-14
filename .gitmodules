@@ -1,7 +1,6 @@
-[submodule "app/go-judge"]
-	path = app/go-judge
-	url = https://github.com/ZRZRING/go-judge.git
-	branch = zrzring
+[submodule "judge"]
+	path = judge
+	url = git@github.com:ZRZRING/spark-oj-judge.git
 [submodule "web"]
 	path = web
 	url = git@github.com:ZRZRING/spark-oj-web.git

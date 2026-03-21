@@ -3,6 +3,7 @@
 .vscode/
 .codex/
 .claude/
+.qoder/
 **/.DS_Store
 
 # 二进制文件
@@ -15,3 +16,4 @@ output/
 upload/
 temp/
 .gocache/
+data/

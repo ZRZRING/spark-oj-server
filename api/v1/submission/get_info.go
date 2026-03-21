@@ -15,8 +15,8 @@ type GetInfoRes struct {
 	Cid        string `json:"cid"`
 	Result     string `json:"result"`
 	Language   string `json:"language"`
-	MemoryCost int    `json:"memory_cost"`
-	TimeCost   int    `json:"time_cost"`
+	MemoryCost string `json:"memory_cost"`
+	TimeCost   string `json:"time_cost"`
 	Code       string `json:"code"`
 	CreateAt   string `json:"create_at"`
 }

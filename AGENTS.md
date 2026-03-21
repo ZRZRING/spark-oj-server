@@ -12,12 +12,6 @@
 
 @docs/rules.md
 
-## 前端
-
-@web/docs/overview.md
-
-@web/docs/rules.md
-
 ## 待办
 
 @docs/todo.md

@@ -13,9 +13,11 @@ import (
 
 // JwtSecretKey 鉴权密钥
 const (
-	CtxUsername  gctx.StrKey = "username"
-	CtxUserRole  gctx.StrKey = "role"
-	JwtSecretKey string      = "b47qV7nDxtQpmURfBpx7"
+	CtxUsername   gctx.StrKey = "username"
+	CtxUserRole   gctx.StrKey = "role"
+	CtxExpireTime gctx.StrKey = "expire_time"
+	JwtSecretKey  string      = "b47qV7nDxtQpmURfBpx7"
+	ExpireTime                = 100000 * time.Hour
 )
 
 // JWTClaims 原始的 JWT 载荷
@@ -52,6 +54,7 @@ func JWTAuth(r *ghttp.Request) {
 	// 在 Context 里存储用户名
 	r.SetCtxVar(CtxUsername, claims.Username)
 	r.SetCtxVar(CtxUserRole, claims.UserRole)
+	r.SetCtxVar(CtxExpireTime, claims.RegisteredClaims.ExpiresAt)
 	r.Middleware.Next()
 }
 
@@ -62,13 +65,13 @@ func GenToken(username string, userRole string) (token string, err error) {
 		Username: username,
 		UserRole: userRole,
 		RegisteredClaims: jwt.RegisteredClaims{
-			Audience:  []string{},                                         // 受众
-			Issuer:    "SparkOJ",                                          // 签发人
-			Subject:   "JWTAuth",                                          // 主题
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)), // 有效时间
-			NotBefore: jwt.NewNumericDate(time.Now()),                     // 生效时间
-			IssuedAt:  jwt.NewNumericDate(time.Now()),                     // 签发时间
-			ID:        "main",                                             // JWT ID
+			Audience:  []string{},                                     // 受众
+			Issuer:    "SparkOJ",                                      // 签发人
+			Subject:   "JWTAuth",                                      // 主题
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(ExpireTime)), // 有效时间
+			NotBefore: jwt.NewNumericDate(time.Now()),                 // 生效时间
+			IssuedAt:  jwt.NewNumericDate(time.Now()),                 // 签发时间
+			ID:        "main",                                         // JWT ID
 		},
 	}
 

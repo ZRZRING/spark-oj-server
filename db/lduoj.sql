@@ -1,3 +1,5 @@
+-- 这个文件是我拉取的其他平台的 DDL，并非本项目的数据库结构，仅供参考。
+
 -- lduoj.contest_balloons definition
 
 CREATE TABLE `contest_balloons`

@@ -16,3 +16,9 @@ docker run -it --privileged --shm-size=256m -p 5050:5050 --name=go-judge criyle/
 # 后续启动容器
 docker start -a go-judge
 ```
+
+Redis 使用 8.6.1 版本
+
+```bash
+docker run -d --name redis -p 6379:6379 -v "$(pwd)/data:/data" redis:8.6.1
+```

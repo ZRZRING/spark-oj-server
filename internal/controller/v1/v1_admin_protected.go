@@ -4,19 +4,21 @@ import (
 	"context"
 	"spark-oj-server/internal/middleware"
 
+	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 
 	"spark-oj-server/api/v1/admin"
 )
 
 func (c *ControllerAdmin) Protected(ctx context.Context, req *admin.ProtectedReq) (res *admin.ProtectedRes, err error) {
-	res = &admin.ProtectedRes{}
+	res = &admin.ProtectedRes{
+		Username:   gconv.String(ctx.Value(middleware.CtxUsername)),
+		UserRole:   gconv.String(ctx.Value(middleware.CtxUserRole)),
+		ExpireTime: *gconv.GTime(ctx.Value(middleware.CtxExpireTime)),
+	}
 
-	username := gconv.String(ctx.Value(middleware.CtxUsername))
-	userRole := gconv.String(ctx.Value(middleware.CtxUserRole))
-
-	res.Username = username
-	res.UserRole = userRole
+	// 输出 JWT 有效时间
+	g.Log().Info(ctx, "JWT 有效时间:", middleware.ExpireTime)
 
 	return
 }

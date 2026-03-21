@@ -1,4 +1,4 @@
-### 测试 C++ A+B 题目评测 (用户：zrzring, PID: 1000)
+### A+B problem
 POST http://localhost:8000/judge
 Content-Type: application/json
 

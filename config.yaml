@@ -13,8 +13,10 @@ logger:
   header: true
 
 redis:
-  address: "127.0.0.1:6379"
-  password: ""
+  default:
+    address: "zrzring.top:6379"
+    password: "zrzring"
+    db: 0
 
 # https://goframe.org/docs/core/gdb-config-file
 database:

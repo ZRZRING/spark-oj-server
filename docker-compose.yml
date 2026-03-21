@@ -1,0 +1,19 @@
+services:
+  redis:
+    image: redis:8.6.1
+    container_name: redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data:/data
+  go-judge:
+    image: criyle/go-judge
+    container_name: go-judge
+    restart: unless-stopped
+    privileged: true
+    shm_size: '256mb'
+    ports:
+      - "5050:5050"
+    stdin_open: true
+    tty: true

@@ -15,7 +15,7 @@ func Bind(ctx context.Context, parser *gcmd.Parser) (err error) {
 
 	s.Group("/", func(group *ghttp.RouterGroup) {
 		group.Middleware(middleware.CORS)
-		group.Middleware(middleware.Logging)        // 添加访问日志中间件
+		group.Middleware(middleware.Logging) // 添加访问日志中间件
 		group.Middleware(ghttp.MiddlewareHandlerResponse)
 		group.Bind(
 			v1.NewUser(),
@@ -29,7 +29,7 @@ func Bind(ctx context.Context, parser *gcmd.Parser) (err error) {
 	// Protected endpoints requiring JWT authentication
 	s.Group("/admin", func(group *ghttp.RouterGroup) {
 		group.Middleware(middleware.CORS)
-		group.Middleware(middleware.Logging)        // 添加访问日志中间件
+		group.Middleware(middleware.Logging) // 添加访问日志中间件
 		group.Middleware(middleware.JWTAuth)
 		group.Middleware(middleware.PermissionAuth)
 		group.Middleware(ghttp.MiddlewareHandlerResponse)
@@ -38,7 +38,6 @@ func Bind(ctx context.Context, parser *gcmd.Parser) (err error) {
 		)
 	})
 
-	s.SetServerRoot("/resource/public")
 	s.SetOpenApiPath("/api.json")
 	s.SetSwaggerPath("/swagger")
 	s.SetPort(8000)

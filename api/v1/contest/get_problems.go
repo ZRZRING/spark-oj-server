@@ -10,7 +10,7 @@ type GetProblemsReq struct {
 }
 
 type GetProblemsRes struct {
-	Total    int               `json:"total""`
+	Total    int               `json:"total"`
 	Problems []GetProblemsItem `json:"problems"`
 }
 

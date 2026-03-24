@@ -13,6 +13,8 @@ gf run dev
 ```bash
 # 首次启动创建容器，需要进去安装 g++ 等编译工具
 docker run -it --privileged --shm-size=256m -p 5050:5050 --name=go-judge criyle/go-judge
+# 安装编译工具，可自行定制
+bash install_compilers.sh
 # 后续启动容器
 docker start -a go-judge
 ```

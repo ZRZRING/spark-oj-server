@@ -10,9 +10,10 @@ type GetInfoReq struct {
 }
 
 type GetInfoRes struct {
+	Sid        string `json:"sid"`
 	Pid        string `json:"pid"`
-	Username   string `json:"username"`
 	Cid        string `json:"cid"`
+	Username   string `json:"username"`
 	Result     string `json:"result"`
 	Language   string `json:"language"`
 	MemoryCost string `json:"memory_cost"`

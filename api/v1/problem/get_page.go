@@ -9,11 +9,13 @@ type GetPageReq struct {
 }
 
 type GetPageRes struct {
-	Total    int `json:"total" dc:"题目总数"`
-	Problems []*struct {
-		Pid       string `json:"pid"`
-		Title     string `json:"title"`
-		JudgeType int    `json:"judge_type"`
-		Rating    int    `json:"rating"`
-	} `json:"problems" dc:"题目列表"`
+	Total    int            `json:"total" dc:"题目总数"`
+	Problems []*GetPageItem `json:"problems" dc:"题目列表"`
+}
+
+type GetPageItem struct {
+	Pid       string `json:"pid"`
+	Title     string `json:"title"`
+	JudgeType int    `json:"judge_type"`
+	Rating    int    `json:"rating"`
 }

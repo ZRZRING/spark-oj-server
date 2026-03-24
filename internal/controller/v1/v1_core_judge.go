@@ -83,17 +83,21 @@ func (c *ControllerCore) Judge(ctx context.Context, req *core.JudgeReq) (res *co
 		}
 	}
 
-	sid, err := dao.Submission.Ctx(ctx).Data(&do.Submission{
+	data := do.Submission{
 		Title:      problem.Title,
 		Pid:        req.Pid,
 		Username:   req.Username,
-		Cid:        req.Cid,
 		Result:     result,
 		Language:   req.Language,
 		MemoryCost: maxMemory,
 		TimeCost:   maxTime / (1000 * 1000),
 		Code:       req.Code,
-	}).InsertAndGetId()
+	}
+	if req.Cid != "" {
+		data.Cid = req.Cid
+	}
+
+	sid, err := dao.Submission.Ctx(ctx).Data(data).InsertAndGetId()
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err

@@ -12,9 +12,9 @@ import (
 type Submission struct {
 	Sid        int         `json:"sid"         orm:"sid"         ` //
 	Title      string      `json:"title"       orm:"title"       ` //
-	Pid        string      `json:"pid"         orm:"pid"         ` //
+	Pid        int         `json:"pid"         orm:"pid"         ` //
 	Username   string      `json:"username"    orm:"username"    ` //
-	Cid        string      `json:"cid"         orm:"cid"         ` //
+	Cid        int         `json:"cid"         orm:"cid"         ` //
 	Result     string      `json:"result"      orm:"result"      ` //
 	Language   string      `json:"language"    orm:"language"    ` //
 	MemoryCost int         `json:"memory_cost" orm:"memory_cost" ` //

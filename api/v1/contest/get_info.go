@@ -2,7 +2,6 @@ package contest
 
 import (
 	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/os/gtime"
 )
 
 type GetInfoReq struct {
@@ -11,11 +10,11 @@ type GetInfoReq struct {
 }
 
 type GetInfoRes struct {
-	Cid         string     `json:"cid"`
-	Title       string     `json:"title"`
-	Description string     `json:"description"`
-	StartTime   gtime.Time `json:"start_time"`
-	EndTime     gtime.Time `json:"end_time"`
-	LockTime    gtime.Time `json:"lock_time"`
-	CreateBy    string     `json:"create_by"`
+	Cid         string `json:"cid"`
+	Title       string `json:"title"`
+	Description string `json:"description"`
+	StartTime   string `json:"start_time"`
+	EndTime     string `json:"end_time"`
+	LockTime    string `json:"lock_time"`
+	CreateBy    string `json:"create_by"`
 }

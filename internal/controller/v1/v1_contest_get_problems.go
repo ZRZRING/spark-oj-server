@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"spark-oj-server/internal/dao"
 	"spark-oj-server/internal/model/entity"
+	"spark-oj-server/pkg/enums"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
@@ -42,7 +43,7 @@ func (c *ControllerContest) GetProblems(ctx context.Context, req *contest.GetPro
 		problems = append(problems, contest.GetProblemsItem{
 			Pid:       gconv.String(problem.Pid),
 			Title:     problem.Title,
-			JudgeType: problem.JudgeType,
+			JudgeType: enums.JudgeType(problem.JudgeType),
 		})
 	}
 

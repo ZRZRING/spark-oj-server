@@ -26,9 +26,9 @@ create table public.problem
     update_at    timestamp default now() not null,
     delete_at    timestamp,
     title        varchar(255)            not null,
-    judge_type   integer                 not null,
+    judge_type   varchar(255)            not null,
     time_limit   integer   default 1000  not null,
-    memory_limit integer   default 1024  not null,
+    memory_limit integer   default 256   not null,
     create_by    varchar(255)            not null,
     rating       integer,
     content      text
@@ -88,13 +88,6 @@ create table public.user_base
     rating     integer      default 1500                      not null,
     cf_id      varchar(255),
     atc_id     varchar(255),
-    company    varchar(255),
-    department varchar(255),
-    major      varchar(255),
-    class      varchar(255),
-    email      varchar(255),
-    tel        varchar(255),
-    avatar     varchar(255),
     extra      jsonb        default '{}'::jsonb
 );
 

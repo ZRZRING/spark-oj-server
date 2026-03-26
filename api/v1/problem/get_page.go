@@ -1,6 +1,10 @@
 package problem
 
-import "github.com/gogf/gf/v2/frame/g"
+import (
+	"spark-oj-server/pkg/enums"
+
+	"github.com/gogf/gf/v2/frame/g"
+)
 
 type GetPageReq struct {
 	g.Meta `path:"/problems" method:"GET" summary:"获取题目列表" tags:"problem"`
@@ -14,8 +18,8 @@ type GetPageRes struct {
 }
 
 type GetPageItem struct {
-	Pid       string `json:"pid"`
-	Title     string `json:"title"`
-	JudgeType int    `json:"judge_type"`
-	Rating    int    `json:"rating"`
+	Pid       string          `json:"pid"`
+	Title     string          `json:"title"`
+	JudgeType enums.JudgeType `json:"judge_type"`
+	Rating    int             `json:"rating"`
 }

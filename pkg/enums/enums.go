@@ -21,3 +21,14 @@ const (
 	LanguageJava   Language = "java"
 	LanguagePython Language = "python"
 )
+
+type JudgeType string
+
+const (
+	JudgeTypeStandard      JudgeType = "Standard"
+	JudgeTypeSpecialJudge  JudgeType = "Special Judge"
+	JudgeTypeInteractive   JudgeType = "Interactive"
+	JudgeTypeCommunication JudgeType = "Communication"
+	JudgeTypeOutputOnly    JudgeType = "Output Only"
+	JudgeTypeUnknown       JudgeType = "Unknown"
+)

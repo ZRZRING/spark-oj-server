@@ -1,6 +1,8 @@
 package contest
 
 import (
+	"spark-oj-server/pkg/enums"
+
 	"github.com/gogf/gf/v2/frame/g"
 )
 
@@ -15,7 +17,7 @@ type GetProblemsRes struct {
 }
 
 type GetProblemsItem struct {
-	Pid       string `json:"pid"`
-	Title     string `json:"title"`
-	JudgeType int    `json:"judge_type"`
+	Pid       string          `json:"pid"`
+	Title     string          `json:"title"`
+	JudgeType enums.JudgeType `json:"judge_type"`
 }

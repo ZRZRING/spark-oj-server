@@ -12,7 +12,7 @@ import (
 type Problem struct {
 	Pid         int         `json:"pid"          orm:"pid"          ` //
 	Title       string      `json:"title"        orm:"title"        ` //
-	JudgeType   int         `json:"judge_type"   orm:"judge_type"   ` //
+	JudgeType   string      `json:"judge_type"   orm:"judge_type"   ` //
 	TimeLimit   int         `json:"time_limit"   orm:"time_limit"   ` //
 	MemoryLimit int         `json:"memory_limit" orm:"memory_limit" ` //
 	CreateBy    string      `json:"create_by"    orm:"create_by"    ` //

@@ -23,9 +23,10 @@ type IV1Contest interface {
 	Create(ctx context.Context, req *contest.CreateReq) (res *contest.CreateRes, err error)
 	GetInfo(ctx context.Context, req *contest.GetInfoReq) (res *contest.GetInfoRes, err error)
 	GetPage(ctx context.Context, req *contest.GetPageReq) (res *contest.GetPageRes, err error)
+	GetProblemInfo(ctx context.Context, req *contest.GetProblemInfoReq) (res *contest.GetProblemInfoRes, err error)
 	GetProblems(ctx context.Context, req *contest.GetProblemsReq) (res *contest.GetProblemsRes, err error)
-	GetSubmissions(ctx context.Context, req *contest.GetSubmissionsReq) (res *contest.GetSubmissionsRes, err error)
 	Ranking(ctx context.Context, req *contest.RankingReq) (res *contest.RankingRes, err error)
+	GetSubmissions(ctx context.Context, req *contest.GetSubmissionsReq) (res *contest.GetSubmissionsRes, err error)
 	Update(ctx context.Context, req *contest.UpdateReq) (res *contest.UpdateRes, err error)
 }
 

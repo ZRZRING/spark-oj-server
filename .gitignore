@@ -4,6 +4,7 @@
 .codex/
 .claude/
 .qoder/
+.prompt/
 **/.DS_Store
 
 # 二进制文件

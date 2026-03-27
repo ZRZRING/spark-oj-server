@@ -5,7 +5,7 @@ import (
 )
 
 type GetSubmissionsReq struct {
-	g.Meta `path:"/submissions/contest/{cid}" method:"GET" tags:"submission" summary:"分页获取提交列表"`
+	g.Meta `path:"/contest/{cid}/submissions" method:"GET" tags:"contest" summary:"获取比赛提交列表"`
 	Page   int    `p:"page" v:"required#页码不能为空"`
 	Size   int    `p:"size" v:"required#每页数量不能为空"`
 	Cid    string `p:"cid"`

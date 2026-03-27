@@ -16,6 +16,6 @@ type JudgeReq struct {
 }
 
 type JudgeRes struct {
-	Sid    string                  `json:"sid"`
-	Result enums.JudgeResultStatus `json:"result"`
+	Sid    string            `json:"sid"`
+	Result enums.JudgeStatus `json:"result"`
 }

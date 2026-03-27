@@ -1,15 +1,23 @@
 package enums
 
-// 判题结果状态枚举
-type JudgeResultStatus string
+// 判题状态枚举
+type JudgeStatus string
 
 const (
-	JudgeStatusAccepted            JudgeResultStatus = "Accepted"
-	JudgeStatusWrongAnswer         JudgeResultStatus = "Wrong Answer"
-	JudgeStatusTimeLimitExceeded   JudgeResultStatus = "Time Limit Exceeded"
-	JudgeStatusMemoryLimitExceeded JudgeResultStatus = "Memory Limit Exceeded"
-	JudgeStatusRuntimeError        JudgeResultStatus = "Runtime Error"
-	JudgeStatusCompileError        JudgeResultStatus = "Compile Error"
+	JudgeStatusAccepted            JudgeStatus = "Accepted"
+	JudgeStatusWrongAnswer         JudgeStatus = "Wrong Answer"
+	JudgeStatusTimeLimitExceeded   JudgeStatus = "Time Limit Exceeded"
+	JudgeStatusMemoryLimitExceeded JudgeStatus = "Memory Limit Exceeded"
+	JudgeStatusRuntimeError        JudgeStatus = "Runtime Error"
+	JudgeStatusCompileError        JudgeStatus = "Compile Error"
+)
+
+type RankingStatus string
+
+const (
+	RankingStatusAccepted RankingStatus = "Accepted"
+	RankingStatusReject   RankingStatus = "Reject"
+	RankingStatusEmpty    RankingStatus = ""
 )
 
 // 编程语言枚举

@@ -21,12 +21,12 @@ type ExecuteCodeRequest struct {
 
 // 单份代码运行响应
 type ExecuteCodeResponse struct {
-	Status     enums.JudgeResultStatus `json:"status"`     // 判题状态
-	Output     string                  `json:"output"`     // 程序输出
-	Error      string                  `json:"error"`      // 错误信息
-	Time       int64                   `json:"time"`       // 运行时间(纳秒)
-	Memory     int64                   `json:"memory"`     // 内存使用(字节)
-	ExitStatus int64                   `json:"exitStatus"` // 退出状态码
+	Status     enums.JudgeStatus `json:"status"`     // 判题状态
+	Output     string            `json:"output"`     // 程序输出
+	Error      string            `json:"error"`      // 错误信息
+	Time       int64             `json:"time"`       // 运行时间(纳秒)
+	Memory     int64             `json:"memory"`     // 内存使用(字节)
+	ExitStatus int64             `json:"exitStatus"` // 退出状态码
 }
 
 // go-judge API 请求结构
@@ -74,14 +74,14 @@ type Collector struct {
 // go-judge 响应结构
 
 type GoJudgeResult struct {
-	Status     enums.JudgeResultStatus `json:"status"`
-	Error      string                  `json:"error,omitempty"`
-	ExitStatus int64                   `json:"exitStatus"`
-	Time       int64                   `json:"time"`
-	Memory     int64                   `json:"memory"`
-	RunTime    int64                   `json:"runTime"`
-	Files      map[string]string       `json:"files,omitempty"`
-	FileIds    map[string]string       `json:"fileIds,omitempty"`
+	Status     enums.JudgeStatus `json:"status"`
+	Error      string            `json:"error,omitempty"`
+	ExitStatus int64             `json:"exitStatus"`
+	Time       int64             `json:"time"`
+	Memory     int64             `json:"memory"`
+	RunTime    int64             `json:"runTime"`
+	Files      map[string]string `json:"files,omitempty"`
+	FileIds    map[string]string `json:"fileIds,omitempty"`
 }
 
 // 编程语言配置

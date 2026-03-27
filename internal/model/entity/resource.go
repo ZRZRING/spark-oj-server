@@ -6,11 +6,12 @@ package entity
 
 import (
 	"github.com/gogf/gf/v2/os/gtime"
+	"github.com/google/uuid"
 )
 
 // Resource is the golang structure for table resource.
 type Resource struct {
-	Uuid     string      `json:"uuid"      orm:"uuid"      ` //
+	Uuid     uuid.UUID   `json:"uuid"      orm:"uuid"      ` //
 	Path     string      `json:"path"      orm:"path"      ` //
 	Type     string      `json:"type"      orm:"type"      ` //
 	CreateAt *gtime.Time `json:"create_at" orm:"create_at" ` //

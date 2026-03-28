@@ -12,12 +12,12 @@ const (
 	JudgeStatusCompileError        JudgeStatus = "Compile Error"
 )
 
-type RankingStatus string
+type RankingProblemStatus string
 
 const (
-	RankingStatusAccepted RankingStatus = "Accepted"
-	RankingStatusReject   RankingStatus = "Reject"
-	RankingStatusEmpty    RankingStatus = ""
+	RankingStatusAccepted RankingProblemStatus = "Accepted"
+	RankingStatusReject   RankingProblemStatus = "Reject"
+	RankingStatusEmpty    RankingProblemStatus = ""
 )
 
 // 编程语言枚举

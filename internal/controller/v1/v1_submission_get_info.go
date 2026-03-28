@@ -36,7 +36,7 @@ func (c *ControllerSubmission) GetInfo(ctx context.Context, req *submission.GetI
 		MemoryCost: fmt.Sprintf("%.2f", float64(e.MemoryCost)/1024.0/1024.0),
 		TimeCost:   fmt.Sprintf("%d", e.TimeCost),
 		Code:       e.Code,
-		CreateAt:   e.CreateAt.Format("2006-01-02 15:04:05"),
+		CreateAt:   e.CreateAt.Layout("2006-01-02 15:04:05"),
 	}
 	if err != nil {
 		g.Log().Error(ctx, err)

@@ -22,7 +22,7 @@ func (c *ControllerContest) GetSubmissions(ctx context.Context, req *contest.Get
 		return nil, gerror.NewCode(gcode.CodeInvalidRequest, "比赛不存在")
 	}
 	// 获取比赛的所有提交
-	submissionData := make([]entity.Submission, 0)
+	submissionData := make([]*entity.Submission, 0)
 	err = dao.Submission.Ctx(ctx).
 		Where("cid", req.Cid).
 		OrderDesc("sid").
@@ -42,7 +42,7 @@ func (c *ControllerContest) GetSubmissions(ctx context.Context, req *contest.Get
 			TimeCost:   gconv.String(sub.TimeCost),
 			MemoryCost: gconv.String(sub.MemoryCost),
 			Language:   sub.Language,
-			CreateTime: sub.CreateAt.Format("2006-01-02 15:04:05"),
+			CreateTime: sub.CreateAt.Layout("2006-01-02 15:04:05"),
 		})
 	}
 	return res, nil

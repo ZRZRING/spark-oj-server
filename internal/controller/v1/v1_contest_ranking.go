@@ -1,8 +1,10 @@
 package v1
 
 import (
+	"cmp"
 	"context"
 	"encoding/json"
+	"slices"
 	"spark-oj-server/api/v1/contest"
 	"spark-oj-server/internal/dao"
 	"spark-oj-server/internal/model/entity"
@@ -12,30 +14,28 @@ import (
 	"github.com/gogf/gf/v2/errors/gcode"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/util/gconv"
 )
 
 func (c *ControllerContest) Ranking(ctx context.Context, req *contest.RankingReq) (res *contest.RankingRes, err error) {
 	res = &contest.RankingRes{}
-	// 获取比赛题目
-	var data string
+	// 获取比赛信息
+	var contestInfo entity.Contest
 	err = dao.Contest.Ctx(ctx).
 		Where("cid", req.Cid).
-		Fields("problems").
-		Scan(&data)
-	if err != nil || data == "" {
-		g.Log().Infof(ctx, "比赛不存在或题目不存在: %v", req.Cid)
+		Scan(&contestInfo)
+	if err != nil || contestInfo.Cid == 0 {
+		g.Log().Infof(ctx, "比赛不存在: %v", req.Cid)
 		return nil, gerror.NewCode(gcode.CodeInvalidRequest, "比赛不存在")
 	}
 	// 解析比赛题目
-	var problems []string
-	err = json.Unmarshal([]byte(data), &problems)
+	var problems []int
+	err = json.Unmarshal([]byte(contestInfo.Problems), &problems)
 	if err != nil {
-		g.Log().Infof(ctx, "解析比赛信息失败: %v", err)
-		return nil, gerror.NewCode(gcode.CodeInvalidRequest, "解析比赛信息失败")
+		g.Log().Infof(ctx, "解析比赛题目失败: %v", err)
+		return nil, gerror.NewCode(gcode.CodeInvalidRequest, "解析比赛题目失败")
 	}
 	// Cid 和 题目顺序绑定
-	order := make(map[string]int)
+	order := make(map[int]int)
 	for i, pid := range problems {
 		order[pid] = i
 	}
@@ -52,22 +52,41 @@ func (c *ControllerContest) Ranking(ctx context.Context, req *contest.RankingReq
 	}
 	// 按 Username 计算成绩
 	Ranking := make(map[string]*contest.RankingItem)
-	for _, submission := range submissionData {
-		pid := gconv.String(submission.Pid)
-		it := Ranking[submission.Username]
+	for _, sub := range submissionData {
+		index := order[sub.Pid]
+		it := Ranking[sub.Username]
 		if it == nil {
-			it = &contest.RankingItem{Username: submission.Username}
-			Ranking[submission.Username] = it
+			it = &contest.RankingItem{
+				Username: sub.Username,
+				Score:    0,
+				Penalty:  0,
+				Problems: make([]contest.ProblemStatsItem, len(problems)),
+			}
+			Ranking[sub.Username] = it
 		}
-		if it.Status[pid] != enums.RankingStatusAccepted {
-			if submission.Result == string(enums.JudgeStatusAccepted) {
+		if it.Problems[index].Status == "" {
+			if sub.Result == string(enums.JudgeStatusAccepted) {
 				it.Score++
-				it.Status[pid] = enums.RankingStatusAccepted
+				finishTime := int(sub.CreateAt.Sub(contestInfo.StartTime).Minutes())
+				it.Problems[index].FinishTime = finishTime
+				it.Penalty += finishTime + consts.DEFAULT_PENALTY*it.Problems[index].RejectCount
+				it.Problems[index].Status = enums.RankingStatusAccepted
 			} else {
-				it.Penalty += consts.DEFAULT_PENALTY
-				it.Status[pid] = enums.RankingStatusReject
+				it.Problems[index].RejectCount++
+				it.Problems[index].Status = enums.RankingStatusReject
 			}
 		}
 	}
+	// 丢给结果并排序
+	res.Ranking = make([]*contest.RankingItem, 0, len(Ranking))
+	for _, it := range Ranking {
+		res.Ranking = append(res.Ranking, it)
+	}
+	slices.SortFunc(res.Ranking, func(a, b *contest.RankingItem) int {
+		if n := cmp.Compare(b.Score, a.Score); n != 0 {
+			return n
+		}
+		return cmp.Compare(a.Penalty, b.Penalty)
+	})
 	return res, nil
 }

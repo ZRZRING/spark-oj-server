@@ -43,7 +43,7 @@ func (c *ControllerSubmission) GetPage(ctx context.Context, req *submission.GetP
 			Language:   sub.Language,
 			MemoryCost: fmt.Sprintf("%.2f", float64(sub.MemoryCost)/1024.0/1024.0),
 			TimeCost:   fmt.Sprintf("%d", sub.TimeCost),
-			CreateTime: sub.CreateAt.Format("2006-01-02 15:04:05"),
+			CreateTime: sub.CreateAt.Layout("2006-01-02 15:04:05"),
 		})
 	}
 

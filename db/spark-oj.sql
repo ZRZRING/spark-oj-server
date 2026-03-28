@@ -56,20 +56,22 @@ create table public.submission
     create_at   timestamp default now() not null,
     update_at   timestamp default now() not null,
     delete_at   timestamp,
-    title       varchar(255)            not null,
     pid         varchar(255)            not null,
-    username    varchar(255)            not null,
     cid         varchar(255),
+    username    varchar(255)            not null,
     result      varchar(255)            not null,
     language    varchar(255)            not null,
     memory_cost integer                 not null,
     time_cost   integer                 not null,
-    code        text                    not null
+    code        text
 );
 
 create index submission_cid_index
     on public.submission (cid)
     where (cid IS NOT NULL);
+
+create index submission_create_at_index
+    on public.submission (create_at);
 
 ---
 

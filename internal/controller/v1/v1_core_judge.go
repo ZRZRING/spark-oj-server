@@ -84,7 +84,6 @@ func (c *ControllerCore) Judge(ctx context.Context, req *core.JudgeReq) (res *co
 	}
 
 	data := do.Submission{
-		Title:      problem.Title,
 		Pid:        req.Pid,
 		Username:   req.Username,
 		Result:     result,

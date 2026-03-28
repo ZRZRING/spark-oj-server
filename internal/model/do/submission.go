@@ -13,16 +13,15 @@ import (
 type Submission struct {
 	g.Meta     `orm:"table:submission, do:true"`
 	Sid        any         //
-	Title      any         //
+	CreateAt   *gtime.Time //
+	UpdateAt   *gtime.Time //
+	DeleteAt   *gtime.Time //
 	Pid        any         //
-	Username   any         //
 	Cid        any         //
+	Username   any         //
 	Result     any         //
 	Language   any         //
 	MemoryCost any         //
 	TimeCost   any         //
 	Code       any         //
-	CreateAt   *gtime.Time //
-	UpdateAt   *gtime.Time //
-	DeleteAt   *gtime.Time //
 }

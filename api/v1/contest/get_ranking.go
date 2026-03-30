@@ -16,6 +16,7 @@ type RankingRes struct {
 }
 
 type RankingItem struct {
+	Rank     int                `json:"rank" dc:"排名"`
 	Username string             `json:"username" dc:"用户名"`
 	Score    int                `json:"score" dc:"分数"`
 	Penalty  int                `json:"penalty" dc:"罚时"`

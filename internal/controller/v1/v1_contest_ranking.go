@@ -51,35 +51,35 @@ func (c *ControllerContest) Ranking(ctx context.Context, req *contest.RankingReq
 		return nil, gerror.Wrap(err, "获取比赛提交列表失败")
 	}
 	// 按 Username 计算成绩
-	Ranking := make(map[string]*contest.RankingItem)
+	ranking := make(map[string]*contest.RankingItem)
 	for _, sub := range submissionData {
 		index := order[sub.Pid]
-		it := Ranking[sub.Username]
-		if it == nil {
-			it = &contest.RankingItem{
+		rankingRow := ranking[sub.Username]
+		if rankingRow == nil {
+			rankingRow = &contest.RankingItem{
 				Username: sub.Username,
 				Score:    0,
 				Penalty:  0,
 				Problems: make([]contest.ProblemStatsItem, len(problems)),
 			}
-			Ranking[sub.Username] = it
+			ranking[sub.Username] = rankingRow
 		}
-		if it.Problems[index].Status == "" {
+		if rankingRow.Problems[index].Status != enums.RankingStatusAccepted {
 			if sub.Result == string(enums.JudgeStatusAccepted) {
-				it.Score++
+				rankingRow.Score++
 				finishTime := int(sub.CreateAt.Sub(contestInfo.StartTime).Minutes())
-				it.Problems[index].FinishTime = finishTime
-				it.Penalty += finishTime + consts.DEFAULT_PENALTY*it.Problems[index].RejectCount
-				it.Problems[index].Status = enums.RankingStatusAccepted
+				rankingRow.Problems[index].FinishTime = finishTime
+				rankingRow.Penalty += finishTime + consts.DEFAULT_PENALTY*rankingRow.Problems[index].RejectCount
+				rankingRow.Problems[index].Status = enums.RankingStatusAccepted
 			} else {
-				it.Problems[index].RejectCount++
-				it.Problems[index].Status = enums.RankingStatusReject
+				rankingRow.Problems[index].RejectCount++
+				rankingRow.Problems[index].Status = enums.RankingStatusReject
 			}
 		}
 	}
 	// 丢给结果并排序
-	res.Ranking = make([]*contest.RankingItem, 0, len(Ranking))
-	for _, it := range Ranking {
+	res.Ranking = make([]*contest.RankingItem, 0, len(ranking))
+	for _, it := range ranking {
 		res.Ranking = append(res.Ranking, it)
 	}
 	slices.SortFunc(res.Ranking, func(a, b *contest.RankingItem) int {

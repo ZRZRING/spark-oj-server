@@ -17,12 +17,12 @@ import (
 func (c *ControllerContest) GetProblemInfo(ctx context.Context, req *contest.GetProblemInfoReq) (res *contest.GetProblemInfoRes, err error) {
 	// 1. 获取比赛信息
 	contestEntity := &entity.Contest{}
-	err = dao.Contest.Ctx(ctx).Where("cid", req.Cid).Scan(contestEntity)
+	err = dao.Contest.Ctx(ctx).Where("contestId", req.ContestId).Scan(contestEntity)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
-	if contestEntity.Cid == 0 {
+	if contestEntity.ContestId == 0 {
 		return nil, gerror.New("比赛不存在")
 	}
 
@@ -34,10 +34,10 @@ func (c *ControllerContest) GetProblemInfo(ctx context.Context, req *contest.Get
 		return nil, err
 	}
 
-	pidInt := gconv.Int(req.Pid)
+	problemIdInt := gconv.Int(req.ProblemId)
 	found := false
 	for _, id := range problemIds {
-		if id == pidInt {
+		if id == problemIdInt {
 			found = true
 			break
 		}
@@ -48,25 +48,25 @@ func (c *ControllerContest) GetProblemInfo(ctx context.Context, req *contest.Get
 
 	// 3. 获取题目信息
 	problem := &entity.Problem{}
-	err = dao.Problem.Ctx(ctx).Where("pid", req.Pid).Scan(problem)
+	err = dao.Problem.Ctx(ctx).Where("problemId", req.ProblemId).Scan(problem)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
-	if problem.Pid == 0 {
+	if problem.ProblemId == 0 {
 		return nil, gerror.New("题目不存在")
 	}
 
 	// 4. 构建响应
 	res = &contest.GetProblemInfoRes{
-		Pid:          gconv.String(problem.Pid),
+		ProblemId:    gconv.String(problem.ProblemId),
 		Title:        problem.Title,
 		JudgeType:    enums.JudgeType(problem.JudgeType),
 		TimeLimit:    problem.TimeLimit,
 		MemoryLimit:  problem.MemoryLimit,
 		Rating:       problem.Rating,
 		Content:      problem.Content,
-		Cid:          req.Cid,
+		ContestId:    req.ContestId,
 		ContestTitle: contestEntity.Title,
 	}
 

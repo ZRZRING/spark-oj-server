@@ -25,14 +25,14 @@ func (c *ControllerCore) UploadTestCase(ctx context.Context, req *core.UploadTes
 	}
 
 	md := dao.Problem.Ctx(ctx)
-	cnt, err := md.Count("pid", req.Pid)
+	cnt, err := md.Count("problemId", req.ProblemId)
 	if err != nil || cnt == 0 {
 		g.Log().Error(ctx, err, cnt)
 		return nil, err
 	}
 
 	uploadPath := g.Cfg().MustGet(gctx.New(), "upload.path.testcases").String()
-	problemDir := filepath.Join(uploadPath, gconv.String(req.Pid))
+	problemDir := filepath.Join(uploadPath, gconv.String(req.ProblemId))
 	if err = gfile.Mkdir(problemDir); err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err

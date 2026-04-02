@@ -21,7 +21,10 @@ type ContestDao struct {
 
 // ContestColumns defines and stores column names for the table contest.
 type ContestColumns struct {
-	Cid         string //
+	ContestId   string //
+	CreateAt    string //
+	UpdateAt    string //
+	DeleteAt    string //
 	Title       string //
 	Password    string //
 	Description string //
@@ -29,16 +32,16 @@ type ContestColumns struct {
 	EndTime     string //
 	LockTime    string //
 	CreateBy    string //
-	CreateAt    string //
-	UpdateAt    string //
-	DeleteAt    string //
 	Practice    string //
 	Problems    string //
 }
 
 // contestColumns holds the columns for the table contest.
 var contestColumns = ContestColumns{
-	Cid:         "cid",
+	ContestId:   "contest_id",
+	CreateAt:    "create_at",
+	UpdateAt:    "update_at",
+	DeleteAt:    "delete_at",
 	Title:       "title",
 	Password:    "password",
 	Description: "description",
@@ -46,9 +49,6 @@ var contestColumns = ContestColumns{
 	EndTime:     "end_time",
 	LockTime:    "lock_time",
 	CreateBy:    "create_by",
-	CreateAt:    "create_at",
-	UpdateAt:    "update_at",
-	DeleteAt:    "delete_at",
 	Practice:    "practice",
 	Problems:    "problems",
 }

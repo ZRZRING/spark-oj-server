@@ -7,12 +7,12 @@ import (
 )
 
 type GetInfoReq struct {
-	g.Meta `path:"/problem/{pid}" method:"GET" tags:"problem" summary:"获取题目信息"`
-	Pid    string `p:"pid" v:"required#题目 ID 不能为空" dc:"题目 ID"`
+	g.Meta    `path:"/problem/{problemId}" method:"GET" tags:"problem" summary:"获取题目信息"`
+	ProblemId string `p:"problemId" v:"required#题目 ID 不能为空" dc:"题目 ID"`
 }
 
 type GetInfoRes struct {
-	Pid         string          `json:"pid"`
+	ProblemId   string          `json:"problemId"`
 	Title       string          `json:"title"`
 	JudgeType   enums.JudgeType `json:"judge_type"`
 	TimeLimit   int             `json:"time_limit"`

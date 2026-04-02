@@ -21,22 +21,22 @@ type ResourceDao struct {
 
 // ResourceColumns defines and stores column names for the table resource.
 type ResourceColumns struct {
-	Uuid     string //
-	Path     string //
-	Type     string //
-	CreateAt string //
-	UpdateAt string //
-	DeleteAt string //
+	ResourceUuid string //
+	CreateAt     string //
+	UpdateAt     string //
+	DeleteAt     string //
+	Path         string //
+	Type         string //
 }
 
 // resourceColumns holds the columns for the table resource.
 var resourceColumns = ResourceColumns{
-	Uuid:     "uuid",
-	Path:     "path",
-	Type:     "type",
-	CreateAt: "create_at",
-	UpdateAt: "update_at",
-	DeleteAt: "delete_at",
+	ResourceUuid: "resource_uuid",
+	CreateAt:     "create_at",
+	UpdateAt:     "update_at",
+	DeleteAt:     "delete_at",
+	Path:         "path",
+	Type:         "type",
 }
 
 // NewResourceDao creates and returns a new DAO object for table data access.

@@ -7,8 +7,8 @@ import (
 )
 
 type GetProblemsReq struct {
-	g.Meta `path:"/contest/{cid}/problems" method:"GET" tags:"contest" summary:"获取比赛题目"`
-	Cid    string `p:"cid" v:"required#比赛 ID 不能为空" dc:"比赛 ID"`
+	g.Meta    `path:"/contest/{contestId}/problems" method:"GET" tags:"contest" summary:"获取比赛题目"`
+	ContestId string `p:"contestId" v:"required#比赛 ID 不能为空" dc:"比赛 ID"`
 }
 
 type GetProblemsRes struct {
@@ -17,7 +17,7 @@ type GetProblemsRes struct {
 }
 
 type GetProblemsItem struct {
-	Pid       string          `json:"pid"`
+	ProblemId string          `json:"problemId"`
 	Title     string          `json:"title"`
 	JudgeType enums.JudgeType `json:"judge_type"`
 }

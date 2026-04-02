@@ -18,7 +18,7 @@ type GetPageRes struct {
 }
 
 type GetPageItem struct {
-	Pid       string          `json:"pid"`
+	ProblemId string          `json:"problemId"`
 	Title     string          `json:"title"`
 	JudgeType enums.JudgeType `json:"judge_type"`
 	Rating    int             `json:"rating"`

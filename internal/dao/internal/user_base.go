@@ -21,50 +21,32 @@ type UserBaseDao struct {
 
 // UserBaseColumns defines and stores column names for the table user_base.
 type UserBaseColumns struct {
-	Username   string //
-	Password   string //
-	Nickname   string //
-	Role       string //
-	Solved     string //
-	Submitted  string //
-	Rating     string //
-	CfId       string //
-	AtcId      string //
-	Company    string //
-	Department string //
-	Major      string //
-	Class      string //
-	Email      string //
-	Tel        string //
-	Avatar     string //
-	CreateAt   string //
-	UpdateAt   string //
-	DeleteAt   string //
-	Ext        string //
+	Username  string //
+	CreateAt  string //
+	UpdateAt  string //
+	DeleteAt  string //
+	Password  string //
+	Nickname  string //
+	Role      string //
+	Solved    string //
+	Submitted string //
+	Rating    string //
+	Extra     string //
 }
 
 // userBaseColumns holds the columns for the table user_base.
 var userBaseColumns = UserBaseColumns{
-	Username:   "username",
-	Password:   "password",
-	Nickname:   "nickname",
-	Role:       "role",
-	Solved:     "solved",
-	Submitted:  "submitted",
-	Rating:     "rating",
-	CfId:       "cf_id",
-	AtcId:      "atc_id",
-	Company:    "company",
-	Department: "department",
-	Major:      "major",
-	Class:      "class",
-	Email:      "email",
-	Tel:        "tel",
-	Avatar:     "avatar",
-	CreateAt:   "create_at",
-	UpdateAt:   "update_at",
-	DeleteAt:   "delete_at",
-	Ext:        "ext",
+	Username:  "username",
+	CreateAt:  "create_at",
+	UpdateAt:  "update_at",
+	DeleteAt:  "delete_at",
+	Password:  "password",
+	Nickname:  "nickname",
+	Role:      "role",
+	Solved:    "solved",
+	Submitted: "submitted",
+	Rating:    "rating",
+	Extra:     "extra",
 }
 
 // NewUserBaseDao creates and returns a new DAO object for table data access.

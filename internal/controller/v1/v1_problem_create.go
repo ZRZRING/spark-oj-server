@@ -22,13 +22,13 @@ func (c *ControllerProblem) Create(ctx context.Context, req *problem.CreateReq) 
 		return nil, err
 	}
 
-	pid, err := md.InsertAndGetId(d)
-	g.Log().Info(ctx, pid)
+	problemId, err := md.InsertAndGetId(d)
+	g.Log().Info(ctx, problemId)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
-	res.Pid = gconv.String(pid)
+	res.ProblemId = gconv.String(problemId)
 
 	return res, nil
 }

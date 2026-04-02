@@ -11,11 +11,11 @@ import (
 
 // Resource is the golang structure of table resource for DAO operations like Where/Data.
 type Resource struct {
-	g.Meta   `orm:"table:resource, do:true"`
-	Uuid     any         //
-	Path     any         //
-	Type     any         //
-	CreateAt *gtime.Time //
-	UpdateAt *gtime.Time //
-	DeleteAt *gtime.Time //
+	g.Meta       `orm:"table:resource, do:true"`
+	ResourceUuid any         //
+	CreateAt     *gtime.Time //
+	UpdateAt     *gtime.Time //
+	DeleteAt     *gtime.Time //
+	Path         any         //
+	Type         any         //
 }

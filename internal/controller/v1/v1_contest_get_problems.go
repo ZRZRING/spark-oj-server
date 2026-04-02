@@ -17,7 +17,7 @@ func (c *ControllerContest) GetProblems(ctx context.Context, req *contest.GetPro
 	res = &contest.GetProblemsRes{}
 
 	result, err := dao.Contest.Ctx(ctx).
-		Value("problems", "cid", req.Cid)
+		Value("problems", "contestId", req.ContestId)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
@@ -33,7 +33,7 @@ func (c *ControllerContest) GetProblems(ctx context.Context, req *contest.GetPro
 	for _, problemId := range problemIds {
 		problem := &entity.Problem{}
 		err = dao.Problem.Ctx(ctx).
-			Where("pid", problemId).
+			Where("problemId", problemId).
 			Scan(problem)
 		if err != nil {
 			g.Log().Error(ctx, err)
@@ -41,7 +41,7 @@ func (c *ControllerContest) GetProblems(ctx context.Context, req *contest.GetPro
 		}
 
 		problems = append(problems, contest.GetProblemsItem{
-			Pid:       gconv.String(problem.Pid),
+			ProblemId: gconv.String(problem.ProblemId),
 			Title:     problem.Title,
 			JudgeType: enums.JudgeType(problem.JudgeType),
 		})

@@ -21,20 +21,20 @@ type UserRoleDao struct {
 
 // UserRoleColumns defines and stores column names for the table user_role.
 type UserRoleColumns struct {
-	Rid        string //
-	Permission string //
+	RoleId     string //
 	CreateAt   string //
 	UpdateAt   string //
 	DeleteAt   string //
+	Permission string //
 }
 
 // userRoleColumns holds the columns for the table user_role.
 var userRoleColumns = UserRoleColumns{
-	Rid:        "rid",
-	Permission: "permission",
+	RoleId:     "role_id",
 	CreateAt:   "create_at",
 	UpdateAt:   "update_at",
 	DeleteAt:   "delete_at",
+	Permission: "permission",
 }
 
 // NewUserRoleDao creates and returns a new DAO object for table data access.

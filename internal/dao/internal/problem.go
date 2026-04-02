@@ -21,34 +21,32 @@ type ProblemDao struct {
 
 // ProblemColumns defines and stores column names for the table problem.
 type ProblemColumns struct {
-	Pid         string //
+	ProblemId   string //
+	CreateAt    string //
+	UpdateAt    string //
+	DeleteAt    string //
 	Title       string //
 	JudgeType   string //
 	TimeLimit   string //
 	MemoryLimit string //
 	CreateBy    string //
 	Rating      string //
-	CreateAt    string //
-	UpdateAt    string //
-	DeleteAt    string //
 	Content     string //
-	Analysis    string //
 }
 
 // problemColumns holds the columns for the table problem.
 var problemColumns = ProblemColumns{
-	Pid:         "pid",
+	ProblemId:   "problem_id",
+	CreateAt:    "create_at",
+	UpdateAt:    "update_at",
+	DeleteAt:    "delete_at",
 	Title:       "title",
 	JudgeType:   "judge_type",
 	TimeLimit:   "time_limit",
 	MemoryLimit: "memory_limit",
 	CreateBy:    "create_by",
 	Rating:      "rating",
-	CreateAt:    "create_at",
-	UpdateAt:    "update_at",
-	DeleteAt:    "delete_at",
 	Content:     "content",
-	Analysis:    "analysis",
 }
 
 // NewProblemDao creates and returns a new DAO object for table data access.

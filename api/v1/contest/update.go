@@ -6,7 +6,7 @@ import (
 )
 
 type UpdateReq struct {
-	g.Meta       `path:"/contest/{cid}" method:"PUT" tags:"contest" mime:"application/json" summary:"更新比赛"`
+	g.Meta       `path:"/contest/{contestId}" method:"PUT" tags:"contest" mime:"application/json" summary:"更新比赛"`
 	Title        string     `json:"title" v:"required#比赛名称不能为空"`
 	Password     string     `json:"password"`
 	Problems     []int      `json:"problems" dc:"比赛题目，支持数组或对象格式"`

@@ -22,10 +22,10 @@ func (c *ControllerProblem) Update(ctx context.Context, req *problem.UpdateReq) 
 		return nil, err
 	}
 
-	pid := gconv.Int(req.Pid)
+	problemId := gconv.Int(req.ProblemId)
 	msg, err := md.Data(d).
-		FieldsEx("pid").
-		Where("pid", pid).Update()
+		FieldsEx("problemId").
+		Where("problemId", problemId).Update()
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err

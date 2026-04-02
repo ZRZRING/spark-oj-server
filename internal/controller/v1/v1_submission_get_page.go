@@ -22,7 +22,7 @@ func (c *ControllerSubmission) GetPage(ctx context.Context, req *submission.GetP
 	// 查询提交列表
 	var submissions []*entity.Submission
 	err = dao.Submission.Ctx(ctx).
-		OrderDesc("sid").
+		OrderDesc("submissionId").
 		Page(req.Page, req.Size).
 		Scan(&submissions)
 	if err != nil {
@@ -35,15 +35,15 @@ func (c *ControllerSubmission) GetPage(ctx context.Context, req *submission.GetP
 	}
 	for _, sub := range submissions {
 		res.Submissions = append(res.Submissions, &submission.GetPageItem{
-			Sid:        gconv.String(sub.Sid),
-			Pid:        gconv.String(sub.Pid),
-			Cid:        gconv.String(sub.Cid),
-			Username:   sub.Username,
-			Result:     sub.Result,
-			Language:   sub.Language,
-			MemoryCost: fmt.Sprintf("%.2f", float64(sub.MemoryCost)/1024.0/1024.0),
-			TimeCost:   fmt.Sprintf("%d", sub.TimeCost),
-			CreateTime: sub.CreateAt.Layout("2006-01-02 15:04:05"),
+			SubmissionId: gconv.String(sub.SubmissionId),
+			ProblemId:    gconv.String(sub.ProblemId),
+			ContestId:    gconv.String(sub.ContestId),
+			Username:     sub.Username,
+			Result:       sub.Result,
+			Language:     sub.Language,
+			MemoryCost:   fmt.Sprintf("%.2f", float64(sub.MemoryCost)/1024.0/1024.0),
+			TimeCost:     fmt.Sprintf("%d", sub.TimeCost),
+			CreateTime:   sub.CreateAt.Layout("2006-01-02 15:04:05"),
 		})
 	}
 

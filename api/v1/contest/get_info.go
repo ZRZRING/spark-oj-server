@@ -5,12 +5,12 @@ import (
 )
 
 type GetInfoReq struct {
-	g.Meta `path:"/contest/{cid}" method:"GET" tags:"contest" summary:"获取比赛信息"`
-	Cid    string `p:"cid" v:"required#比赛 ID 不能为空" dc:"比赛 ID"`
+	g.Meta    `path:"/contest/{contestId}" method:"GET" tags:"contest" summary:"获取比赛信息"`
+	ContestId string `p:"contestId" v:"required#比赛 ID 不能为空" dc:"比赛 ID"`
 }
 
 type GetInfoRes struct {
-	Cid         string `json:"cid"`
+	ContestId   string `json:"contestId"`
 	Title       string `json:"title"`
 	Description string `json:"description"`
 	StartTime   string `json:"start_time"`

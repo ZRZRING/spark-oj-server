@@ -12,16 +12,15 @@ import (
 // Problem is the golang structure of table problem for DAO operations like Where/Data.
 type Problem struct {
 	g.Meta      `orm:"table:problem, do:true"`
-	Pid         any         //
+	ProblemId   any         //
+	CreateAt    *gtime.Time //
+	UpdateAt    *gtime.Time //
+	DeleteAt    *gtime.Time //
 	Title       any         //
 	JudgeType   any         //
 	TimeLimit   any         //
 	MemoryLimit any         //
 	CreateBy    any         //
 	Rating      any         //
-	CreateAt    *gtime.Time //
-	UpdateAt    *gtime.Time //
-	DeleteAt    *gtime.Time //
 	Content     any         //
-	Analysis    any         //
 }

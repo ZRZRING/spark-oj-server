@@ -19,9 +19,9 @@ type judgeTestCase struct {
 }
 
 // CollectTestCases 加载测试用例路径
-func CollectTestCases(pid int) ([]*judgeTestCase, error) {
+func CollectTestCases(problemId int) ([]*judgeTestCase, error) {
 	uploadPath := g.Cfg().MustGet(gctx.New(), "upload.path.testcases").String()
-	problemDir := filepath.Join(uploadPath, gconv.String(pid))
+	problemDir := filepath.Join(uploadPath, gconv.String(problemId))
 	if !gfile.Exists(problemDir) {
 		return nil, gerror.NewCode(gcode.CodeInvalidRequest, "测试用例不存在")
 	}

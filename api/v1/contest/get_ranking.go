@@ -7,8 +7,8 @@ import (
 )
 
 type RankingReq struct {
-	g.Meta `path:"/contest/{cid}/ranking" method:"GET" tags:"contest" summary:"获取比赛排行榜"`
-	Cid    string `p:"cid" v:"required#比赛 ID 不能为空" dc:"比赛 ID"`
+	g.Meta    `path:"/contest/{contestId}/ranking" method:"GET" tags:"contest" summary:"获取比赛排行榜"`
+	ContestId string `p:"contestId" v:"required#比赛 ID 不能为空" dc:"比赛 ID"`
 }
 
 type RankingRes struct {

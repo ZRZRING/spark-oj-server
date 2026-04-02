@@ -21,10 +21,10 @@ func (c *ControllerContest) Ranking(ctx context.Context, req *contest.RankingReq
 	// 获取比赛信息
 	var contestInfo entity.Contest
 	err = dao.Contest.Ctx(ctx).
-		Where("cid", req.Cid).
+		Where("contestId", req.ContestId).
 		Scan(&contestInfo)
-	if err != nil || contestInfo.Cid == 0 {
-		g.Log().Infof(ctx, "比赛不存在: %v", req.Cid)
+	if err != nil || contestInfo.ContestId == 0 {
+		g.Log().Infof(ctx, "比赛不存在: %v", req.ContestId)
 		return nil, gerror.NewCode(gcode.CodeInvalidRequest, "比赛不存在")
 	}
 	// 解析比赛题目
@@ -34,17 +34,17 @@ func (c *ControllerContest) Ranking(ctx context.Context, req *contest.RankingReq
 		g.Log().Infof(ctx, "解析比赛题目失败: %v", err)
 		return nil, gerror.NewCode(gcode.CodeInvalidRequest, "解析比赛题目失败")
 	}
-	// Cid 和 题目顺序绑定
+	// ContestId 和 题目顺序绑定
 	order := make(map[int]int)
-	for i, pid := range problems {
-		order[pid] = i
+	for i, problemId := range problems {
+		order[problemId] = i
 	}
 	// 获取提交记录
 	var total int
 	submissionData := make([]entity.Submission, 0)
 	err = dao.Submission.Ctx(ctx).
-		Where("cid", req.Cid).
-		OrderAsc("sid").
+		Where("contestId", req.ContestId).
+		OrderAsc("submissionId").
 		ScanAndCount(&submissionData, &total, false)
 	if err != nil {
 		g.Log().Infof(ctx, "获取比赛提交列表失败: %v", err)
@@ -53,7 +53,7 @@ func (c *ControllerContest) Ranking(ctx context.Context, req *contest.RankingReq
 	// 按 Username 计算成绩
 	ranking := make(map[string]*contest.RankingItem)
 	for _, sub := range submissionData {
-		index := order[sub.Pid]
+		index := order[sub.ProblemId]
 		rankingRow := ranking[sub.Username]
 		if rankingRow == nil {
 			rankingRow = &contest.RankingItem{

@@ -11,25 +11,16 @@ import (
 
 // UserBase is the golang structure of table user_base for DAO operations like Where/Data.
 type UserBase struct {
-	g.Meta     `orm:"table:user_base, do:true"`
-	Username   any         //
-	Password   any         //
-	Nickname   any         //
-	Role       any         //
-	Solved     any         //
-	Submitted  any         //
-	Rating     any         //
-	CfId       any         //
-	AtcId      any         //
-	Company    any         //
-	Department any         //
-	Major      any         //
-	Class      any         //
-	Email      any         //
-	Tel        any         //
-	Avatar     any         //
-	CreateAt   *gtime.Time //
-	UpdateAt   *gtime.Time //
-	DeleteAt   *gtime.Time //
-	Ext        any         //
+	g.Meta    `orm:"table:user_base, do:true"`
+	Username  any         //
+	CreateAt  *gtime.Time //
+	UpdateAt  *gtime.Time //
+	DeleteAt  *gtime.Time //
+	Password  any         //
+	Nickname  any         //
+	Role      any         //
+	Solved    any         //
+	Submitted any         //
+	Rating    any         //
+	Extra     any         //
 }

@@ -16,16 +16,16 @@ import (
 func (c *ControllerContest) GetSubmissions(ctx context.Context, req *contest.GetSubmissionsReq) (res *contest.GetSubmissionsRes, err error) {
 	res = &contest.GetSubmissionsRes{}
 	// 判断比赛是否存在
-	tot, err := dao.Contest.Ctx(ctx).Count("cid", req.Cid)
+	tot, err := dao.Contest.Ctx(ctx).Count("contestId", req.ContestId)
 	if err != nil || tot == 0 {
-		g.Log().Errorf(ctx, "比赛不存在: %v", req.Cid)
+		g.Log().Errorf(ctx, "比赛不存在: %v", req.ContestId)
 		return nil, gerror.NewCode(gcode.CodeInvalidRequest, "比赛不存在")
 	}
 	// 获取比赛的所有提交
 	submissionData := make([]*entity.Submission, 0)
 	err = dao.Submission.Ctx(ctx).
-		Where("cid", req.Cid).
-		OrderDesc("sid").
+		Where("contestId", req.ContestId).
+		OrderDesc("submissionId").
 		ScanAndCount(&submissionData, &res.Total, false)
 	if err != nil {
 		g.Log().Errorf(ctx, "获取比赛提交列表失败: %v", err)
@@ -34,15 +34,15 @@ func (c *ControllerContest) GetSubmissions(ctx context.Context, req *contest.Get
 	// 绑定回结果
 	for _, sub := range submissionData {
 		res.Submissions = append(res.Submissions, &contest.GetSubmissionsItem{
-			Sid:        gconv.String(sub.Sid),
-			Pid:        gconv.String(sub.Pid),
-			Cid:        gconv.String(sub.Cid),
-			Username:   sub.Username,
-			Result:     sub.Result,
-			TimeCost:   gconv.String(sub.TimeCost),
-			MemoryCost: gconv.String(sub.MemoryCost),
-			Language:   sub.Language,
-			CreateTime: sub.CreateAt.Layout("2006-01-02 15:04:05"),
+			SubmissionId: gconv.String(sub.SubmissionId),
+			ProblemId:    gconv.String(sub.ProblemId),
+			ContestId:    gconv.String(sub.ContestId),
+			Username:     sub.Username,
+			Result:       sub.Result,
+			TimeCost:     gconv.String(sub.TimeCost),
+			MemoryCost:   gconv.String(sub.MemoryCost),
+			Language:     sub.Language,
+			CreateTime:   sub.CreateAt.Layout("2006-01-02 15:04:05"),
 		})
 	}
 	return res, nil

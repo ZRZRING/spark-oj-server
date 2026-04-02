@@ -12,7 +12,10 @@ import (
 // Contest is the golang structure of table contest for DAO operations like Where/Data.
 type Contest struct {
 	g.Meta      `orm:"table:contest, do:true"`
-	Cid         any         //
+	ContestId   any         //
+	CreateAt    *gtime.Time //
+	UpdateAt    *gtime.Time //
+	DeleteAt    *gtime.Time //
 	Title       any         //
 	Password    any         //
 	Description any         //
@@ -20,9 +23,6 @@ type Contest struct {
 	EndTime     *gtime.Time //
 	LockTime    *gtime.Time //
 	CreateBy    any         //
-	CreateAt    *gtime.Time //
-	UpdateAt    *gtime.Time //
-	DeleteAt    *gtime.Time //
 	Practice    any         //
 	Problems    any         //
 }

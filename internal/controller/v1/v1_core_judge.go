@@ -30,19 +30,19 @@ func (c *ControllerCore) Judge(ctx context.Context, req *core.JudgeReq) (res *co
 	}
 
 	problem := &entity.Problem{}
-	err = dao.Problem.Ctx(ctx).Where("pid", req.Pid).Scan(problem)
+	err = dao.Problem.Ctx(ctx).Where("problemId", req.ProblemId).Scan(problem)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
-	if problem.Pid == 0 {
+	if problem.ProblemId == 0 {
 		err = gerror.NewCode(gcode.CodeInvalidRequest, "题目不存在")
-		g.Log().Error(ctx, err, req.Pid)
+		g.Log().Error(ctx, err, req.ProblemId)
 		return nil, err
 	}
 
-	pid := gconv.Int(req.Pid)
-	testCases, err := service.CollectTestCases(pid)
+	problemId := gconv.Int(req.ProblemId)
+	testCases, err := service.CollectTestCases(problemId)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
@@ -84,7 +84,7 @@ func (c *ControllerCore) Judge(ctx context.Context, req *core.JudgeReq) (res *co
 	}
 
 	data := do.Submission{
-		Pid:        req.Pid,
+		ProblemId:  req.ProblemId,
 		Username:   req.Username,
 		Result:     result,
 		Language:   req.Language,
@@ -92,17 +92,17 @@ func (c *ControllerCore) Judge(ctx context.Context, req *core.JudgeReq) (res *co
 		TimeCost:   maxTime / (1000 * 1000),
 		Code:       req.Code,
 	}
-	if req.Cid != "" {
-		data.Cid = req.Cid
+	if req.ContestId != "" {
+		data.ContestId = req.ContestId
 	}
 
-	sid, err := dao.Submission.Ctx(ctx).Data(data).InsertAndGetId()
+	submissionId, err := dao.Submission.Ctx(ctx).Data(data).InsertAndGetId()
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
 
-	res.Sid = gconv.String(sid)
+	res.SubmissionId = gconv.String(submissionId)
 	res.Result = result
 	return res, nil
 }

@@ -16,7 +16,7 @@ func (c *ControllerContest) Update(ctx context.Context, req *contest.UpdateReq) 
 	md := dao.Contest.Ctx(ctx)
 
 	r := g.RequestFromCtx(ctx)
-	cid := gconv.String(r.Get("cid").Val())
+	contestId := gconv.String(r.Get("contestId").Val())
 
 	d := &do.Contest{}
 	err = gconv.Struct(req, d)
@@ -25,8 +25,8 @@ func (c *ControllerContest) Update(ctx context.Context, req *contest.UpdateReq) 
 		return nil, err
 	}
 
-	d.Cid = cid
-	msg, err := md.OnConflict("cid").Save(d)
+	d.ContestId = contestId
+	msg, err := md.OnConflict("contestId").Save(d)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err

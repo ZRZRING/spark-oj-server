@@ -16,7 +16,7 @@ func (c *ControllerProblem) GetInfo(ctx context.Context, req *problem.GetInfoReq
 	md := dao.Problem.Ctx(ctx)
 
 	d := &entity.Problem{}
-	err = md.Where("pid", req.Pid).Scan(d)
+	err = md.Where("problemId", req.ProblemId).Scan(d)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err

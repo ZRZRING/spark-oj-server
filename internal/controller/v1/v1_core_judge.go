@@ -2,13 +2,13 @@ package v1
 
 import (
 	"context"
-	"spark-oj-server/api/v1/core"
-	"spark-oj-server/internal/dao"
-	"spark-oj-server/internal/model/do"
-	"spark-oj-server/internal/model/entity"
-	"spark-oj-server/internal/service"
-	"spark-oj-server/pkg/enums"
-	"spark-oj-server/pkg/utils"
+	"spark-oj/api/v1/core"
+	"spark-oj/internal/dao"
+	"spark-oj/internal/model/do"
+	"spark-oj/internal/model/entity"
+	"spark-oj/internal/service"
+	"spark-oj/pkg/enums"
+	"spark-oj/pkg/utils"
 
 	"github.com/gogf/gf/v2/errors/gcode"
 	"github.com/gogf/gf/v2/errors/gerror"

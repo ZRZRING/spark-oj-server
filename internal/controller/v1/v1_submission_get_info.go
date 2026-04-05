@@ -3,13 +3,13 @@ package v1
 import (
 	"context"
 	"fmt"
-	"spark-oj-server/internal/dao"
-	"spark-oj-server/internal/model/entity"
+	"spark-oj/internal/dao"
+	"spark-oj/internal/model/entity"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 
-	"spark-oj-server/api/v1/submission"
+	"spark-oj/api/v1/submission"
 )
 
 func (c *ControllerSubmission) GetInfo(ctx context.Context, req *submission.GetInfoReq) (res *submission.GetInfoRes, err error) {

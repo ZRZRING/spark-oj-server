@@ -7,9 +7,9 @@ import (
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/util/gconv"
 
-	"spark-oj-server/api/v1/submission"
-	"spark-oj-server/internal/dao"
-	"spark-oj-server/internal/model/entity"
+	"spark-oj/api/v1/submission"
+	"spark-oj/internal/dao"
+	"spark-oj/internal/model/entity"
 )
 
 func (c *ControllerSubmission) GetPage(ctx context.Context, req *submission.GetPageReq) (res *submission.GetPageRes, err error) {

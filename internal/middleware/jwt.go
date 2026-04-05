@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"spark-oj-server/internal/dao"
+	"spark-oj/internal/dao"
 	"time"
 
 	"github.com/gogf/gf/v2/errors/gcode"

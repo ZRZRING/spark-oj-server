@@ -2,15 +2,15 @@ package v1
 
 import (
 	"context"
-	"spark-oj-server/internal/dao"
-	"spark-oj-server/internal/model/entity"
+	"spark-oj/internal/dao"
+	"spark-oj/internal/model/entity"
 
 	"github.com/gogf/gf/v2/errors/gcode"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 
-	"spark-oj-server/api/v1/contest"
+	"spark-oj/api/v1/contest"
 )
 
 func (c *ControllerContest) GetSubmissions(ctx context.Context, req *contest.GetSubmissionsReq) (res *contest.GetSubmissionsRes, err error) {

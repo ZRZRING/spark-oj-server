@@ -2,8 +2,8 @@ package v1
 
 import (
 	"context"
-	"spark-oj-server/api/v1/core"
-	"spark-oj-server/internal/service"
+	"spark-oj/api/v1/core"
+	"spark-oj/internal/service"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"

@@ -2,13 +2,13 @@ package v1
 
 import (
 	"context"
-	"spark-oj-server/internal/dao"
-	"spark-oj-server/internal/model/do"
+	"spark-oj/internal/dao"
+	"spark-oj/internal/model/do"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 
-	"spark-oj-server/api/v1/contest"
+	"spark-oj/api/v1/contest"
 )
 
 func (c *ControllerContest) Update(ctx context.Context, req *contest.UpdateReq) (res *contest.UpdateRes, err error) {

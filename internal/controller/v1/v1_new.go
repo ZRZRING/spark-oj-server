@@ -5,7 +5,7 @@
 package v1
 
 import (
-	"spark-oj-server/api/v1"
+	"spark-oj/api/v1"
 )
 
 type ControllerUser struct{}

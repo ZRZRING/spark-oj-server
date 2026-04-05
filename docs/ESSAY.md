@@ -731,27 +731,34 @@ var LanguageConfigs = map[enums.Language]LanguageConfig{
 排行榜是比赛模块的核心功能，其算法基于ACM/ICPC竞赛规则实现：按通过题目数降序排列，通过数相同时按罚时升序排列。罚时计算方式为已通过题目的提交时间（分钟数）加上每道题错误提交次数乘以20分钟的惩罚时间。
 
 ```go
-func (c *ControllerContest) Ranking(ctx context.Context, req *contest.RankingReq) (res *contest.RankingRes, err error) {
-    // 获取比赛信息和提交记录
-    var submissionData []entity.Submission
-    dao.Submission.Ctx(ctx).Where("cid", req.Cid).OrderAsc("sid").ScanAndCount(&submissionData, &total, false)
-    // 按用户聚合成绩
-    ranking := make(map[string]*contest.RankingItem)
-    for _, sub := range submissionData {
-        if sub.Result == "Accepted" {
-            rankingRow.Score++
-            finishTime := int(sub.CreateAt.Sub(contestInfo.StartTime).Minutes())
-            rankingRow.Penalty += finishTime + 20*rankingRow.Problems[index].RejectCount
-        } else {
-            rankingRow.Problems[index].RejectCount++
-        }
-    }
-    // 按成绩排序
-    slices.SortFunc(res.Ranking, func(a, b *contest.RankingItem) int {
-        if n := cmp.Compare(b.Score, a.Score); n != 0 { return n }
-        return cmp.Compare(a.Penalty, b.Penalty)
-    })
-    return res, nil
+func Ranking() {
+    // 按 Username 计算成绩
+	ranking := make(map[string]*contest.RankingItem)
+	for _, sub := range submissionData {
+		index := order[gconv.Int(sub.ProblemId)]
+		rankingRow := ranking[sub.Username]
+		if rankingRow == nil {
+			rankingRow = &contest.RankingItem{
+				Username: sub.Username,
+				Score:    0,
+				Penalty:  0,
+				Problems: make([]contest.ProblemStatsItem, len(problems)),
+			}
+			ranking[sub.Username] = rankingRow
+		}
+		if rankingRow.Problems[index].Status != enums.RankingStatusAccepted {
+			if sub.Result == string(enums.JudgeStatusAccepted) {
+				rankingRow.Score++
+				finishTime := int(sub.CreateAt.Sub(contestInfo.StartTime).Minutes())
+				rankingRow.Problems[index].FinishTime = finishTime
+				rankingRow.Penalty += finishTime + consts.DEFAULT_PENALTY*rankingRow.Problems[index].RejectCount
+				rankingRow.Problems[index].Status = enums.RankingStatusAccepted
+			} else {
+				rankingRow.Problems[index].RejectCount++
+				rankingRow.Problems[index].Status = enums.RankingStatusReject
+			}
+		}
+	}
 }
 ```
 

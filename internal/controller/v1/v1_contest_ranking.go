@@ -5,15 +5,16 @@ import (
 	"context"
 	"encoding/json"
 	"slices"
-	"spark-oj-server/api/v1/contest"
-	"spark-oj-server/internal/dao"
-	"spark-oj-server/internal/model/entity"
-	"spark-oj-server/pkg/consts"
-	"spark-oj-server/pkg/enums"
+	"spark-oj/api/v1/contest"
+	"spark-oj/internal/dao"
+	"spark-oj/internal/model/entity"
+	"spark-oj/pkg/consts"
+	"spark-oj/pkg/enums"
 
 	"github.com/gogf/gf/v2/errors/gcode"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/util/gconv"
 )
 
 func (c *ControllerContest) Ranking(ctx context.Context, req *contest.RankingReq) (res *contest.RankingRes, err error) {
@@ -53,7 +54,7 @@ func (c *ControllerContest) Ranking(ctx context.Context, req *contest.RankingReq
 	// 按 Username 计算成绩
 	ranking := make(map[string]*contest.RankingItem)
 	for _, sub := range submissionData {
-		index := order[sub.ProblemId]
+		index := order[gconv.Int(sub.ProblemId)]
 		rankingRow := ranking[sub.Username]
 		if rankingRow == nil {
 			rankingRow = &contest.RankingItem{

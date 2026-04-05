@@ -3,9 +3,9 @@ package v1
 import (
 	"context"
 	"path/filepath"
-	"spark-oj-server/internal/dao"
+	"spark-oj/internal/dao"
 
-	"spark-oj-server/api/v1/core"
+	"spark-oj/api/v1/core"
 
 	"github.com/gogf/gf/v2/errors/gcode"
 	"github.com/gogf/gf/v2/errors/gerror"

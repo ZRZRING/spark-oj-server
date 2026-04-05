@@ -5,7 +5,7 @@
 package dao
 
 import (
-	"spark-oj-server/internal/dao/internal"
+	"spark-oj/internal/dao/internal"
 )
 
 // problemDao is the data access object for the table problem.

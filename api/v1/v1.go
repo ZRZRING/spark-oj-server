@@ -7,12 +7,12 @@ package v1
 import (
 	"context"
 
-	"spark-oj-server/api/v1/admin"
-	"spark-oj-server/api/v1/contest"
-	"spark-oj-server/api/v1/core"
-	"spark-oj-server/api/v1/problem"
-	"spark-oj-server/api/v1/submission"
-	"spark-oj-server/api/v1/user"
+	"spark-oj/api/v1/admin"
+	"spark-oj/api/v1/contest"
+	"spark-oj/api/v1/core"
+	"spark-oj/api/v1/problem"
+	"spark-oj/api/v1/submission"
+	"spark-oj/api/v1/user"
 )
 
 type IV1Admin interface {

@@ -2,16 +2,16 @@ package v1
 
 import (
 	"context"
-	"spark-oj-server/internal/dao"
-	"spark-oj-server/internal/middleware"
-	"spark-oj-server/internal/model/entity"
+	"spark-oj/internal/dao"
+	"spark-oj/internal/middleware"
+	"spark-oj/internal/model/entity"
 
 	"github.com/gogf/gf/v2/crypto/gmd5"
 	"github.com/gogf/gf/v2/errors/gcode"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 
-	"spark-oj-server/api/v1/user"
+	"spark-oj/api/v1/user"
 )
 
 func (c *ControllerUser) Login(ctx context.Context, req *user.LoginReq) (res *user.LoginRes, err error) {

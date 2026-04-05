@@ -2,13 +2,13 @@ package v1
 
 import (
 	"context"
-	"spark-oj-server/internal/dao"
-	"spark-oj-server/internal/model/entity"
+	"spark-oj/internal/dao"
+	"spark-oj/internal/model/entity"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 
-	"spark-oj-server/api/v1/contest"
+	"spark-oj/api/v1/contest"
 )
 
 func (c *ControllerContest) GetInfo(ctx context.Context, req *contest.GetInfoReq) (res *contest.GetInfoRes, err error) {

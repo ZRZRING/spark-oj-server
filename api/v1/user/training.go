@@ -7,8 +7,8 @@ type TrainingReq struct {
 }
 type TrainingRes struct {
 	Submitted int `json:"submitted"`
-	Rating    int `json:"rating"`
 	Solved    int `json:"solved"`
-	CFRating  int `json:"cf_rating"`
-	ATCRating int `json:"atc_rating"`
+	Rating    int `json:"rating"`
+	// CFRating  int `json:"cf_rating"`
+	// ATCRating int `json:"atc_rating"`
 }

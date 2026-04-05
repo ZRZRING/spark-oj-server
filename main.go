@@ -4,7 +4,7 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gctx"
 
-	"spark-oj-server/internal/cmd"
+	"spark-oj/internal/cmd"
 
 	_ "github.com/gogf/gf/contrib/drivers/pgsql/v2"
 )

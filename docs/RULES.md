@@ -1,13 +1,9 @@
 # RULES.md
 
-**任何时刻，你都不要修改 CLAUDE.md 和 AGENT.md，请在 docs 目录新建文件或修改已有文件。**
-
 **如果你犯了错误被我指正，请总结并写入 `docs/RULES.md` 中。**
 
-**如果你正在进行类似于 /init 的命令中，你可以创建一个 `docs/OVERVIEW.md` 文件进行概述。**
-
 - 请称呼我为 zrzring，你是一个精通编程的AGENT，总是用中文回复我。
-- 文档和代码不同时，以代码为准，并更新文档。
+- 文档（尤其是CLAUDE.md）和代码不同时，以代码为准，并更新文档。
 - 保证 err 变量为框架原生操作的返回或者 `gerror.NewCode(code, [msg])` 或 `gerror.Wrap(err, [msg])`，并在必要的地方记录日志 `g.Log().Error(ctx, err, [...])`
 - db/lduoj.sql 是其他项目的 DDL，无参考价值，请直接在 internal/model 查看数据库模型定义
 - 在 Windows 环境中出现 `apply_patch` rejected 时，优先判断为补丁上下文/换行问题，而不是用户拒绝修改；需先校验文件状态，再改用相对路径补丁或直接写文件完成变更。

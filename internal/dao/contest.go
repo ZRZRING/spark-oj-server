@@ -5,7 +5,7 @@
 package dao
 
 import (
-	"spark-oj-server/internal/dao/internal"
+	"spark-oj/internal/dao/internal"
 )
 
 // contestDao is the data access object for the table contest.

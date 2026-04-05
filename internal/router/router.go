@@ -2,8 +2,8 @@ package router
 
 import (
 	"context"
-	v1 "spark-oj-server/internal/controller/v1"
-	"spark-oj-server/internal/middleware"
+	v1 "spark-oj/internal/controller/v1"
+	"spark-oj/internal/middleware"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"

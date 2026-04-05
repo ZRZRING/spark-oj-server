@@ -1,6 +1,6 @@
-module spark-oj-server
+module spark-oj
 
-go 1.24.1
+go 1.26.1
 
 require (
 	github.com/gogf/gf/contrib/drivers/pgsql/v2 v2.9.0
@@ -25,7 +25,7 @@ require (
 	github.com/fsnotify/fsnotify v1.9.0 // indirect
 	github.com/go-logr/logr v1.4.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
-	github.com/google/uuid v1.6.0 // indirect
+	github.com/google/uuid v1.6.0
 	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/grokify/html-strip-tags-go v0.1.0 // indirect
 	github.com/lib/pq v1.10.9 // indirect

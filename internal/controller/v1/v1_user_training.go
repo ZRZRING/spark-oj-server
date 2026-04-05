@@ -2,14 +2,13 @@ package v1
 
 import (
 	"context"
-	"spark-oj-server/internal/dao"
-	"spark-oj-server/internal/model/entity"
-	"spark-oj-server/internal/service"
+	"spark-oj/internal/dao"
+	"spark-oj/internal/model/entity"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 
-	"spark-oj-server/api/v1/user"
+	"spark-oj/api/v1/user"
 )
 
 func (c *ControllerUser) Training(ctx context.Context, req *user.TrainingReq) (res *user.TrainingRes, err error) {
@@ -36,10 +35,10 @@ func (c *ControllerUser) Training(ctx context.Context, req *user.TrainingReq) (r
 	}
 
 	// 获取第三方训练信息
-	if e.CfId != "" {
-		data := service.GetUserInfo(ctx, e.CfId)
-		res.CFRating = data.Rating
-	}
+	// if e.CfId != "" {
+	// 	data := service.GetUserInfo(ctx, e.CfId)
+	// 	res.CFRating = data.Rating
+	// }
 
 	return res, nil
 }

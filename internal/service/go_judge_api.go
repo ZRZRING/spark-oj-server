@@ -1,7 +1,7 @@
 package service
 
 import (
-	"spark-oj-server/pkg/enums"
+	"spark-oj/pkg/enums"
 )
 
 // 默认资源限制

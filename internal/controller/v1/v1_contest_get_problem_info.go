@@ -3,15 +3,15 @@ package v1
 import (
 	"context"
 	"encoding/json"
-	"spark-oj-server/internal/dao"
-	"spark-oj-server/internal/model/entity"
-	"spark-oj-server/pkg/enums"
+	"spark-oj/internal/dao"
+	"spark-oj/internal/model/entity"
+	"spark-oj/pkg/enums"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 
-	"spark-oj-server/api/v1/contest"
+	"spark-oj/api/v1/contest"
 )
 
 func (c *ControllerContest) GetProblemInfo(ctx context.Context, req *contest.GetProblemInfoReq) (res *contest.GetProblemInfoRes, err error) {

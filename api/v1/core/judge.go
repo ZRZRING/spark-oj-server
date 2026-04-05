@@ -1,7 +1,7 @@
 package core
 
 import (
-	"spark-oj-server/pkg/enums"
+	"spark-oj/pkg/enums"
 
 	"github.com/gogf/gf/v2/frame/g"
 )

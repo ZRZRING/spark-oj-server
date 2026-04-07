@@ -2,7 +2,7 @@ FROM criyle/go-judge
 
 RUN apt-get update -y && \
     apt-get install -y --no-install-recommends \
-        build-essential \
+        g++ \
         default-jdk \
         python3 \
     && rm -rf /var/lib/apt/lists/*

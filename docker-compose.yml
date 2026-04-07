@@ -9,7 +9,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: spark-oj
-    command: ["postgres", "-c", "hba_file=/etc/postgresql/pg_hba.conf", "-c", "listen_addresses=*"]
+      TZ: Asia/Shanghai
+    command: ["postgres", "-c", "hba_file=/etc/postgresql/pg_hba.conf", "-c", "listen_addresses=*", "-c", "timezone=Asia/Shanghai"]
     volumes:
       - ./data/postgres:/var/lib/postgresql
       - ./config/pg_hba.conf:/etc/postgresql/pg_hba.conf:ro

@@ -17,6 +17,7 @@ import (
 
 type IV1Admin interface {
 	Protected(ctx context.Context, req *admin.ProtectedReq) (res *admin.ProtectedRes, err error)
+	UpdateUserRole(ctx context.Context, req *admin.UpdateUserRoleReq) (res *admin.UpdateUserRoleRes, err error)
 }
 
 type IV1Contest interface {

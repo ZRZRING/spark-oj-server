@@ -15,7 +15,6 @@
 
 # 临时输出文件
 output/
-upload/
 temp/
 .gocache/
 data/

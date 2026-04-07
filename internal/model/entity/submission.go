@@ -14,8 +14,8 @@ type Submission struct {
 	CreateAt     *gtime.Time `json:"create_at"     orm:"create_at"     ` //
 	UpdateAt     *gtime.Time `json:"update_at"     orm:"update_at"     ` //
 	DeleteAt     *gtime.Time `json:"delete_at"     orm:"delete_at"     ` //
-	ProblemId    string      `json:"problem_id"    orm:"problem_id"    ` //
-	ContestId    string      `json:"contest_id"    orm:"contest_id"    ` //
+	ProblemId    int         `json:"problem_id"    orm:"problem_id"    ` //
+	ContestId    int         `json:"contest_id"    orm:"contest_id"    ` //
 	Username     string      `json:"username"      orm:"username"      ` //
 	Result       string      `json:"result"        orm:"result"        ` //
 	Language     string      `json:"language"      orm:"language"      ` //

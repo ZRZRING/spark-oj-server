@@ -12,11 +12,13 @@ import (
 
 func (c *ControllerProblem) GetPage(ctx context.Context, req *problem.GetPageReq) (res *problem.GetPageRes, err error) {
 	res = &problem.GetPageRes{}
-	md := dao.Problem.Ctx(ctx)
 
 	e := make([]*entity.Problem, 0)
 	tot := 0
-	err = md.OrderAsc("problemId").Page(req.Page, req.Size).ScanAndCount(&e, &tot, false)
+	err = dao.Problem.Ctx(ctx).
+		OrderAsc("problem_id").
+		Page(req.Page, req.Size).
+		ScanAndCount(&e, &tot, false)
 	if err != nil {
 		return nil, err
 	}

@@ -336,7 +336,7 @@ CREATE TABLE `problems`
     `language`      int                                     NOT NULL DEFAULT '0' COMMENT '代码填空的语言',
     `spj`           tinyint(1)                              NOT NULL DEFAULT '0',
     `spj_language`  int                                     NOT NULL DEFAULT '14',
-    `time_limit`    int                                     NOT NULL DEFAULT '1000' COMMENT 'MS',
+    `time_limit`    int                                     NOT NULL DEFAULT '1001' COMMENT 'MS',
     `memory_limit`  int                                     NOT NULL DEFAULT '1024' COMMENT 'MB',
     `hidden`        tinyint(1)                              NOT NULL DEFAULT '1',
     `user_id`       bigint                                           DEFAULT NULL,

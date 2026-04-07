@@ -2,6 +2,7 @@ package v1
 
 import (
 	"context"
+	"spark-oj/internal/dao"
 	"spark-oj/internal/middleware"
 
 	"github.com/gogf/gf/v2/frame/g"
@@ -11,9 +12,19 @@ import (
 )
 
 func (c *ControllerAdmin) Protected(ctx context.Context, req *admin.ProtectedReq) (res *admin.ProtectedRes, err error) {
+	username := gconv.String(ctx.Value(middleware.CtxUsername))
+	userRole, err := dao.UserBase.Ctx(ctx).
+		Fields("role").
+		Where("username = ?", username).
+		Value()
+	if err != nil {
+		g.Log().Error(ctx, err)
+		return nil, err
+	}
+
 	res = &admin.ProtectedRes{
-		Username:   gconv.String(ctx.Value(middleware.CtxUsername)),
-		UserRole:   gconv.String(ctx.Value(middleware.CtxUserRole)),
+		Username:   username,
+		UserRole:   userRole.String(),
 		ExpireTime: *gconv.GTime(ctx.Value(middleware.CtxExpireTime)),
 	}
 

@@ -14,7 +14,7 @@ type GetPageReq struct {
 type GetPageRes struct {
 	Total    int `json:"total"`
 	Contests []*struct {
-		ContestId string     `json:"contestId"`
+		ContestId string     `json:"contest_id"`
 		Title     string     `json:"title"`
 		Practice  bool       `json:"practice" dc:"true 表示比赛不限制参与时间，为训练题单"`
 		StartTime gtime.Time `json:"start_time"`

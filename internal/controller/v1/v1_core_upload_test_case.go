@@ -25,7 +25,7 @@ func (c *ControllerCore) UploadTestCase(ctx context.Context, req *core.UploadTes
 	}
 
 	md := dao.Problem.Ctx(ctx)
-	cnt, err := md.Count("problemId", req.ProblemId)
+	cnt, err := md.Count("problem_id", req.ProblemId)
 	if err != nil || cnt == 0 {
 		g.Log().Error(ctx, err, cnt)
 		return nil, err

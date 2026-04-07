@@ -17,10 +17,10 @@ func (c *ControllerSubmission) GetInfo(ctx context.Context, req *submission.GetI
 	md := dao.Submission.Ctx(ctx)
 
 	r := g.RequestFromCtx(ctx)
-	submissionId := gconv.String(r.Get("submissionId").Val())
+	submissionId := gconv.String(r.Get("submission_id").Val())
 
 	e := &entity.Submission{}
-	err = md.Where("submissionId", submissionId).Scan(e)
+	err = md.Where("submission_id", submissionId).Scan(e)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err

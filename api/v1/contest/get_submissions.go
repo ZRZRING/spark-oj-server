@@ -8,7 +8,7 @@ type GetSubmissionsReq struct {
 	g.Meta    `path:"/contest/{contestId}/submissions" method:"GET" tags:"contest" summary:"获取比赛提交列表"`
 	Page      int    `p:"page" v:"required#页码不能为空"`
 	Size      int    `p:"size" v:"required#每页数量不能为空"`
-	ContestId string `p:"contestId"`
+	ContestId string `p:"contest_id"`
 }
 
 type GetSubmissionsRes struct {
@@ -17,9 +17,9 @@ type GetSubmissionsRes struct {
 }
 
 type GetSubmissionsItem struct {
-	SubmissionId string `json:"submissionId"`
-	ProblemId    string `json:"problemId"`
-	ContestId    string `json:"contestId"`
+	SubmissionId string `json:"submission_id"`
+	ProblemId    string `json:"problem_id"`
+	ContestId    string `json:"contest_id"`
 	Username     string `json:"username"`
 	Result       string `json:"result"`
 	Language     string `json:"language"`

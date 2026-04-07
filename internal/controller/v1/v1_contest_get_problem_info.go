@@ -17,7 +17,7 @@ import (
 func (c *ControllerContest) GetProblemInfo(ctx context.Context, req *contest.GetProblemInfoReq) (res *contest.GetProblemInfoRes, err error) {
 	// 1. 获取比赛信息
 	contestEntity := &entity.Contest{}
-	err = dao.Contest.Ctx(ctx).Where("contestId", req.ContestId).Scan(contestEntity)
+	err = dao.Contest.Ctx(ctx).Where("contest_id", req.ContestId).Scan(contestEntity)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
@@ -48,7 +48,7 @@ func (c *ControllerContest) GetProblemInfo(ctx context.Context, req *contest.Get
 
 	// 3. 获取题目信息
 	problem := &entity.Problem{}
-	err = dao.Problem.Ctx(ctx).Where("problemId", req.ProblemId).Scan(problem)
+	err = dao.Problem.Ctx(ctx).Where("problem_id", req.ProblemId).Scan(problem)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err

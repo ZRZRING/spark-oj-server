@@ -30,7 +30,7 @@ func (c *ControllerCore) Judge(ctx context.Context, req *core.JudgeReq) (res *co
 	}
 
 	problem := &entity.Problem{}
-	err = dao.Problem.Ctx(ctx).Where("problemId", req.ProblemId).Scan(problem)
+	err = dao.Problem.Ctx(ctx).Where("problem_id", req.ProblemId).Scan(problem)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
@@ -48,7 +48,7 @@ func (c *ControllerCore) Judge(ctx context.Context, req *core.JudgeReq) (res *co
 		return nil, err
 	}
 
-	result := enums.JudgeStatusAccepted
+	judgeResult := enums.JudgeStatusAccepted
 	var maxTime, maxMemory int64
 
 	for _, testCase := range testCases {
@@ -73,12 +73,12 @@ func (c *ControllerCore) Judge(ctx context.Context, req *core.JudgeReq) (res *co
 		}
 
 		if exeRes.Status != enums.JudgeStatusAccepted {
-			result = exeRes.Status
+			judgeResult = exeRes.Status
 			break
 		}
 
 		if !utils.IsOutputEqual(exeRes.Output, expected) {
-			result = "Wrong Answer"
+			judgeResult = "Wrong Answer"
 			break
 		}
 	}
@@ -86,7 +86,7 @@ func (c *ControllerCore) Judge(ctx context.Context, req *core.JudgeReq) (res *co
 	data := do.Submission{
 		ProblemId:  req.ProblemId,
 		Username:   req.Username,
-		Result:     result,
+		Result:     judgeResult,
 		Language:   req.Language,
 		MemoryCost: maxMemory,
 		TimeCost:   maxTime / (1000 * 1000),
@@ -96,13 +96,17 @@ func (c *ControllerCore) Judge(ctx context.Context, req *core.JudgeReq) (res *co
 		data.ContestId = req.ContestId
 	}
 
-	submissionId, err := dao.Submission.Ctx(ctx).Data(data).InsertAndGetId()
+	sqlResult, err := dao.Submission.Ctx(ctx).Insert(data)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
+	submissionId, err := sqlResult.LastInsertId()
+	if err != nil {
+		g.Log().Warning(ctx, err)
+	}
 
 	res.SubmissionId = gconv.String(submissionId)
-	res.Result = result
+	res.Result = judgeResult
 	return res, nil
 }

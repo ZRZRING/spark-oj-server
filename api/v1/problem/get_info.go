@@ -8,11 +8,11 @@ import (
 
 type GetInfoReq struct {
 	g.Meta    `path:"/problem/{problemId}" method:"GET" tags:"problem" summary:"获取题目信息"`
-	ProblemId string `p:"problemId" v:"required#题目 ID 不能为空" dc:"题目 ID"`
+	ProblemId string `p:"problem_id" v:"required#题目 ID 不能为空" dc:"题目 ID"`
 }
 
 type GetInfoRes struct {
-	ProblemId   string          `json:"problemId"`
+	ProblemId   string          `json:"problem_id"`
 	Title       string          `json:"title"`
 	JudgeType   enums.JudgeType `json:"judge_type"`
 	TimeLimit   int             `json:"time_limit"`

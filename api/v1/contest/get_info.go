@@ -6,11 +6,11 @@ import (
 
 type GetInfoReq struct {
 	g.Meta    `path:"/contest/{contestId}" method:"GET" tags:"contest" summary:"获取比赛信息"`
-	ContestId string `p:"contestId" v:"required#比赛 ID 不能为空" dc:"比赛 ID"`
+	ContestId string `p:"contest_id" v:"required#比赛 ID 不能为空" dc:"比赛 ID"`
 }
 
 type GetInfoRes struct {
-	ContestId   string `json:"contestId"`
+	ContestId   string `json:"contest_id"`
 	Title       string `json:"title"`
 	Description string `json:"description"`
 	StartTime   string `json:"start_time"`

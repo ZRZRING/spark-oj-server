@@ -1,6 +1,6 @@
-create table public.contest
+create table if not exists public.contest
 (
-    contest_id  integer generated always as identity (start with 1000)
+    contest_id  integer generated always as identity ( start with 1000 )                     not null
         primary key,
     create_at   timestamptz default now()                                                    not null,
     update_at   timestamptz default now()                                                    not null,
@@ -18,84 +18,59 @@ create table public.contest
 
 ---
 
-create table public.problem
+create table if not exists public.problem
 (
-    problem_id   integer generated always as identity (start with 1000)
+    problem_id   integer generated always as identity ( start with 1000 ) not null
         primary key,
-    create_at    timestamptz default now() not null,
-    update_at    timestamptz default now() not null,
+    create_at    timestamptz default now()                                not null,
+    update_at    timestamptz default now()                                not null,
     delete_at    timestamptz,
-    title        text                      not null,
-    judge_type   text                      not null,
-    time_limit   integer     default 1000  not null,
-    memory_limit integer     default 256   not null,
-    create_by    text                      not null,
+    title        text                                                     not null,
+    judge_type   text                                                     not null,
+    time_limit   integer     default 1000                                 not null,
+    memory_limit integer     default 256                                  not null,
+    create_by    text                                                     not null,
     rating       integer,
     content      text
 );
 
 ---
 
-create table public.resource
+create table if not exists public.submission
 (
-    resource_uuid uuid        default gen_random_uuid() not null
+    submission_id integer generated always as identity ( start with 100000000 ) not null
         primary key,
-    create_at     timestamptz default now()             not null,
-    update_at     timestamptz default now()             not null,
+    create_at     timestamptz default now()                                     not null,
+    update_at     timestamptz default now()                                     not null,
     delete_at     timestamptz,
-    path          text                                  not null,
-    type          text                                  not null
-);
-
----
-
-create table public.submission
-(
-    submission_id integer generated always as identity (start with 10000000)
-        primary key,
-    create_at     timestamptz default now() not null,
-    update_at     timestamptz default now() not null,
-    delete_at     timestamptz,
-    problem_id           text                      not null,
-    contest_id           text,
-    username      text                      not null,
-    result        text                      not null,
-    language      text                      not null,
-    memory_cost   integer                   not null,
-    time_cost     integer                   not null,
+    problem_id    integer                                                       not null,
+    contest_id    integer,
+    username      text                                                          not null,
+    result        text                                                          not null,
+    language      text                                                          not null,
+    memory_cost   integer                                                       not null,
+    time_cost     integer                                                       not null,
     code          text
 );
 
-create index submission_cid_index
+create index if not exists submission_cid_index
     on public.submission (contest_id)
     where (contest_id IS NOT NULL);
 
 ---
 
-create table public.user_base
+create table if not exists public.user_base
 (
-    username  text                                          not null
+    username  text                       not null
         primary key,
-    create_at timestamptz default now()                     not null,
-    update_at timestamptz default now()                     not null,
+    create_at timestamptz default now()  not null,
+    update_at timestamptz default now()  not null,
     delete_at timestamptz,
-    password  text                                          not null,
-    nickname  text                                          not null,
-    role      text        default 'user'::character varying not null,
-    solved    integer     default 0                         not null,
-    submitted integer     default 0                         not null,
-    rating    integer     default 1500                      not null,
+    password  text                       not null,
+    nickname  text                       not null,
+    role      text        default 'user' not null,
+    solved    jsonb       default '{}'::jsonb,
+    submitted jsonb       default '{}'::jsonb,
+    rating    integer     default 1500   not null,
     extra     jsonb       default '{}'::jsonb
-);
-
----
-
-create table public.user_role
-(
-    role_id    text                            not null
-        primary key,
-    create_at  timestamptz default now()       not null,
-    update_at  timestamptz default now()       not null,
-    delete_at  timestamptz,
-    permission jsonb       default '{}'::jsonb not null
 );

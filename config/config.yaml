@@ -26,7 +26,8 @@ database:
     level: "all"
     # stdout: true
   default:
-    link: "pgsql:spark-oj:123456@tcp(zrzring.top:54321)/spark-oj"
+    # link: "pgsql:spark-oj:123456@tcp(zrzring.top:54321)/spark-oj"
+    link: "pgsql:postgres:postgres@tcp(127.0.0.1:5432)/spark-oj"
     timezone: "Asia/Shanghai"
     debug: true
 
@@ -34,7 +35,7 @@ database:
 
 upload:
   path:
-    testcases: "upload/testcases"
+    testcases: "data/testcases"
 
 judge:
   apiBaseUrl: "http://localhost:5050"

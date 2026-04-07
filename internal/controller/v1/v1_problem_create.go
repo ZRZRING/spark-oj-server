@@ -13,22 +13,25 @@ import (
 
 func (c *ControllerProblem) Create(ctx context.Context, req *problem.CreateReq) (res *problem.CreateRes, err error) {
 	res = &problem.CreateRes{}
-	md := dao.Problem.Ctx(ctx)
 
-	d := &do.Problem{}
-	err = gconv.Struct(req, d)
+	data := &do.Problem{}
+	err = gconv.Struct(req, data)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
 
-	problemId, err := md.InsertAndGetId(d)
-	g.Log().Info(ctx, problemId)
+	result, err := dao.Problem.Ctx(ctx).
+		Insert(data)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
-	res.ProblemId = gconv.String(problemId)
+	id, err := result.LastInsertId()
+	if err != nil {
+		g.Log().Warning(ctx, err)
+	}
+	res.ProblemId = gconv.String(id)
 
 	return res, nil
 }

@@ -8,7 +8,7 @@ type GetPageReq struct {
 	g.Meta    `path:"/submissions" method:"GET" tags:"submission" summary:"分页获取提交列表"`
 	Page      int    `p:"page" v:"required#页码不能为空"`
 	Size      int    `p:"size" v:"required#每页数量不能为空"`
-	ContestId string `p:"contestId"`
+	ContestId string `p:"contest_id"`
 }
 
 type GetPageRes struct {
@@ -17,9 +17,9 @@ type GetPageRes struct {
 }
 
 type GetPageItem struct {
-	SubmissionId string `json:"submissionId"`
-	ProblemId    string `json:"problemId"`
-	ContestId    string `json:"contestId"`
+	SubmissionId string `json:"submission_id"`
+	ProblemId    string `json:"problem_id"`
+	ContestId    string `json:"contest_id"`
 	Username     string `json:"username"`
 	Result       string `json:"result"`
 	Language     string `json:"language"`

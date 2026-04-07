@@ -22,7 +22,7 @@ func (c *ControllerContest) Ranking(ctx context.Context, req *contest.RankingReq
 	// 获取比赛信息
 	var contestInfo entity.Contest
 	err = dao.Contest.Ctx(ctx).
-		Where("contestId", req.ContestId).
+		Where("contest_id", req.ContestId).
 		Scan(&contestInfo)
 	if err != nil || contestInfo.ContestId == 0 {
 		g.Log().Infof(ctx, "比赛不存在: %v", req.ContestId)
@@ -44,8 +44,8 @@ func (c *ControllerContest) Ranking(ctx context.Context, req *contest.RankingReq
 	var total int
 	submissionData := make([]entity.Submission, 0)
 	err = dao.Submission.Ctx(ctx).
-		Where("contestId", req.ContestId).
-		OrderAsc("submissionId").
+		Where("contest_id", req.ContestId).
+		OrderAsc("submission_id").
 		ScanAndCount(&submissionData, &total, false)
 	if err != nil {
 		g.Log().Infof(ctx, "获取比赛提交列表失败: %v", err)

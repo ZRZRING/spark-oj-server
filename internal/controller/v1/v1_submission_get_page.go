@@ -22,7 +22,7 @@ func (c *ControllerSubmission) GetPage(ctx context.Context, req *submission.GetP
 	// 查询提交列表
 	var submissions []*entity.Submission
 	err = dao.Submission.Ctx(ctx).
-		OrderDesc("submissionId").
+		OrderDesc("submission_id").
 		Page(req.Page, req.Size).
 		Scan(&submissions)
 	if err != nil {

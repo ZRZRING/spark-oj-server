@@ -16,7 +16,7 @@ import (
 func (c *ControllerContest) GetSubmissions(ctx context.Context, req *contest.GetSubmissionsReq) (res *contest.GetSubmissionsRes, err error) {
 	res = &contest.GetSubmissionsRes{}
 	// 判断比赛是否存在
-	tot, err := dao.Contest.Ctx(ctx).Count("contestId", req.ContestId)
+	tot, err := dao.Contest.Ctx(ctx).Count("contest_id", req.ContestId)
 	if err != nil || tot == 0 {
 		g.Log().Errorf(ctx, "比赛不存在: %v", req.ContestId)
 		return nil, gerror.NewCode(gcode.CodeInvalidRequest, "比赛不存在")
@@ -24,8 +24,8 @@ func (c *ControllerContest) GetSubmissions(ctx context.Context, req *contest.Get
 	// 获取比赛的所有提交
 	submissionData := make([]*entity.Submission, 0)
 	err = dao.Submission.Ctx(ctx).
-		Where("contestId", req.ContestId).
-		OrderDesc("submissionId").
+		Where("contest_id", req.ContestId).
+		OrderDesc("submission_id").
 		ScanAndCount(&submissionData, &res.Total, false)
 	if err != nil {
 		g.Log().Errorf(ctx, "获取比赛提交列表失败: %v", err)

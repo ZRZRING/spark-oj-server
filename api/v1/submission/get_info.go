@@ -6,13 +6,13 @@ import (
 
 type GetInfoReq struct {
 	g.Meta       `path:"/submission/{submissionId}" method:"GET" tags:"submission" summary:"获取提交信息"`
-	SubmissionId string `p:"submissionId" v:"required#题目 ID 不能为空"`
+	SubmissionId string `p:"submission_id" v:"required#题目 ID 不能为空"`
 }
 
 type GetInfoRes struct {
-	SubmissionId string `json:"submissionId"`
-	ProblemId    string `json:"problemId"`
-	ContestId    string `json:"contestId"`
+	SubmissionId string `json:"submission_id"`
+	ProblemId    string `json:"problem_id"`
+	ContestId    string `json:"contest_id"`
 	Username     string `json:"username"`
 	Result       string `json:"result"`
 	Language     string `json:"language"`

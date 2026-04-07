@@ -24,8 +24,8 @@ func (c *ControllerProblem) Update(ctx context.Context, req *problem.UpdateReq) 
 
 	problemId := gconv.Int(req.ProblemId)
 	msg, err := md.Data(d).
-		FieldsEx("problemId").
-		Where("problemId", problemId).Update()
+		FieldsEx("problem_id").
+		Where("problem_id", problemId).Update()
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err

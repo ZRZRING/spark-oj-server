@@ -18,5 +18,5 @@ type CreateReq struct {
 }
 
 type CreateRes struct {
-	ProblemId string `json:"problemId"`
+	ProblemId string `json:"problem_id"`
 }

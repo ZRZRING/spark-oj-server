@@ -49,6 +49,7 @@ type IV1Submission interface {
 }
 
 type IV1User interface {
+	GetPage(ctx context.Context, req *user.GetPageReq) (res *user.GetPageRes, err error)
 	Login(ctx context.Context, req *user.LoginReq) (res *user.LoginRes, err error)
 	Profile(ctx context.Context, req *user.ProfileReq) (res *user.ProfileRes, err error)
 	Register(ctx context.Context, req *user.RegisterReq) (res *user.RegisterRes, err error)

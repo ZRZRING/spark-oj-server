@@ -96,17 +96,13 @@ func (c *ControllerCore) Judge(ctx context.Context, req *core.JudgeReq) (res *co
 		data.ContestId = req.ContestId
 	}
 
-	sqlResult, err := dao.Submission.Ctx(ctx).Insert(data)
+	id, err := dao.Submission.Ctx(ctx).InsertAndGetId(data)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
-	submissionId, err := sqlResult.LastInsertId()
-	if err != nil {
-		g.Log().Warning(ctx, err)
-	}
 
-	res.SubmissionId = gconv.String(submissionId)
+	res.SubmissionId = gconv.String(id)
 	res.Result = judgeResult
 	return res, nil
 }

@@ -21,17 +21,12 @@ func (c *ControllerProblem) Create(ctx context.Context, req *problem.CreateReq) 
 		return nil, err
 	}
 
-	result, err := dao.Problem.Ctx(ctx).
-		Insert(data)
+	id, err := dao.Problem.Ctx(ctx).InsertAndGetId(data)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
 	}
-	id, err := result.LastInsertId()
-	if err != nil {
-		g.Log().Warning(ctx, err)
-	}
-	res.ProblemId = gconv.String(id)
 
+	res.ProblemId = gconv.String(id)
 	return res, nil
 }

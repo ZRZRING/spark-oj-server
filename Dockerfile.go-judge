@@ -1,8 +1,7 @@
 FROM criyle/go-judge
 
 RUN apt-get update -y && \
-    apt-get install -y --no-install-recommends \
-        g++ \
-        default-jdk \
-        python3 \
-    && rm -rf /var/lib/apt/lists/*
+    apt-get install -y --no-install-recommends g++ && \
+    apt-get install -y --no-install-recommends default-jdk && \
+    apt-get install -y --no-install-recommends python3 && \
+    rm -rf /var/lib/apt/lists/*

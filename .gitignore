@@ -5,6 +5,7 @@
 .claude/
 .qoder/
 .prompt/
+config.yaml
 **/.DS_Store
 **/http-client.private.env.json
 

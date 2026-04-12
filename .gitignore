@@ -1,7 +1,7 @@
 # 配置文件
 .idea/
 .vscode/
-config.yaml
+config/config.yaml
 **/.DS_Store
 **/http-client.private.env.json
 

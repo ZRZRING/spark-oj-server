@@ -12,12 +12,6 @@ logger:
   stdout: true
   header: true
 
-redis:
-  default:
-    address: "zrzring.top:6379"
-    password: "zrzring"
-    db: 0
-
 # https://goframe.org/docs/core/gdb-config-file
 database:
   logger:
@@ -26,7 +20,6 @@ database:
     level: "all"
     # stdout: true
   default:
-    # link: "pgsql:spark-oj:123456@tcp(zrzring.top:54321)/spark-oj"
     link: "pgsql:postgres:postgres@tcp(127.0.0.1:5432)/spark-oj"
     timezone: "Asia/Shanghai"
     debug: true
@@ -38,5 +31,11 @@ upload:
     testcases: "data/testcases"
 
 judge:
-  apiBaseUrl: "http://localhost:5050"
+  apiBaseUrl: "http://127.0.0.1:5050"
   timeout: 15
+
+redis:
+  default:
+    address: "127.0.0.1:6379"
+    password: ""
+    db: 0

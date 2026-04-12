@@ -43,3 +43,9 @@ type ControllerCore struct{}
 func NewCore() v1.IV1Core {
 	return &ControllerCore{}
 }
+
+type ControllerHealthy struct{}
+
+func NewHealthy() v1.IV1Healthy {
+	return &ControllerHealthy{}
+}

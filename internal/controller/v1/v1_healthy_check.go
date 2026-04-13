@@ -2,6 +2,7 @@ package v1
 
 import (
 	"context"
+	"strings"
 	"time"
 
 	"github.com/gogf/gf/v2/frame/g"
@@ -101,22 +102,19 @@ func checkGoJudge(ctx context.Context) *healthy.ComponentStatus {
 }
 
 func maskPassword(dsn string) string {
-	atIdx := -1
-	colonIdx := -1
-	tcpIdx := -1
-	for i := len(dsn) - 1; i >= 0; i-- {
-		if dsn[i] == '@' && atIdx < 0 {
-			atIdx = i
-		}
-		if dsn[i] == ':' && atIdx < 0 && colonIdx < 0 {
-			colonIdx = i
-		}
-		if dsn[i:i+4] == "tcp(" && tcpIdx < 0 {
-			tcpIdx = i
-		}
+	atIdx := strings.Index(dsn, "@")
+	if atIdx < 0 {
+		return dsn
 	}
-	if atIdx > 0 && colonIdx > 0 && tcpIdx > 0 {
-		return dsn[:colonIdx] + ":****" + dsn[atIdx:]
+	prefix := dsn[:atIdx]
+	colonCount := 0
+	for i := len(prefix) - 1; i >= 0; i-- {
+		if prefix[i] == ':' {
+			colonCount++
+			if colonCount == 2 {
+				return prefix[:i] + ":****" + dsn[atIdx:]
+			}
+		}
 	}
 	return dsn
 }

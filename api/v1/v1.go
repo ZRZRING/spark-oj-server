@@ -18,7 +18,6 @@ import (
 
 type IV1Admin interface {
 	Protected(ctx context.Context, req *admin.ProtectedReq) (res *admin.ProtectedRes, err error)
-	UpdateUserRole(ctx context.Context, req *admin.UpdateUserRoleReq) (res *admin.UpdateUserRoleRes, err error)
 }
 
 type IV1Contest interface {
@@ -60,4 +59,5 @@ type IV1User interface {
 	Profile(ctx context.Context, req *user.ProfileReq) (res *user.ProfileRes, err error)
 	Register(ctx context.Context, req *user.RegisterReq) (res *user.RegisterRes, err error)
 	Training(ctx context.Context, req *user.TrainingReq) (res *user.TrainingRes, err error)
+	UpdateRole(ctx context.Context, req *user.UpdateRoleReq) (res *user.UpdateRoleRes, err error)
 }

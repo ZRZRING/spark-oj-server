@@ -2,18 +2,17 @@ package v1
 
 import (
 	"context"
+	"spark-oj/api/v1/user"
 	"spark-oj/internal/dao"
 	"spark-oj/internal/model/do"
 
 	"github.com/gogf/gf/v2/errors/gcode"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
-
-	"spark-oj/api/v1/admin"
 )
 
-func (c *ControllerAdmin) UpdateUserRole(ctx context.Context, req *admin.UpdateUserRoleReq) (res *admin.UpdateUserRoleRes, err error) {
-	res = &admin.UpdateUserRoleRes{}
+func (c *ControllerUser) UpdateRole(ctx context.Context, req *user.UpdateRoleReq) (res *user.UpdateRoleRes, err error) {
+	res = &user.UpdateRoleRes{}
 
 	// 检查用户是否存在
 	count, err := dao.UserBase.Ctx(ctx).Where("username", req.Username).Count()

@@ -2,7 +2,6 @@
 .idea/
 .vscode/
 **/.DS_Store
-**/config.yaml
 
 # 二进制文件
 **/*.exe
@@ -14,11 +13,3 @@ output/
 temp/
 .gocache/
 data/
-
-# Agent
-.codex/
-.claude/
-.qoder/
-.prompt/
-AGENTS.md
-CLAUDE.md

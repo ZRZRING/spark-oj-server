@@ -20,7 +20,7 @@ database:
     level: "all"
     # stdout: true
   default:
-    link: "pgsql:postgres:postgres@tcp(127.0.0.1:5432)/spark-oj"
+    link: "pgsql:postgres:postgres@tcp(127.0.0.1:15432)/spark-oj"
     timezone: "Asia/Shanghai"
     debug: true
 
@@ -28,14 +28,14 @@ database:
 
 upload:
   path:
-    testcases: "data/testcases"
+    testcases: "../data/testcases"
 
 judge:
-  apiBaseUrl: "http://127.0.0.1:5050"
+  apiBaseUrl: "http://127.0.0.1:15050"
   timeout: 15
 
 redis:
   default:
-    address: "127.0.0.1:6379"
+    address: "127.0.0.1:16379"
     password: ""
     db: 0

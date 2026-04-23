@@ -5,7 +5,8 @@ import (
 )
 
 type ProfileReq struct {
-	g.Meta `path:"/profile/{username}" method:"GET" tags:"user" summary:"获取用户信息"`
+	g.Meta   `path:"/profile/{username}" method:"GET" tags:"user" summary:"获取用户信息"`
+	Username string `p:"username" in:"path" v:"required#用户名不能为空"`
 }
 
 type ProfileRes struct {

@@ -14,10 +14,10 @@ import (
 	"github.com/gogf/gf/v2/util/gconv"
 )
 
-func (c *ControllerCore) UploadTestCase(ctx context.Context, req *testcase.UploadTestCaseReq) (res *testcase.UploadTestCaseRes, err error) {
-	res = &testcase.UploadTestCaseRes{}
+func (c *ControllerCore) UploadTestCase(ctx context.Context, req *testcase.UploadReq) (res *testcase.UploadRes, err error) {
+	res = &testcase.UploadRes{}
 
-	if req.TestCases == nil {
+	if req.Testcases == nil {
 		err = gerror.NewCode(gcode.CodeInvalidRequest, "TestCases is nil")
 		g.Log().Error(ctx, err)
 		return nil, err
@@ -37,7 +37,7 @@ func (c *ControllerCore) UploadTestCase(ctx context.Context, req *testcase.Uploa
 		return nil, err
 	}
 
-	for _, file := range req.TestCases {
+	for _, file := range req.Testcases {
 		filename, err := file.Save(problemDir)
 		if err != nil {
 			g.Log().Error(ctx, err)
@@ -48,4 +48,7 @@ func (c *ControllerCore) UploadTestCase(ctx context.Context, req *testcase.Uploa
 
 	res.Path = problemDir
 	return res, nil
+}
+func (c *ControllerTestcase) Upload(ctx context.Context, req *testcase.UploadReq) (res *testcase.UploadRes, err error) {
+	return nil, gerror.NewCode(gcode.CodeNotImplemented)
 }

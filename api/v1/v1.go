@@ -54,7 +54,7 @@ type IV1Submission interface {
 }
 
 type IV1Testcase interface {
-	UploadTestCase(ctx context.Context, req *testcase.UploadTestCaseReq) (res *testcase.UploadTestCaseRes, err error)
+	Upload(ctx context.Context, req *testcase.UploadReq) (res *testcase.UploadRes, err error)
 }
 
 type IV1User interface {

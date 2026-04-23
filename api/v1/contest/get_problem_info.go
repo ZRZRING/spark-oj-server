@@ -8,8 +8,8 @@ import (
 
 type GetProblemInfoReq struct {
 	g.Meta    `path:"/contest/{contestId}/problem/{problemId}" method:"GET" tags:"contest" summary:"获取比赛题目详情"`
-	ContestId string `p:"contest_id" v:"required#比赛 ID 不能为空" dc:"比赛 ID"`
-	ProblemId string `p:"problem_id" v:"required#题目 ID 不能为空" dc:"题目 ID"`
+	ContestId string `p:"contestId" in:"path" v:"required#比赛 ID 不能为空"`
+	ProblemId string `p:"problemId" in:"path" v:"required#题目 ID 不能为空"`
 }
 
 type GetProblemInfoRes struct {

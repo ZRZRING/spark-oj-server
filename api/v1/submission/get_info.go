@@ -6,7 +6,7 @@ import (
 
 type GetInfoReq struct {
 	g.Meta       `path:"/submission/{submissionId}" method:"GET" tags:"submission" summary:"获取提交信息"`
-	SubmissionId string `p:"submission_id" v:"required#题目 ID 不能为空"`
+	SubmissionId string `p:"submissionId" in:"path" v:"required#提交 ID 不能为空"`
 }
 
 type GetInfoRes struct {
@@ -19,5 +19,5 @@ type GetInfoRes struct {
 	MemoryCost   string `json:"memory_cost"`
 	TimeCost     string `json:"time_cost"`
 	Code         string `json:"code"`
-	CreateAt     string `json:"create_at"`
+	CreateTime   string `json:"create_time"`
 }

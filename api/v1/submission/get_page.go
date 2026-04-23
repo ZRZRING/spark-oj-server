@@ -8,7 +8,9 @@ type GetPageReq struct {
 	g.Meta    `path:"/submissions" method:"GET" tags:"submission" summary:"分页获取提交列表"`
 	Page      int    `p:"page" v:"required#页码不能为空"`
 	Size      int    `p:"size" v:"required#每页数量不能为空"`
-	ContestId string `p:"contest_id"`
+	Username  string `p:"username"`
+	ProblemId string `p:"problemId"`
+	ContestId string `p:"contestId"`
 }
 
 type GetPageRes struct {

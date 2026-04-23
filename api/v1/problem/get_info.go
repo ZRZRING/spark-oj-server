@@ -8,7 +8,7 @@ import (
 
 type GetInfoReq struct {
 	g.Meta    `path:"/problem/{problemId}" method:"GET" tags:"problem" summary:"获取题目信息"`
-	ProblemId string `p:"problem_id" v:"required#题目 ID 不能为空" dc:"题目 ID"`
+	ProblemId string `p:"problemId" in:"path" v:"required#题目 ID 不能为空"`
 }
 
 type GetInfoRes struct {

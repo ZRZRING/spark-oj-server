@@ -4,7 +4,6 @@ import (
 	"context"
 	"spark-oj/api/v1/core"
 	"spark-oj/internal/dao"
-	"spark-oj/internal/model/do"
 	"spark-oj/internal/model/entity"
 	"spark-oj/internal/service"
 	"spark-oj/pkg/enums"
@@ -13,6 +12,7 @@ import (
 	"github.com/gogf/gf/v2/errors/gcode"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/os/gctx"
 	"github.com/gogf/gf/v2/os/gfile"
 	"github.com/gogf/gf/v2/util/gconv"
 )
@@ -41,11 +41,50 @@ func (c *ControllerCore) Judge(ctx context.Context, req *core.JudgeReq) (res *co
 		return nil, err
 	}
 
-	problemId := gconv.Int(req.ProblemId)
-	testCases, err := service.CollectTestCases(problemId)
+	insertData := g.Map{
+		"problem_id": req.ProblemId,
+		"username":   req.Username,
+		"result":     string(enums.JudgeStatusWaiting),
+		"language":   req.Language,
+		"code":       req.Code,
+	}
+	if req.ContestId != "" {
+		insertData["contest_id"] = req.ContestId
+	}
+
+	id, err := dao.Submission.Ctx(ctx).InsertAndGetId(insertData)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err
+	}
+
+	submissionId := gconv.String(id)
+	res.SubmissionId = submissionId
+	res.Result = enums.JudgeStatusWaiting
+
+	go runJudge(gctx.New(), submissionId, req.ProblemId, req.Code, req.Language)
+
+	return res, nil
+}
+
+func runJudge(ctx context.Context, submissionId string, problemIdStr string, code string, language enums.Language) {
+	problemId := gconv.Int(problemIdStr)
+
+	_, err := dao.Submission.Ctx(ctx).Where("submission_id", submissionId).Data("result", string(enums.JudgeStatusRunning)).Update()
+	if err != nil {
+		g.Log().Error(ctx, err)
+		return
+	}
+
+	testCases, err := service.CollectTestCases(problemId)
+	if err != nil {
+		g.Log().Error(ctx, err)
+		dao.Submission.Ctx(ctx).Where("submission_id", submissionId).Data(g.Map{
+			"result":      string(enums.JudgeStatusRuntimeError),
+			"memory_cost": 0,
+			"time_cost":   0,
+		}).Update()
+		return
 	}
 
 	judgeResult := enums.JudgeStatusAccepted
@@ -56,13 +95,14 @@ func (c *ControllerCore) Judge(ctx context.Context, req *core.JudgeReq) (res *co
 		expected := gfile.GetContents(testCase.OutputPath)
 
 		exeRes, executeErr := service.ExecuteCode(ctx, &service.ExecuteCodeRequest{
-			Code:     req.Code,
+			Code:     code,
 			Input:    input,
-			Language: req.Language,
+			Language: language,
 		})
 		if executeErr != nil {
 			g.Log().Error(ctx, executeErr)
-			return nil, executeErr
+			judgeResult = enums.JudgeStatusRuntimeError
+			break
 		}
 
 		if exeRes.Time > maxTime {
@@ -83,26 +123,12 @@ func (c *ControllerCore) Judge(ctx context.Context, req *core.JudgeReq) (res *co
 		}
 	}
 
-	data := do.Submission{
-		ProblemId:  req.ProblemId,
-		Username:   req.Username,
-		Result:     judgeResult,
-		Language:   req.Language,
-		MemoryCost: maxMemory,
-		TimeCost:   maxTime / (1000 * 1000),
-		Code:       req.Code,
-	}
-	if req.ContestId != "" {
-		data.ContestId = req.ContestId
-	}
-
-	id, err := dao.Submission.Ctx(ctx).InsertAndGetId(data)
+	_, err = dao.Submission.Ctx(ctx).Where("submission_id", submissionId).Data(g.Map{
+		"result":      string(judgeResult),
+		"memory_cost": maxMemory,
+		"time_cost":   maxTime / (1000 * 1000),
+	}).Update()
 	if err != nil {
 		g.Log().Error(ctx, err)
-		return nil, err
 	}
-
-	res.SubmissionId = gconv.String(id)
-	res.Result = judgeResult
-	return res, nil
 }

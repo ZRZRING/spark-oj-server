@@ -6,7 +6,7 @@ import (
 )
 
 type CreateReq struct {
-	g.Meta      `path:"/contest" method:"POST" tags:"contest" mime:"application/json" summary:"添加比赛"`
+	g.Meta      `path:"/contest" method:"POST" tags:"contest" summary:"添加比赛"`
 	Title       string     `json:"title" v:"required#比赛名称不能为空"`
 	Password    string     `json:"password"`
 	Problems    []int      `json:"problems"`

@@ -5,12 +5,12 @@ import (
 	"github.com/gogf/gf/v2/net/ghttp"
 )
 
-type UploadTestCaseReq struct {
+type UploadReq struct {
 	g.Meta    `path:"/upload/testcases" method:"POST" tags:"core" summary:"提交测试用例"`
-	TestCases ghttp.UploadFiles `p:"test_cases" type:"file" v:"required"`
-	ProblemId string            `p:"problem_id" v:"required"`
+	ProblemId string            `p:"problemId" v:"required"`
+	Testcases ghttp.UploadFiles `p:"testcases" type:"file" v:"required"`
 }
 
-type UploadTestCaseRes struct {
+type UploadRes struct {
 	Path string `json:"path"`
 }

@@ -16,6 +16,6 @@ type RunRes struct {
 	Output     string `json:"output"`
 	Error      string `json:"error"`
 	Time       int64  `json:"time"`
-	Memery     int64  `json:"memery"`
-	ExitStatus int64  `json:"exitStatus"`
+	Memory     int64  `json:"memory"`
+	ExitStatus int64  `json:"exit_status"`
 }

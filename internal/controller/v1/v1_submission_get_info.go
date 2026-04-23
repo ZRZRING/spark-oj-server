@@ -14,18 +14,23 @@ import (
 
 func (c *ControllerSubmission) GetInfo(ctx context.Context, req *submission.GetInfoReq) (res *submission.GetInfoRes, err error) {
 	res = &submission.GetInfoRes{}
-	md := dao.Submission.Ctx(ctx)
 
 	r := g.RequestFromCtx(ctx)
-	submissionId := gconv.String(r.Get("submission_id").Val())
+	submissionId := r.Get("submissionId").Int()
 
 	e := &entity.Submission{}
-	err = md.Where("submission_id", submissionId).Scan(e)
+	err = dao.Submission.Ctx(ctx).Where("submission_id", submissionId).Scan(e)
 	if err != nil {
-		g.Log().Error(ctx, err)
 		return nil, err
 	}
 
+	var memoryCost, timeCost string
+	if e.MemoryCost > 0 {
+		memoryCost = fmt.Sprintf("%.2f", float64(e.MemoryCost)/1024.0/1024.0)
+	}
+	if e.TimeCost > 0 {
+		timeCost = fmt.Sprintf("%d", e.TimeCost)
+	}
 	res = &submission.GetInfoRes{
 		SubmissionId: gconv.String(e.SubmissionId),
 		ProblemId:    gconv.String(e.ProblemId),
@@ -33,14 +38,10 @@ func (c *ControllerSubmission) GetInfo(ctx context.Context, req *submission.GetI
 		Username:     e.Username,
 		Result:       e.Result,
 		Language:     e.Language,
-		MemoryCost:   fmt.Sprintf("%.2f", float64(e.MemoryCost)/1024.0/1024.0),
-		TimeCost:     fmt.Sprintf("%d", e.TimeCost),
+		MemoryCost:   memoryCost,
+		TimeCost:     timeCost,
 		Code:         e.Code,
-		CreateAt:     e.CreateAt.Layout("2006-01-02 15:04:05"),
-	}
-	if err != nil {
-		g.Log().Error(ctx, err)
-		return nil, err
+		CreateTime:   e.CreateAt.Layout("2006-01-02 15:04:05"),
 	}
 
 	return res, nil

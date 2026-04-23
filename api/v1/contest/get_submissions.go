@@ -6,9 +6,9 @@ import (
 
 type GetSubmissionsReq struct {
 	g.Meta    `path:"/contest/{contestId}/submissions" method:"GET" tags:"contest" summary:"获取比赛提交列表"`
+	ContestId string `p:"contestId" in:"path" v:"required#比赛 ID 不能为空"`
 	Page      int    `p:"page" v:"required#页码不能为空"`
 	Size      int    `p:"size" v:"required#每页数量不能为空"`
-	ContestId string `p:"contest_id"`
 }
 
 type GetSubmissionsRes struct {

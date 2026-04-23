@@ -17,8 +17,8 @@ type UserBase struct {
 	Password  string      `json:"password"  orm:"password"  ` //
 	Nickname  string      `json:"nickname"  orm:"nickname"  ` //
 	Role      string      `json:"role"      orm:"role"      ` //
-	Solved    int         `json:"solved"    orm:"solved"    ` //
-	Submitted int         `json:"submitted" orm:"submitted" ` //
+	Solved    string      `json:"solved"    orm:"solved"    ` //
+	Submitted string      `json:"submitted" orm:"submitted" ` //
 	Rating    int         `json:"rating"    orm:"rating"    ` //
 	Extra     string      `json:"extra"     orm:"extra"     ` //
 }

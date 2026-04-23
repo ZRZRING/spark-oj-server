@@ -4,5 +4,5 @@
 gfcli:
   gen:
     dao:
-      link: "pgsql:postgres:postgres@tcp(127.0.0.1)/spark-oj"
+      link: "pgsql:postgres:postgres@tcp(127.0.0.1:15432)/spark-oj"
       jsonCase: "Snake"

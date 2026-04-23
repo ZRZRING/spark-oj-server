@@ -13,6 +13,7 @@ import (
 	"spark-oj/api/v1/healthy"
 	"spark-oj/api/v1/problem"
 	"spark-oj/api/v1/submission"
+	"spark-oj/api/v1/testcase"
 	"spark-oj/api/v1/user"
 )
 
@@ -34,7 +35,6 @@ type IV1Contest interface {
 type IV1Core interface {
 	Judge(ctx context.Context, req *core.JudgeReq) (res *core.JudgeRes, err error)
 	Run(ctx context.Context, req *core.RunReq) (res *core.RunRes, err error)
-	UploadTestCase(ctx context.Context, req *core.UploadTestCaseReq) (res *core.UploadTestCaseRes, err error)
 }
 
 type IV1Healthy interface {
@@ -51,6 +51,10 @@ type IV1Problem interface {
 type IV1Submission interface {
 	GetInfo(ctx context.Context, req *submission.GetInfoReq) (res *submission.GetInfoRes, err error)
 	GetPage(ctx context.Context, req *submission.GetPageReq) (res *submission.GetPageRes, err error)
+}
+
+type IV1Testcase interface {
+	UploadTestCase(ctx context.Context, req *testcase.UploadTestCaseReq) (res *testcase.UploadTestCaseRes, err error)
 }
 
 type IV1User interface {

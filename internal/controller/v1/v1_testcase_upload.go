@@ -3,9 +3,8 @@ package v1
 import (
 	"context"
 	"path/filepath"
+	"spark-oj/api/v1/testcase"
 	"spark-oj/internal/dao"
-
-	"spark-oj/api/v1/core"
 
 	"github.com/gogf/gf/v2/errors/gcode"
 	"github.com/gogf/gf/v2/errors/gerror"
@@ -15,8 +14,8 @@ import (
 	"github.com/gogf/gf/v2/util/gconv"
 )
 
-func (c *ControllerCore) UploadTestCase(ctx context.Context, req *core.UploadTestCaseReq) (res *core.UploadTestCaseRes, err error) {
-	res = &core.UploadTestCaseRes{}
+func (c *ControllerCore) UploadTestCase(ctx context.Context, req *testcase.UploadTestCaseReq) (res *testcase.UploadTestCaseRes, err error) {
+	res = &testcase.UploadTestCaseRes{}
 
 	if req.TestCases == nil {
 		err = gerror.NewCode(gcode.CodeInvalidRequest, "TestCases is nil")

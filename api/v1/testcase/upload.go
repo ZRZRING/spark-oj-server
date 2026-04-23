@@ -1,4 +1,4 @@
-package core
+package testcase
 
 import (
 	"github.com/gogf/gf/v2/frame/g"
@@ -6,7 +6,7 @@ import (
 )
 
 type UploadTestCaseReq struct {
-	g.Meta    `path:"/upload/testcases/{problemId}" method:"POST" tags:"core" summary:"提交测试用例"`
+	g.Meta    `path:"/upload/testcases" method:"POST" tags:"core" summary:"提交测试用例"`
 	TestCases ghttp.UploadFiles `p:"test_cases" type:"file" v:"required"`
 	ProblemId string            `p:"problem_id" v:"required"`
 }

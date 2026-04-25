@@ -49,9 +49,3 @@ type ControllerHealthy struct{}
 func NewHealthy() v1.IV1Healthy {
 	return &ControllerHealthy{}
 }
-
-type ControllerTestcase struct{}
-
-func NewTestcase() v1.IV1Testcase {
-	return &ControllerTestcase{}
-}

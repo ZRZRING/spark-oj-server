@@ -15,11 +15,8 @@ func (c *ControllerContest) GetInfo(ctx context.Context, req *contest.GetInfoReq
 	res = &contest.GetInfoRes{}
 	md := dao.Contest.Ctx(ctx)
 
-	r := g.RequestFromCtx(ctx)
-	contestId := gconv.String(r.Get("contest_id").Val())
-
 	e := &entity.Contest{}
-	err = md.Where("contest_id", contestId).Scan(e)
+	err = md.Where("contest_id", req.ContestId).Scan(e)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err

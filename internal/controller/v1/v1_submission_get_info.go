@@ -6,7 +6,6 @@ import (
 	"spark-oj/internal/dao"
 	"spark-oj/internal/model/entity"
 
-	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 
 	"spark-oj/api/v1/submission"
@@ -15,11 +14,8 @@ import (
 func (c *ControllerSubmission) GetInfo(ctx context.Context, req *submission.GetInfoReq) (res *submission.GetInfoRes, err error) {
 	res = &submission.GetInfoRes{}
 
-	r := g.RequestFromCtx(ctx)
-	submissionId := r.Get("submissionId").Int()
-
 	e := &entity.Submission{}
-	err = dao.Submission.Ctx(ctx).Where("submission_id", submissionId).Scan(e)
+	err = dao.Submission.Ctx(ctx).Where("submission_id", req.SubmissionId).Scan(e)
 	if err != nil {
 		return nil, err
 	}

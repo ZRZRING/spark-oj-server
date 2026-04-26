@@ -16,8 +16,7 @@ func (c *ControllerUser) Training(ctx context.Context, req *user.TrainingReq) (r
 	md := dao.UserBase.Ctx(ctx)
 
 	// 获取 URL 路径参数
-	r := g.RequestFromCtx(ctx)
-	username := gconv.String(r.Get("username").Val())
+	username := req.Username
 
 	// 从数据库获取用户训练数据
 	e := &entity.UserBase{}

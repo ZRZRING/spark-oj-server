@@ -4,8 +4,10 @@ package enums
 type JudgeStatus string
 
 const (
-	JudgeStatusWaiting             JudgeStatus = "Waiting"
-	JudgeStatusRunning             JudgeStatus = "Running"
+	JudgeStatusWaiting     JudgeStatus = "Waiting"
+	JudgeStatusRunning     JudgeStatus = "Running"
+	JudgeStatusSystemError JudgeStatus = "System Error"
+
 	JudgeStatusAccepted            JudgeStatus = "Accepted"
 	JudgeStatusWrongAnswer         JudgeStatus = "Wrong Answer"
 	JudgeStatusTimeLimitExceeded   JudgeStatus = "Time Limit Exceeded"

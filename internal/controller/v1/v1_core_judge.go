@@ -80,7 +80,7 @@ func runJudge(ctx context.Context, submissionId string, problemIdStr string, cod
 	if err != nil {
 		g.Log().Error(ctx, err)
 		dao.Submission.Ctx(ctx).Where("submission_id", submissionId).Data(g.Map{
-			"result":      string(enums.JudgeStatusRuntimeError),
+			"result":      string(enums.JudgeStatusSystemError),
 			"memory_cost": 0,
 			"time_cost":   0,
 		}).Update()
@@ -101,7 +101,7 @@ func runJudge(ctx context.Context, submissionId string, problemIdStr string, cod
 		})
 		if executeErr != nil {
 			g.Log().Error(ctx, executeErr)
-			judgeResult = enums.JudgeStatusRuntimeError
+			judgeResult = enums.JudgeStatusSystemError
 			break
 		}
 

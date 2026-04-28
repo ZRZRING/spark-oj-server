@@ -18,8 +18,12 @@ type GetPageRes struct {
 }
 
 type GetPageItem struct {
-	ProblemId string          `json:"problem_id"`
-	Title     string          `json:"title"`
-	JudgeType enums.JudgeType `json:"judge_type"`
-	Rating    int             `json:"rating"`
+	ProblemId   string          `json:"problem_id"`
+	Title       string          `json:"title"`
+	JudgeType   enums.JudgeType `json:"judge_type"`
+	Rating      int             `json:"rating"`
+	AcceptCount int             `json:"accept_count"`
+	SubmitCount int             `json:"submit_count"`
+	CreateBy    string          `json:"create_by"`
+	CreateTime  string          `json:"create_time"`
 }

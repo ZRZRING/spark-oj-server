@@ -28,7 +28,7 @@ database:
 
 upload:
   path:
-    testcases: "data/testcases"
+    testcases: "../data/testcases"
 
 judge:
   apiBaseUrl: "http://127.0.0.1:15050"

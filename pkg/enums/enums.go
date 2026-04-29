@@ -44,3 +44,10 @@ const (
 	JudgeTypeOutputOnly    JudgeType = "Output Only"
 	JudgeTypeUnknown       JudgeType = "Unknown"
 )
+
+type ContestVisibility string
+
+const (
+	ContestVisibilityPublic   ContestVisibility = "Public"
+	ContestVisibilityPrivate  ContestVisibility = "Private"
+)

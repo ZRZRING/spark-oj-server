@@ -4,6 +4,7 @@ import (
 	"context"
 	"spark-oj/internal/dao"
 	"spark-oj/internal/model/entity"
+	"spark-oj/pkg/enums"
 
 	"github.com/gogf/gf/v2/util/gconv"
 
@@ -26,6 +27,14 @@ func (c *ControllerContest) GetPage(ctx context.Context, req *contest.GetPageReq
 		return nil, err
 	}
 	res.Total = tot
+
+	for i, item := range res.Contests {
+		if e[i].Password != "" {
+			item.Visibility = enums.ContestVisibilityPrivate
+		} else {
+			item.Visibility = enums.ContestVisibilityPublic
+		}
+	}
 
 	return res, nil
 }

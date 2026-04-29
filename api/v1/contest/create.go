@@ -15,7 +15,7 @@ type CreateReq struct {
 	StartTime   gtime.Time `json:"start_time" v:"required-if:practice,false#开始时间不能为空"`
 	EndTime     gtime.Time `json:"end_time" v:"required-if:practice,false#结束时间不能为空"`
 	CreateBy    string     `json:"create_by" v:"required#创建者不能为空"`
-	LockTime    gtime.Time `json:"lock_time" v:"between:startTime,endTime#封榜时间不合法"`
+	LockTime    gtime.Time `json:"lock_time" v:"after:start_time|before:end_time#封榜时间不合法"`
 }
 
 type CreateRes struct {

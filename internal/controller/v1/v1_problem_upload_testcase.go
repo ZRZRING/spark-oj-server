@@ -6,6 +6,7 @@ import (
 	"spark-oj/api/v1/problem"
 	"spark-oj/internal/dao"
 	"spark-oj/pkg/consts"
+	"strings"
 
 	"github.com/gogf/gf/v2/errors/gcode"
 	"github.com/gogf/gf/v2/errors/gerror"
@@ -41,10 +42,11 @@ func (c *ControllerProblem) UploadTestcase(ctx context.Context, req *problem.Upl
 		}
 		// 扩展名为 in 和 out，且文件名相同的文件必须成对出现
 		ext := filepath.Ext(file.Filename)
+		base := strings.TrimSuffix(filepath.Base(file.Filename), ext)
 		if ext == ".in" {
-			ioMap[filepath.Base(file.Filename)] |= 1
+			ioMap[base] |= 1
 		} else if ext == ".out" {
-			ioMap[filepath.Base(file.Filename)] |= 2
+			ioMap[base] |= 2
 		} else {
 			err = gerror.NewCode(gcode.CodeInvalidRequest, "File extension is invalid")
 			g.Log().Error(ctx, err)

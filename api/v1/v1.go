@@ -42,8 +42,10 @@ type IV1Healthy interface {
 
 type IV1Problem interface {
 	Create(ctx context.Context, req *problem.CreateReq) (res *problem.CreateRes, err error)
+	DeleteTestcase(ctx context.Context, req *problem.DeleteTestcaseReq) (res *problem.DeleteTestcaseRes, err error)
 	GetInfo(ctx context.Context, req *problem.GetInfoReq) (res *problem.GetInfoRes, err error)
 	GetPage(ctx context.Context, req *problem.GetPageReq) (res *problem.GetPageRes, err error)
+	GetTestcases(ctx context.Context, req *problem.GetTestcasesReq) (res *problem.GetTestcasesRes, err error)
 	Update(ctx context.Context, req *problem.UpdateReq) (res *problem.UpdateRes, err error)
 	UploadTestcase(ctx context.Context, req *problem.UploadTestcaseReq) (res *problem.UploadTestcaseRes, err error)
 }

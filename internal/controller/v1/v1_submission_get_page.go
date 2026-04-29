@@ -13,25 +13,22 @@ import (
 )
 
 func (c *ControllerSubmission) GetPage(ctx context.Context, req *submission.GetPageReq) (res *submission.GetPageRes, err error) {
-	// 查询总数
-	total, err := dao.Submission.Ctx(ctx).Count()
-	if err != nil {
-		return nil, gerror.Wrap(err, "查询提交总数失败")
-	}
-
 	// 查询提交列表
-	var submissions []*entity.Submission
+	var (
+		tot         int
+		submissions []*entity.Submission
+	)
 	err = dao.Submission.Ctx(ctx).
 		OrderDesc("submission_id").
 		Page(req.Page, req.Size).
-		Scan(&submissions)
+		ScanAndCount(&submissions, &tot, false)
 	if err != nil {
 		return nil, gerror.Wrap(err, "查询提交列表失败")
 	}
 
 	// 转换为返回格式
 	res = &submission.GetPageRes{
-		Total: total,
+		Total: tot,
 	}
 	for _, sub := range submissions {
 		res.Submissions = append(res.Submissions, &submission.GetPageItem{

@@ -25,6 +25,7 @@ func (c *ControllerContest) GetSubmissions(ctx context.Context, req *contest.Get
 	submissionData := make([]*entity.Submission, 0)
 	err = dao.Submission.Ctx(ctx).
 		Where("contest_id", req.ContestId).
+		Page(req.Page, req.Size).
 		OrderDesc("submission_id").
 		ScanAndCount(&submissionData, &res.Total, false)
 	if err != nil {

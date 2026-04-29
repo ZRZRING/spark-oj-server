@@ -3,10 +3,10 @@ package service
 import (
 	"encoding/json"
 	"fmt"
-	"spark-oj/pkg/utils"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/gclient"
+	"github.com/gogf/gf/v2/os/gctx"
 )
 
 // ExecuteCode 执行单次代码（编译并运行）
@@ -142,7 +142,7 @@ func sendGoJudgeRequest(ctx g.Ctx, request *GoJudgeRequest) (res *GoJudgeResult,
 	g.Log().Debug(ctx, "Judge request:", string(requestData))
 
 	// 发送POST请求到go-judge
-	judgeApiBaseUrl := utils.GetConfigString("judge.apiBaseUrl")
+	judgeApiBaseUrl := g.Cfg().MustGet(gctx.New(), "judge.apiBaseUrl").String()
 	r, err := g.Client().Post(ctx, judgeApiBaseUrl+"/run", requestData)
 	if err != nil {
 		return nil, fmt.Errorf("send request failed: %v", err)

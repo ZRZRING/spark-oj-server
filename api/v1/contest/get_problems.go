@@ -17,7 +17,9 @@ type GetProblemsRes struct {
 }
 
 type GetProblemsItem struct {
-	ProblemId string          `json:"problem_id"`
-	Title     string          `json:"title"`
-	JudgeType enums.JudgeType `json:"judge_type"`
+	ProblemId   string          `json:"problem_id"`
+	Title       string          `json:"title"`
+	JudgeType   enums.JudgeType `json:"judge_type"`
+	SubmitCount int             `json:"submit_count"`
+	AcceptCount int             `json:"accept_count"`
 }

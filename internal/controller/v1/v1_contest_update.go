@@ -23,7 +23,9 @@ func (c *ControllerContest) Update(ctx context.Context, req *contest.UpdateReq) 
 	}
 
 	d.ContestId = req.ContestId
-	msg, err := md.OnConflict("contest_id").Save(d)
+	msg, err := md.Data(d).
+		FieldsEx("contest_id").
+		Where("contest_id", req.ContestId).Update()
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return nil, err

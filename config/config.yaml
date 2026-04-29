@@ -24,7 +24,17 @@ database:
     timezone: "Asia/Shanghai"
     debug: true
 
-# 自定义配置
+sshTunnel:
+  host: "zrzring.cloud:22"
+  user: "root"
+  privateKey: "~/.ssh/id_rsa"
+  forwards:
+    - local: "127.0.0.1:15432"
+      remote: "127.0.0.1:5432"
+    - local: "127.0.0.1:16379"
+      remote: "127.0.0.1:6379"
+    - local: "127.0.0.1:15050"
+      remote: "127.0.0.1:5050"
 
 upload:
   path:

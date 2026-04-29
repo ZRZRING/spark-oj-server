@@ -9,6 +9,8 @@ func CORS(r *ghttp.Request) {
 	corsOptions.AllowDomain = []string{
 		"localhost:5173",
 		"localhost:5050",
+		"127.0.0.1:5173",
+		"127.0.0.1:5050",
 	}
 	r.Response.CORS(corsOptions)
 	r.Middleware.Next()

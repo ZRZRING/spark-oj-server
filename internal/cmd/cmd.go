@@ -1,8 +1,12 @@
 package cmd
 
 import (
-	"spark-oj/internal/router"
+	"context"
 
+	"spark-oj/internal/router"
+	"spark-oj/pkg/sshtunnel"
+
+	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gcmd"
 )
 
@@ -11,6 +15,12 @@ var (
 		Name:  "main",
 		Usage: "main",
 		Brief: "start http server",
-		Func:  router.Bind,
+		Func: func(ctx context.Context, parser *gcmd.Parser) error {
+			if err := sshtunnel.Setup(); err != nil {
+				g.Log().Fatal(ctx, "ssh tunnel setup failed:", err)
+				return err
+			}
+			return router.Bind(ctx, parser)
+		},
 	}
 )
